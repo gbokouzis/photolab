@@ -427,10 +427,12 @@ var map = {
 	],
 	"./Posts/Create": [
 		"./resources/js/Pages/Posts/Create.vue",
+		"/js/vendor",
 		"resources_js_Pages_Posts_Create_vue"
 	],
 	"./Posts/Create.vue": [
 		"./resources/js/Pages/Posts/Create.vue",
+		"/js/vendor",
 		"resources_js_Pages_Posts_Create_vue"
 	],
 	"./Posts/Edit": [
@@ -508,7 +510,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[1]).then(() => {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() => {
 		return __webpack_require__(id);
 	});
 }

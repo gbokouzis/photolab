@@ -26,6 +26,7 @@ class StoreImagePostRequest extends FormRequest
         return [
             'description' => 'required|min:3|max:50',
             'camera' => 'required|min:2|max:50',
+            'tags' => 'array'
         ];
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreImagePostRequest;
 use App\Http\Resources\ImagePostResource;
 use App\Models\ImagePost;
+use App\Models\ImagePostTag;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -44,8 +46,38 @@ class ImagePostController extends Controller
     public function store(StoreImagePostRequest $request)
     {
         $data = $request->validated();
+
+        if ( count($data['tags']) !== 0 ) {
+            $idFromTags = [];
+            
+            foreach ($data['tags'] as $tag) {
+                // $dbTag = Tag::where('content', '=', $tag)
+                $dbTag = Tag::where('content', 'LIKE', $tag)->first();
+
+
+                if ( $dbTag !== null ) {
+                    array_push($idFromTags, $dbTag->id);
+                }
+
+                if ( $dbTag === null ) {
+                    $newTag = Tag::create(['content' => $tag]);
+                    array_push($idFromTags, $newTag->id);
+                }
+            }
+        }
+
+        // dd($idFromTags);
+
         $data['user_id'] = $request->user()->id;
-        ImagePost::create($data);
+        $newPost = ImagePost::create($data);
+        
+        foreach ($idFromTags as $idFromTag) { 
+            ImagePostTag::create([
+                'image_post_id' => $newPost->id,
+                'tag_id' => $idFromTag
+            ]);
+        }
+
         return Redirect::route('posts.index');
     }
     
