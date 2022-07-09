@@ -15,6 +15,6 @@ class Tag extends Model
 
     public function imagePosts()
     {
-        return $this->belongsToMany('\App\Model\ImagePost', 'image_post_tags')->withTimestamps();
+        return $this->belongsToMany('\App\Models\ImagePost', 'image_post_tags')->withTimestamps();
     }
 }

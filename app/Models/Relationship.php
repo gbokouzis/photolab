@@ -11,6 +11,6 @@ class Relationship extends Model
 
     public function user()
     {
-        return $this->belongsTo('\App\Moadels\User');
+        return $this->belongsTo('\App\Models\User');
     }
 }

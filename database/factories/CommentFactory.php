@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
             'content' => $this->faker->text,
             'user_id' => $users->random()->id,
             'image_post_id' => $posts->random()->id,
-            'created_at' => $this->faker->dateTimeBetween('-3 months'),
+            'created_at' => $this->faker->dateTimeBetween('-1 months'),
         ];
     }
  

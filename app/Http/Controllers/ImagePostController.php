@@ -71,12 +71,14 @@ class ImagePostController extends Controller
         $data['user_id'] = $request->user()->id;
         $newPost = ImagePost::create($data);
         
-        foreach ($idFromTags as $idFromTag) { 
-            ImagePostTag::create([
-                'image_post_id' => $newPost->id,
-                'tag_id' => $idFromTag
-            ]);
-        }
+        $newPost->tags()->attach($idFromTags);
+
+        // foreach ($idFromTags as $idFromTag) { 
+        //     ImagePostTag::create([
+        //         'image_post_id' => $newPost->id,
+        //         'tag_id' => $idFromTag
+        //     ]);
+        // }
 
         return Redirect::route('posts.index');
     }

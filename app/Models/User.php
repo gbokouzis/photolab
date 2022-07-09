@@ -45,21 +45,21 @@ class User extends Authenticatable
 
     public function imagePosts()
     {
-        return $this->hasMany('\App\Model\ImagePost');
+        return $this->hasMany('\App\Models\ImagePost');
     }
 
     public function comments()
     {
-        return $this->hasMany('\App\Model\Comment');
+        return $this->hasMany('\App\Models\Comment');
     }
 
     public function followers()
     {
-        return $this->hasMany('\App\Model\Relationship', 'foreign_key', 'follower_id');
+        return $this->hasMany('\App\Models\Relationship', 'foreign_key', 'follower_id');
     }
 
     public function following()
     {
-        return $this->hasMany('\App\Model\Relationship', 'foreign_key', 'followed_id');
+        return $this->hasMany('\App\Models\Relationship', 'foreign_key', 'followed_id');
     }
 }

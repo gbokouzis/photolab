@@ -29,6 +29,11 @@ class ImagePost extends Model
         return $this->hasMany('\App\Models\Comment')->descCommentsWithFullRelations();
     }
 
+    public function category()
+    {
+        return $this->belongsTo('\App\Models\Category');
+    }
+
     public function tags()
     {
         return $this->belongsToMany('\App\Models\Tag', 'image_post_tags')->withTimestamps();

@@ -36,6 +36,14 @@
                         </Link>
                 </li>
                 <li>
+                        <Link href="/categories" class="font-semibold tracking-tight block cursor-pointer p-2 
+                            hover:text-blue-500 hover:underline transition-colors duration-300"
+                            :class="{ 'font-bold underline': $page.component === 'Categories/Index' }"
+                        >
+                            Categories
+                        </Link>
+                </li>
+                <li>
                     <Link href="/register" class="font-semibold tracking-tight block cursor-pointer p-2 
                         hover:text-blue-500 hover:underline transition-colors duration-300"
                     >

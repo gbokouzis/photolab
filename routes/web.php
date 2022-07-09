@@ -22,6 +22,7 @@ Route::get('/home', function () {
 });
 
 Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth');
+Route::resource('categories', \App\Http\Controllers\CategoryController::class)->middleware('auth');
 
 Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::get('users/{user:name}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');

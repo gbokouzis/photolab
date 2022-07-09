@@ -20,11 +20,13 @@ class ImagePostFactory extends Factory
     public function definition()
     {
         $users = \App\Models\User::all();       
+        $categories = \App\Models\Category::all();       
         return [
             'description' => $this->faker->text($maxNbChars = 50),
             'camera' => $this->faker->text($maxNbChars = 10),
             'user_id' => $users->random()->id,
-            'created_at' => $this->faker->dateTimeBetween('-3 months'),
+            'category_id' => $categories->random()->id,
+            'created_at' => $this->faker->dateTimeBetween('-1 months'),
         ];
     }
 }
