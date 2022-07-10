@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule as ValidationRule;
 
 class StoreImagePostRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class StoreImagePostRequest extends FormRequest
         return [
             'description' => 'required|min:3|max:50',
             'camera' => 'required|min:2|max:50',
-            'tags' => 'array'
+            'tags' => 'array',
+            'category_id' => ['required', ]
         ];
     }
 }
