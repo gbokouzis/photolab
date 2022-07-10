@@ -1,9 +1,6 @@
 <template>
-    <Head title="Edit post" />
+    <Head title="Edit" />
 
-        <Head title="Create" />
-    
-    <h1>Create</h1>
 
     <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-md">

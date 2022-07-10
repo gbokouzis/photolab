@@ -441,6 +441,22 @@ var map = {
 		"./resources/js/Pages/Auth/Register.vue",
 		"resources_js_Pages_Auth_Register_vue"
 	],
+	"./Categories/Create": [
+		"./resources/js/Pages/Categories/Create.vue",
+		"resources_js_Pages_Categories_Create_vue"
+	],
+	"./Categories/Create.vue": [
+		"./resources/js/Pages/Categories/Create.vue",
+		"resources_js_Pages_Categories_Create_vue"
+	],
+	"./Categories/Edit": [
+		"./resources/js/Pages/Categories/Edit.vue",
+		"resources_js_Pages_Categories_Edit_vue"
+	],
+	"./Categories/Edit.vue": [
+		"./resources/js/Pages/Categories/Edit.vue",
+		"resources_js_Pages_Categories_Edit_vue"
+	],
 	"./Categories/Index": [
 		"./resources/js/Pages/Categories/Index.vue",
 		"resources_js_Pages_Categories_Index_vue"
@@ -448,6 +464,14 @@ var map = {
 	"./Categories/Index.vue": [
 		"./resources/js/Pages/Categories/Index.vue",
 		"resources_js_Pages_Categories_Index_vue"
+	],
+	"./Categories/Show": [
+		"./resources/js/Pages/Categories/Show.vue",
+		"resources_js_Pages_Categories_Show_vue"
+	],
+	"./Categories/Show.vue": [
+		"./resources/js/Pages/Categories/Show.vue",
+		"resources_js_Pages_Categories_Show_vue"
 	],
 	"./Posts/Create": [
 		"./resources/js/Pages/Posts/Create.vue",

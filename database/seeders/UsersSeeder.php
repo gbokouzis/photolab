@@ -16,6 +16,7 @@ class UsersSeeder extends Seeder
     {
         if ( $this->command->confirm('To create the user "user@user.com"?', true) ) {
             \App\Models\User::factory()->create([
+                'name' => 'user',
                 'email' => 'user@user.com',
                 'password' => '$2y$10$Vupku9MJKizQdd0fpFxizO6pv0mahn8ZWSV6KznBoYMLLHlaXbSWK',
             ]);

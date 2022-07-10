@@ -47,6 +47,28 @@
                         class="text-red-500 text-xs mt-1" />
                 </div>
                 <div class="mb-5">
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
+                    <select id="countries" 
+                        class="bg-gray-50 border 
+                            border-gray-300 
+                            text-gray-900 text-sm rounded-lg 
+                            focus:ring-blue-500 
+                            focus:border-blue-500 block w-full p-2.5"
+                        v-model="form.category_id"
+                        >
+                        <!-- <v-select
+                            :options="options"
+                            :value="person.country"
+                            @input="(country) => updateCountry(person, country)"
+                        /> -->
+                        <option selected>Choose a category</option>
+                        <option v-for="category in categories" :value="category.id">{{category.content}}</option>
+                    </select>
+                </div>
+                <div v-if="form.errors.tags" v-text="form.errors.category_id" 
+                    class="text-red-500 text-xs mt-1" />
+                <!-- tags -->
+                <div class="mb-5">
                     <label>Tags (hit enter to add a tag):</label>
                     <input 
                         v-model="tag" 
@@ -79,6 +101,9 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import { ref } from '@vue/reactivity';
 
 export default {
+    props: {
+        categories: Object
+    },
     setup() {
         const tag = ref('')
 
@@ -99,7 +124,8 @@ export default {
         let form = useForm({
             description: '',
             camera: '',
-            tags: []
+            tags: [],
+            category_id: ''
         })
 
 

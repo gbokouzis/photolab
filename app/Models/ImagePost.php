@@ -44,4 +44,10 @@ class ImagePost extends Model
         return $query->orderBy(static::CREATED_AT, 'desc');
     }
     
+    public function scopeImagePostCategoryWithUsers(Builder $query, $id) 
+    {
+        return $query->desc()
+            ->where('category_id', '=', $id)
+            ->with('user');
+    }
 }

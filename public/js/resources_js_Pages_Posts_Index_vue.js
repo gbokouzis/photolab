@@ -18,9 +18,9 @@ __webpack_require__.r(__webpack_exports__);
     posts: Object
   },
   setup: function setup() {
-    var destroy = function destroy(id) {
+    var destroy = function destroy(post) {
       if (confirm('Are you sure?')) {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia["delete"](route('posts.destroy', id), id);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia["delete"](route('posts.destroy', post));
       }
     };
 
@@ -133,7 +133,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS, DYNAMIC_SLOTS */
     , ["href", "headers"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
-        return $setup.destroy(post.id);
+        return $setup.destroy(post);
       },
       type: "button",
       "class": "m-4 px-2 py-1 bg-red-600 text-white rounded font-bold"

@@ -1,13 +1,9 @@
 <template>
-    <Head title="Index" />
-
-    <Link href="/posts/create" class="">
-        New Post
-    </Link>
+    <Head title="Show" />
 
     <div class="max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto"
-    v-for="post in posts" :key="post.id">
-        <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
+        v-for="post in posts" :key="post.id"
+    >
         <div class="px-6 py-4 m-4">
             <div class="text-xl mb-2">
                 <Link :href="route('posts.show', post.id)"> 
