@@ -55,11 +55,13 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->hasMany('\App\Models\Relationship', 'foreign_key', 'follower_id');
+        return $this->belongsToMany('\App\Models\User', 'relationships', 'followed_id', 'follower_id')
+        ->withTimestamps();
     }
 
-    public function following()
+    public function followings()
     {
-        return $this->hasMany('\App\Models\Relationship', 'foreign_key', 'followed_id');
+        return $this->belongsToMany('\App\Models\User', 'relationships', 'follower_id', 'followed_id')
+        ->withTimestamps();
     }
 }

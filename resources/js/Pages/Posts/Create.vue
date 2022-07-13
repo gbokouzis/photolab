@@ -46,27 +46,23 @@
                     <div v-if="form.errors.camera" v-text="form.errors.camera" 
                         class="text-red-500 text-xs mt-1" />
                 </div>
+                <!-- categories -->
                 <div class="mb-5">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
-                    <select id="countries" 
+                    <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
+                    <select id="categories" 
                         class="bg-gray-50 border 
                             border-gray-300 
                             text-gray-900 text-sm rounded-lg 
                             focus:ring-blue-500 
                             focus:border-blue-500 block w-full p-2.5"
-                        v-model="form.category_id"
-                        >
-                        <!-- <v-select
-                            :options="options"
-                            :value="person.country"
-                            @input="(country) => updateCountry(person, country)"
-                        /> -->
+                        v-model="form.category"
+                    >
                         <option selected>Choose a category</option>
-                        <option v-for="category in categories" :value="category.id">{{category.content}}</option>
+                        <option v-for="category in categories" :value="category.content">{{category.content}}</option>
                     </select>
+                    <div v-if="form.errors.category" v-text="form.errors.category" 
+                        class="text-red-500 text-xs mt-1" />
                 </div>
-                <div v-if="form.errors.tags" v-text="form.errors.category_id" 
-                    class="text-red-500 text-xs mt-1" />
                 <!-- tags -->
                 <div class="mb-5">
                     <label>Tags (hit enter to add a tag):</label>
@@ -81,6 +77,10 @@
                     </div>
                     <div v-if="form.errors.tags" v-text="form.errors.tags" 
                         class="text-red-500 text-xs mt-1" />
+                </div>
+                <!-- image -->
+                <div class="mp-5">
+                    <input type="file" @input="form.image = $event.target.files[0]" />
                 </div>
                 <div>
                     <button
@@ -125,7 +125,8 @@ export default {
             description: '',
             camera: '',
             tags: [],
-            category_id: ''
+            category: '',
+            image: null,
         })
 
 

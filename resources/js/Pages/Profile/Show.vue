@@ -3,15 +3,13 @@
         Username is: {{ user.name }} 
     </h1>
 
-    <div class="text-xl mb-2">
-        <Link :href="route('users.followers', user.name)"> 
-            Followers: {{ user.name }}                
+    <div>
+        <Link as="button" :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST"> 
+            Follow               
         </Link>
-    </div>
 
-    <div class="text-xl mb-2">
-        <Link :href="route('users.following', user.name)"> 
-            Following: {{ user.name }}                
+        <Link as="button" :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE"> 
+            Unfollow               
         </Link>
     </div>
     

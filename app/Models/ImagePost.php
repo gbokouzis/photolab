@@ -17,28 +17,35 @@ class ImagePost extends Model
         'lens',
         'dimensions',
         'user_id',
+        'category_id',
     ];
 
     public function user()
     {
         return $this->belongsTo('\App\Models\User');
     }
-
+    
     public function comments()
     {
         return $this->hasMany('\App\Models\Comment')->descCommentsWithFullRelations();
     }
-
+    
     public function category()
     {
         return $this->belongsTo('\App\Models\Category');
     }
-
+    
     public function tags()
     {
         return $this->belongsToMany('\App\Models\Tag', 'image_post_tags')->withTimestamps();
     }
-
+    
+    public function image()
+    {
+        return $this->hasOne('\App\Models\Image');
+    }
+    
+    // scope
     public function scopeDesc(Builder $query)
     {
         return $query->orderBy(static::CREATED_AT, 'desc');

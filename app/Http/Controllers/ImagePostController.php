@@ -10,6 +10,7 @@ use App\Models\ImagePostTag;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ImagePostController extends Controller
@@ -32,16 +33,27 @@ class ImagePostController extends Controller
 
     public function store(StoreImagePostRequest $request)
     {
+        // dd($request);
+        // $image = $request->file('photos');
+        // $image = Storage::disk('public')->putFile('photos', $request->image);
+        // dd($image);
+        // $x = Storage::url($image);
+        // dd($x);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('photos');
+        }
+        dd($path);
+
+        
         $data = $request->validated();
-        dd($data);
+        // dd($data);
 
         if ( count($data['tags']) !== 0 ) {
             $idFromTags = [];
             
             foreach ($data['tags'] as $tag) {
-                // $dbTag = Tag::where('content', '=', $tag)
                 $dbTag = Tag::where('content', 'LIKE', $tag)->first();
-
 
                 if ( $dbTag !== null ) {
                     array_push($idFromTags, $dbTag->id);
@@ -54,10 +66,11 @@ class ImagePostController extends Controller
             }
         }
 
-        // dd($idFromTags);
-
+        $category = Category::where('content', 'LIKE', $data['category'])->first();
+        unset($data['category']);
         $data['user_id'] = $request->user()->id;
-        dd($data);
+        $data['category_id'] = $category->id;
+        // dd($data);
         $newPost = ImagePost::create($data);
         
         $newPost->tags()->attach($idFromTags);

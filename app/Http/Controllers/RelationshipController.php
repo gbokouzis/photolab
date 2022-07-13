@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Relationship;
 use App\Models\User;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class RelationshipController extends Controller
 {
-    public function following(User $user)
+    public function followings(User $user)
     {
-        return Inertia::render('Profile/Following', [
-            'following' => [],
+        return Inertia::render('Profile/Followings', [
+            'followings' => $user->followings(),
             'profile' => [
                 'user' => $user
             ]
@@ -23,15 +24,25 @@ class RelationshipController extends Controller
     public function followers(User $user)
     {
         return Inertia::render('Profile/Followers', [
-            'followers' => [],
-            'user' => $user
+            'followers' => $user->followers()->withCount([
+                'followers as following' => function($q) {
+                    return $q->where('follower_id', auth()->id());
+                }
+            ])->withCasts(['following' => 'boolean']),
+            'profile' => [
+                'user' => $user
+            ]
         ]);
     }
 
-    public function follow(User $user){
-        $relation = new Relationship();
-        $relation->follower_id = Auth::User()->id;
-        $relation->followed_id = $user->id;
-        $relation->save();
+    public function follow(User $user, $id){
+        $user->followings()->attach($id);
+        return redirect()->back();
     }
+
+    public function unfollow(User $user, $id){
+        $user->followings()->detach($id);
+        return redirect()->back();
+    }
+
 }

@@ -515,13 +515,13 @@ var map = {
 		"./resources/js/Pages/Profile/Followers.vue",
 		"resources_js_Pages_Profile_Followers_vue"
 	],
-	"./Profile/Following": [
-		"./resources/js/Pages/Profile/Following.vue",
-		"resources_js_Pages_Profile_Following_vue"
+	"./Profile/Followings": [
+		"./resources/js/Pages/Profile/Followings.vue",
+		"resources_js_Pages_Profile_Followings_vue"
 	],
-	"./Profile/Following.vue": [
-		"./resources/js/Pages/Profile/Following.vue",
-		"resources_js_Pages_Profile_Following_vue"
+	"./Profile/Followings.vue": [
+		"./resources/js/Pages/Profile/Followings.vue",
+		"resources_js_Pages_Profile_Followings_vue"
 	],
 	"./Profile/Index": [
 		"./resources/js/Pages/Profile/Index.vue",
