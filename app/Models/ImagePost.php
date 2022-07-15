@@ -20,6 +20,8 @@ class ImagePost extends Model
         'category_id',
     ];
 
+    protected $hidden = ['pivot'];
+    
     public function user()
     {
         return $this->belongsTo('\App\Models\User');
@@ -42,13 +44,19 @@ class ImagePost extends Model
     
     public function image()
     {
-        return $this->hasOne('\App\Models\Image');
+        return $this->morphOne('\App\Models\Image', 'imageable');
     }
     
     // scope
     public function scopeDesc(Builder $query)
     {
         return $query->orderBy(static::CREATED_AT, 'desc');
+    }
+
+    public function scopeUpdateQuery(Builder $query, $id)
+    {
+        return $query->where('id', '=', $id)
+        ->with('tags');
     }
     
     public function scopeImagePostCategoryWithUsers(Builder $query, $id) 

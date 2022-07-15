@@ -12,6 +12,8 @@ class Tag extends Model
     protected $fillable = [
         'content',
     ];
+    
+    protected $hidden = ['pivot'];
 
     public function imagePosts()
     {

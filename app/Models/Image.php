@@ -11,11 +11,10 @@ class Image extends Model
 
     protected $fillable = [
         'path',
-        'image_post_id',
     ];
 
-    public function imagePost() 
+    public function imageable() 
     {
-        return $this->belongsTo('App\Models\ImagePost');
+        return $this->morphTo();
     }
 }

@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\Comment');
     }
 
+    public function image()
+    {
+        return $this->morphOne('\App\Models\Image', 'imageable');
+    }
+
     public function followers()
     {
         return $this->belongsToMany('\App\Models\User', 'relationships', 'followed_id', 'follower_id')

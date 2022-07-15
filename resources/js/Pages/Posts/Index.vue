@@ -7,8 +7,11 @@
 
     <div class="max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto"
     v-for="post in posts" :key="post.id">
-        <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
         <div class="px-6 py-4 m-4">
+            <div v-if="post.image">
+                <img :src="post.image.path" alt="">
+            </div>
+
             <div class="text-xl mb-2">
                 <Link :href="route('posts.show', post.id)"> 
                     Username: geor
@@ -29,6 +32,7 @@
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
         </div>
         <div>
+            <!-- TODO na do :headers an xriazonte  -->
             <Link :href="route('posts.edit', post.id)" :headers="{ id: post.id }" class="m-4 px-2 py-1 bg-blue-600 text-white rounded font-bold">Edit</Link>
             <button v-on:click="destroy(post)" type="button" class="m-4 px-2 py-1 bg-red-600 text-white rounded font-bold">
                 Delete {{post.id}}

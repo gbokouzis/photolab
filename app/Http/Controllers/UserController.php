@@ -14,11 +14,36 @@ class UserController extends Controller
         return Inertia::render('Profile/Index', compact('users'));
     }
 
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
     public function show(User $user)
     {
         // dd($user);
         return Inertia::render('Profile/Show', [
             'user' => $user
         ]);
+    }
+    
+    public function edit(User $user)
+    {
+        //
+    }
+
+    public function update(Request $request, User $user)
+    {
+        //
+    }
+
+    public function destroy(User $user)
+    {
+        //
     }
 }

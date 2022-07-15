@@ -17,9 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('path');
-            $table->unsignedBigInteger('image_post_id')->nullable();
-
-
+            $table->morphs('imageable');
         });
     }
 

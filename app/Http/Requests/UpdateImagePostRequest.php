@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule as ValidationRule;
 
-class StoreImagePostRequest extends FormRequest
+class UpdateImagePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +13,7 @@ class StoreImagePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,18 +23,9 @@ class StoreImagePostRequest extends FormRequest
      */
     public function rules()
     {
-        $categories = Category::all()->pluck('content');
         return [
             'description' => 'required|min:3|max:50',
-            'camera' => 'required|min:2|max:50',
             'tags' => 'required|array',
-            'category' => ['required', ValidationRule::in($categories)],
-            'image' => 'required|image|mimes:jpg,jpeg|min:512|max:2048',
         ];
     }
-
-    // public function messages()
-    // {
-    // return ['description.min' => ''];
-    // }
 }

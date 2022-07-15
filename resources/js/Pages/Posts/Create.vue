@@ -79,8 +79,10 @@
                         class="text-red-500 text-xs mt-1" />
                 </div>
                 <!-- image -->
-                <div class="mp-5">
+                <div class="mb-5">
                     <input type="file" @input="form.image = $event.target.files[0]" />
+                    <div v-if="form.errors.image" v-text="form.errors.image" 
+                        class="text-red-500 text-xs mt-1" />
                 </div>
                 <div>
                     <button

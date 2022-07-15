@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreImagePostRequest;
+use App\Http\Requests\UpdateImagePostRequest;
 use App\Http\Resources\ImagePostResource;
+use App\Http\Resources\UpdateImagePostResource;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\ImagePost;
 use App\Models\ImagePostTag;
 use App\Models\Tag;
@@ -15,12 +18,12 @@ use Inertia\Inertia;
 
 class ImagePostController extends Controller
 {
-    // TODO middleware auth gia to ImagePost edo ->only([])
-    // ! oxi sto resource
+    // TODO na mpoun sxolia
+    // TODO middleware auth gia to ImagePost apo to route (->only([])) na to fero edo
 
     public function index()
     {
-        $posts = ImagePost::desc()->with('user')->get();
+        $posts = ImagePost::desc()->with('user', 'image')->get();
         sleep(1);
         return Inertia::render('Posts/Index', compact('posts'));
     }
@@ -33,6 +36,8 @@ class ImagePostController extends Controller
 
     public function store(StoreImagePostRequest $request)
     {
+        sleep(2);
+
         // dd($request);
         // $image = $request->file('photos');
         // $image = Storage::disk('public')->putFile('photos', $request->image);
@@ -40,12 +45,6 @@ class ImagePostController extends Controller
         // $x = Storage::url($image);
         // dd($x);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('photos');
-        }
-        dd($path);
-
-        
         $data = $request->validated();
         // dd($data);
 
@@ -58,23 +57,35 @@ class ImagePostController extends Controller
                 if ( $dbTag !== null ) {
                     array_push($idFromTags, $dbTag->id);
                 }
-
+                
                 if ( $dbTag === null ) {
                     $newTag = Tag::create(['content' => $tag]);
                     array_push($idFromTags, $newTag->id);
                 }
             }
         }
-
+        
         $category = Category::where('content', 'LIKE', $data['category'])->first();
         unset($data['category']);
         $data['user_id'] = $request->user()->id;
         $data['category_id'] = $category->id;
-        // dd($data);
+
         $newPost = ImagePost::create($data);
         
         $newPost->tags()->attach($idFromTags);
 
+        // dd($newPost);
+        // TODO xriazete to if
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $newPost->image()->save(
+                Image::make([
+                    'path' => Storage::url($path),
+                ])
+            );
+        }
+        // dd($path);
+        
         // foreach ($idFromTags as $idFromTag) { 
         //     ImagePostTag::create([
         //         'image_post_id' => $newPost->id,
@@ -96,18 +107,23 @@ class ImagePostController extends Controller
     {
         // $post = ImagePost::findOrFail($id);
         // $post = new ImagePostResource($post);
-        $this->authorize('update', $post);
+        // $this->authorize('update', $post);
+        
+        $post = ImagePost::with('tags:content')->find($post->id);
+        // $post = new UpdateImagePostResource($post);
 
+
+        // dd($postt);
         return inertia('Posts/Edit', compact('post'));
     }
 
-    public function update(StoreImagePostRequest $request, ImagePost $post)
+    public function update(UpdateImagePostRequest $request, ImagePost $post)
     {
         // $post = ImagePost::findOrFail($request->id);
         // $this->authorize('update', $post);
         // $data = $request->validated();
         // $post->fill($data)->save();
-        
+
         $this->authorize('update', $post);
         $post->update($request->validated());
 
