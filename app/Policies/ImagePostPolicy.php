@@ -53,7 +53,7 @@ class ImagePostPolicy
      */
     public function update(User $user, ImagePost $imagePost)
     {
-        return $user->id == $imagePost->user_id;
+        return true;
     }
 
     /**

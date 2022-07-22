@@ -15,22 +15,20 @@
                         {{ errors.description }}
                     </div>
                 </div>
-
-                <!-- tags -->
-                <div class="mb-5">
-                    <label>Tags (hit enter to add a tag):</label>
-                    <input 
-                        v-model="tag" 
-                        type="text"
-                        class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"                        
-                        @keydown.enter.prevent="handleEnter"
-                    >
-                    <div v-for="tag in form.tags" :key="tag" @click="deleteTag(tag)" class="tag cursor-pointer">
-                        #{{ tag }}
-                    </div>
-                    <div v-if="form.errors.tags" v-text="form.errors.tags" 
-                        class="text-red-500 text-xs mt-1" />
+            </div>
+            <div class="mb-5">
+                <label>Tags (hit enter to add a tag):</label>
+                <input 
+                    v-model="tag" 
+                    type="text"
+                    class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"                        
+                    @keydown.enter.prevent="handleEnter"
+                >
+                <div v-for="tag in form.tags" :key="tag" @click="deleteTag(tag)" class="tag cursor-pointer">
+                    #{{ tag }}
                 </div>
+                <div v-if="form.errors.tags" v-text="form.errors.tags" 
+                    class="text-red-500 text-xs mt-1" />
             </div>
 
             <div class="py-4">
@@ -49,7 +47,6 @@
 
 <script>
 import { useForm } from "@inertiajs/inertia-vue3"
-import { ref } from '@vue/reactivity'
 
 export default {
     props: {
@@ -59,23 +56,7 @@ export default {
     setup(props) {
         const form = useForm(props.post)
 
-        const tag = ref('')
-
-        const handleEnter = () => {
-            tag.value = tag.value.replace(/\s/g,'')
-            if (!form.tags.includes(tag.value) && tag.value.length !== 0) {
-                form.tags.push(tag.value)
-            }
-            tag.value = ''
-        }
-
-        const deleteTag = (tag) => {
-            form.tags = form.tags.filter((item) => {
-                return tag !== item
-            })
-        }
-
-        return { form, handleEnter, deleteTag }
+        return { form }
     }
 }
 </script>

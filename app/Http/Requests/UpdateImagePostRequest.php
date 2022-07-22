@@ -13,7 +13,7 @@ class UpdateImagePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,6 @@ class UpdateImagePostRequest extends FormRequest
     {
         return [
             'description' => 'required|min:3|max:50',
-            'tags' => 'required|array',
         ];
     }
 }

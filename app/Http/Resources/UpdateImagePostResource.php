@@ -15,8 +15,10 @@ class UpdateImagePostResource extends JsonResource
     public function toArray($request)
     {
         return [
-            // 'description' => $this->description,
-            // 'tags' => [$this->tags[]->content]
+            'description' => $this->description,
+            'tags' => array_map(function($item) {
+                return $item['content'];
+            }, $this->tags)
         ];
     }
 }

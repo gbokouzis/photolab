@@ -105,12 +105,13 @@ class ImagePostController extends Controller
 
     public function edit(ImagePost $post)
     {
-        // $post = ImagePost::findOrFail($id);
+        // $post = ImagePost::findOrFail($post->id);
         // $post = new ImagePostResource($post);
-        // $this->authorize('update', $post);
+        $this->authorize('update', $post);
         
-        $post = ImagePost::with('tags:content')->find($post->id);
+        $post = ImagePost::with('tags:content')->findOrFail($post->id);
         // $post = new UpdateImagePostResource($post);
+        
 
 
         // dd($postt);
@@ -119,6 +120,7 @@ class ImagePostController extends Controller
 
     public function update(UpdateImagePostRequest $request, ImagePost $post)
     {
+        // dd($post);
         // $post = ImagePost::findOrFail($request->id);
         // $this->authorize('update', $post);
         // $data = $request->validated();
