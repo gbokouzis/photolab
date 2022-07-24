@@ -531,10 +531,12 @@ var map = {
 	],
 	"./Posts/Show": [
 		"./resources/js/Pages/Posts/Show.vue",
+		"/js/vendor",
 		"resources_js_Pages_Posts_Show_vue"
 	],
 	"./Posts/Show.vue": [
 		"./resources/js/Pages/Posts/Show.vue",
+		"/js/vendor",
 		"resources_js_Pages_Posts_Show_vue"
 	],
 	"./Profile/Followers": [
@@ -563,10 +565,12 @@ var map = {
 	],
 	"./Profile/Show": [
 		"./resources/js/Pages/Profile/Show.vue",
+		"/js/vendor",
 		"resources_js_Pages_Profile_Show_vue"
 	],
 	"./Profile/Show.vue": [
 		"./resources/js/Pages/Profile/Show.vue",
+		"/js/vendor",
 		"resources_js_Pages_Profile_Show_vue"
 	],
 	"./Welcome": [
