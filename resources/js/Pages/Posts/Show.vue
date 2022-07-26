@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <!-- <div>
         <h1 v-if="post.description">Description: {{ post.description }}</h1>
         <h1 v-if="post.camera">Camera: {{ post.camera }}</h1>
         <p v-if="post.user.name">By: {{ post.user.name }}</p>
@@ -14,24 +14,43 @@
                 </p> 
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
 
 
 <main class="py-6">
-	<div class="max-w-4xl mx-auto">
+	<div class="max-w-4xl mx-auto p-4 shadow-lg rounded-lg">
+        <div class="flex py-2">
+                <div class="w-auto h-auto border-2 border-indigo-600 rounded-full">
+                    <img class='object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500' alt='User avatar' src='https://source.unsplash.com/nBJHO6wmRWw/200x200j'>
+            </div>
+            <div class="flex flex-col mt-1 mb-2 ml-4">
+                <div class='text-sm font-semibold text-gray-600'>Ninas Coffee</div>
+                <div class='flex w-full mt-1'>
+                <div class='mr-1 text-xs text-indigo-600 cursor-pointer font-base'>
+                    Saint Paul, MN
+                </div>
+                <div class='text-xs font-thin text-gray-400'>
+                    • 30 seconds ago
+                </div>
+                </div>
+        </div>
+        </div>
 		<div class="">
 			<img src="https://source.unsplash.com/random/1" alt="" class="pxHeight w-full object-scale-down rounded-lg" loading="lazy">
 		</div>
         <dl class="mt-4 text-xs font-medium flex items-center row-start-2">
         <dt class="sr-only">Reviews</dt>
         <dd class="text-indigo-600 flex items-center dark:text-indigo-400">
-            <svg width="24" height="24" fill="none" aria-hidden="true" class="mr-1 lg:stroke-current dark:stroke-indigo-500">
-            <path d="m12 5 2 5h5l-4 4 2.103 5L12 16l-5.103 3L9 14l-4-4h5l2-5Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <span>4.89 <span class="text-slate-400 font-normal">(128)</span></span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0H24V24H0z"/>
+            <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228z" fill="rgba(79,70,229,1)"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+            <path fill="none" d="M0 0H24V24H0z"/><path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" fill="rgba(79,70,229,1)"/>
+        </svg>
+            <span>100</span>
         </dd>
         <dt class="sr-only">Location</dt>
         <dd class="flex items-center">
