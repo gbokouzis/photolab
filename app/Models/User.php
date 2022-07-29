@@ -69,4 +69,10 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\Models\User', 'relationships', 'follower_id', 'followed_id')
         ->withTimestamps();
     }
+
+    public function likes() 
+    {
+        return $this->hasMany('\App\Models\ImagePost');
+    }
+
 }

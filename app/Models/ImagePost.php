@@ -46,6 +46,11 @@ class ImagePost extends Model
     {
         return $this->morphOne('\App\Models\Image', 'imageable');
     }
+
+    public function likes() 
+    {
+        return $this->hasMany('\App\Models\Like');
+    }
     
     // scope
     public function scopeDesc(Builder $query)

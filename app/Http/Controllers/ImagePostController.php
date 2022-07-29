@@ -11,21 +11,31 @@ use App\Models\Image;
 use App\Models\ImagePost;
 use App\Models\ImagePostTag;
 use App\Models\Tag;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ImagePostController extends Controller
-{
+{ 
     // TODO na mpoun sxolia
     // TODO middleware auth gia to ImagePost apo to route (->only([])) na to fero edo
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = ImagePost::desc()->with('user', 'image')->get();
-        sleep(1);
-        return Inertia::render('Posts/Index', compact('posts'));
+        // sleep(1);
+        $posts = ImagePost::desc()
+            ->with('user', 'image')
+            ->withCount('likes as liked')
+            ->withCasts(['liked' => 'boolean'])
+            ->paginate(2);
+
+        if ($request->wantsJson()) {
+            return $posts;
+        }
+        
+        return Inertia::render('Posts/Index', [ 'posts' => $posts ]);
     }
 
     public function create()

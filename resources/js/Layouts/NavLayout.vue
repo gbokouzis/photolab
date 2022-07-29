@@ -117,11 +117,11 @@
             </div>
         </div>
         <div v-else class="flex flex-shrink items-center px-2 sm:px-4 lg:px-8">
-            <button type="button" class="inline-block px-6 py-2 border border-gray-400 text-gray-600 
+            <Link :href="route('login')" as="button" class="inline-block px-6 py-2 border border-gray-400 text-gray-600 
                 font-medium text-sm leading-tight rounded-xl bg-white hover:border-neutral-900 hover:text-neutral-900"
             >
                 Login/Register
-            </button>
+            </Link>
         </div>
     </div>
     

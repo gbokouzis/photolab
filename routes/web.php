@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LikedImagePostController;
 use App\Http\Controllers\RelationshipController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +42,10 @@ Route::get('users/{user:name}/followers', [RelationshipController::class, 'follo
 Route::post('/{user:name}/follow/{id}', [RelationshipController::class, 'follow'])->name('follow');
 Route::delete('/{user:name}/unfollow/{id}', [RelationshipController::class, 'unfollow'])->name('unfollow');
 
+// Like Unlike
+Route::post('/posts/{imagepost}/like', [LikedImagePostController::class, 'like']);
+Route::post('/posts/{imagepost}/unlike', [LikedImagePostController::class, 'unlike']);
+// Route::post('/posts/{imagepost}/like', [LikedImagePostController::class, 'toggle']);
 
 // Auth
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
