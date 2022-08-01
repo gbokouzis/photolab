@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CommentsSeeder::class, 
             TagsSeeder::class, 
             ImagePostTagSeeder::class, 
+            ImageSeeder::class, 
         ]);
 
     }

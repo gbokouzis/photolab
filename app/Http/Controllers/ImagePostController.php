@@ -27,9 +27,11 @@ class ImagePostController extends Controller
         // sleep(1);
         $posts = ImagePost::desc()
             ->with('user', 'image')
-            ->withCount('likes as liked')
+            ->withCount(['likes as liked' => function ($q) {
+                $q->where('user_id', Auth()->id());
+            }])
             ->withCasts(['liked' => 'boolean'])
-            ->paginate(2);
+            ->paginate();
 
         if ($request->wantsJson()) {
             return $posts;
@@ -109,7 +111,14 @@ class ImagePostController extends Controller
     public function show($id)
     {
         return Inertia::render('Posts/Show', [
-            'post' => ImagePost::with(['user', 'comments'])->findOrFail($id)
+            'post' => ImagePost::with(['user', 'tags', 'comments', 'image'])
+                ->withCount('likes as likes')
+                ->withCount(['likes as liked' => function ($q) {
+                    $q->where('user_id', Auth()->id());
+                }])
+                ->withCasts(['liked' => 'boolean'])
+                // ->withCasts(['liked' => 'boolean'])
+                ->findOrFail($id)
         ]);
     }
 

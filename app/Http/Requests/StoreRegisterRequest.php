@@ -26,7 +26,8 @@ class StoreRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'min:3', ValidationRule::unique('users', 'name')],
+            'name' => ['required', 'min:3', 'max:30', ValidationRule::unique('users', 'name')],
+            'username' => 'required|min:3|max:30',
             'email' => ['required', 'email', ValidationRule::unique('users', 'email')],
             'password' => 'required|confirmed|min:6'
         ];

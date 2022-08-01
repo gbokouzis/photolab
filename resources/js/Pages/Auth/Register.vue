@@ -22,6 +22,19 @@
         </div>
 
         <div class="mb-6">
+            <label class="block mb-2 font-bold text-gray-700" for="Username">
+                Username
+            </label>
+            <input v-model="form.username" class="border rounded-md border-gray-400 p-2 w-full"
+                type="text"
+                name="username"
+                id="username"
+            >
+            <div v-if="form.errors.username" v-text="form.errors.username" 
+                class="text-red-500 text-xs mt-1" />
+        </div>
+
+        <div class="mb-6">
             <label class="block mb-2 font-bold text-gray-700" for="Email">
                 Email
             </label>
@@ -94,6 +107,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 
 let form = useForm({
     name: '',
+    username: '',
     email: '',
     password:'',
     password_confirmation:''

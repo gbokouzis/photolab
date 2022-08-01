@@ -85,7 +85,7 @@ var _hoisted_2 = {
   "class": "relative w-full flex h-16"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-grow-0 items-center justify-start px-2 sm:px-4 lg:px-8\"><div class=\"flex-shrink-0 flex items-center\"><!-- &lt;svg class=&quot;block lg:hidden h-10 w-auto&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;48&quot; height=&quot;48&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot;/&gt;&lt;path d=&quot;M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z&quot;/&gt;&lt;/svg&gt; --><svg class=\"lg:block h-11 w-auto\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"48\" height=\"48\"><path fill=\"none\" d=\"M0 0h24v24H0z\"></path><path d=\"M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z\"></path></svg></div></div>", 1);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-grow-0 items-center justify-start px-2 sm:px-4 lg:px-8\"><div class=\"flex-shrink-0 flex items-center\"><!-- &lt;svg class=&quot;block lg:hidden h-10 w-auto&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;48&quot; height=&quot;48&quot;&gt;&lt;path fill=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot;/&gt;&lt;path d=&quot;M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z&quot;/&gt;&lt;/svg&gt; --><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"48\" height=\"48\"><path fill=\"none\" d=\"M0 0h24v24H0z\"></path><path d=\"M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z\" fill=\"rgba(23,23,23,1)\"></path></svg></div></div>", 1);
 
 var _hoisted_4 = {
   "class": "flex w-full items-center"
@@ -108,7 +108,8 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   fill: "none",
   d: "M0 0h24v24H0z"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M4 19h16v-7h2v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8h2v7zM14 9v6h-4V9H5l7-7 7 7h-5z"
+  d: "M4 19h16v-7h2v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8h2v7zm9-10v7h-2V9H6l6-6 6 6h-5z",
+  fill: "rgba(23,23,23,1)"
 })], -1
 /* HOISTED */
 );
@@ -161,10 +162,10 @@ var _hoisted_14 = {
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Login/Register ");
 
 var _hoisted_16 = {
-  "class": "relative w-full flex sm:h-12"
+  "class": "relative w-full flex sm:h-12 shadow-sm"
 };
 var _hoisted_17 = {
-  "class": "w-full flex justify-center flex-col sm:flex-row items-center px-6 py-4 shadow-sm mx-auto"
+  "class": "w-full flex justify-center flex-col sm:flex-row items-center px-6 py-4 mx-auto"
 };
 var _hoisted_18 = {
   "class": "flex flex-col sm:flex-row md:space-x-5 w-full items-center justify-center md:text-lg"

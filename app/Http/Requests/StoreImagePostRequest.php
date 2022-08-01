@@ -31,10 +31,10 @@ class StoreImagePostRequest extends FormRequest
             'camera' => 'required|min:2|max:50',
             'tags' => 'required|array',
             'category' => ['required', ValidationRule::in($categories)],
-            'image' => 'required|image|mimes:jpg,jpeg|min:512|max:2048',
+            'image' => 'required|image|mimes:jpg,jpeg|min:512',
         ];
     }
-
+    // |max:2048
     // public function messages()
     // {
     // return ['description.min' => ''];

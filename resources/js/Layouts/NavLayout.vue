@@ -79,7 +79,7 @@
         <div class="flex flex-grow-0 items-center justify-start px-2 sm:px-4 lg:px-8">
             <div class="flex-shrink-0 flex items-center">
                 <!-- <svg class="block lg:hidden h-10 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg> -->
-                <svg class="lg:block h-11 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="rgba(23,23,23,1)"/></svg>
             </div>
         </div>
 
@@ -94,7 +94,7 @@
             <!-- Upload -->
             <button type="button" class="block p-1 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900">
                 <Link href="/posts/create" class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 19h16v-7h2v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8h2v7zM14 9v6h-4V9H5l7-7 7 7h-5z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 19h16v-7h2v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8h2v7zm9-10v7h-2V9H6l6-6 6 6h-5z" fill="rgba(23,23,23,1)"/></svg>
                 </Link>
             </button>
 
@@ -125,8 +125,8 @@
         </div>
     </div>
     
-    <div class="relative w-full flex sm:h-12">
-        <div class="w-full flex justify-center flex-col sm:flex-row items-center  px-6 py-4 shadow-sm  mx-auto">
+    <div class="relative w-full flex sm:h-12 shadow-sm">
+        <div class="w-full flex justify-center flex-col sm:flex-row items-center px-6 py-4 mx-auto">
             <ul class="flex flex-col sm:flex-row md:space-x-5 w-full items-center justify-center md:text-lg">
                 <li>
                     <Link href="/home" class="font-semibold tracking-tight block cursor-pointer p-2 

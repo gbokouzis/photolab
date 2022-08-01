@@ -50,11 +50,14 @@
 
 			<div class="profile-user-settings">
 
-				<h1 class="profile-user-name">janedoe_</h1>
+				<h1 class="inline-block text-4xl font-normal text-neutral-700">
+                    {{ $page.props.auth.user.username }} <span class="font-light">@{{ $page.props.auth.user.name }}</span>
+                </h1>
 
-				<button class="btn profile-edit-btn">Edit Profile</button>
-				<button class="btn profile-follow-btn">Follow</button>
-				<button class="btn profile-follow-btn">Unfollow</button>
+
+				<button class="btn btn-edit-follow-unfollow">Edit Profile</button>
+				<!-- <button class="btn btn-edit-follow-unfollow">Follow</button>
+				<button class="btn btn-edit-follow-unfollow">Unfollow</button> -->
 			</div>
 
 			<div class="profile-stats">
@@ -69,7 +72,12 @@
 
 			<div class="profile-bio">
 
-				<p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+				<p>
+                    <span class="">
+                        Jane Doe
+                    </span> 
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️
+                </p>
 
 			</div>
 
@@ -100,7 +108,8 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 export default {
     props: {
-        user: Object
+        user: Object,
+        posts: Object
     },
     setup() {
         let form = useForm({
@@ -179,28 +188,22 @@ img {
     margin-top: 1.1rem;
 }
 
-.profile-user-name {
+/* .profile-user-name {
     display: inline-block;
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     font-weight: 300;
+} */
+
+.btn-edit-follow-unfollow {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    border: 0.1rem solid #4b5563;
+    border-radius: 0.3rem;
+    padding: 0 2.4rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
 }
 
-.profile-edit-btn {
-    font-size: 1.4rem;
-    line-height: 1.8;
-    border: 0.1rem solid #4b5563;
-    border-radius: 0.3rem;
-    padding: 0 2.4rem;
-    margin-left: 2rem;
-}
-.profile-follow-btn {
-    font-size: 1.4rem;
-    line-height: 1.8;
-    border: 0.1rem solid #4b5563;
-    border-radius: 0.3rem;
-    padding: 0 2.4rem;
-    margin-left: 2rem;
-}
 
 .profile-stats {
     margin-top: 2.3rem;
@@ -219,17 +222,17 @@ img {
 }
 
 .profile-bio {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 400;
     line-height: 1.5;
     margin-top: 2.3rem;
 }
 
-.profile-real-name,
+/* .profile-real-name,
 .profile-stat-count,
-.profile-edit-btn {
-    font-weight: 600;
-}
+.btn-edit-follow-unfollow {
+    font-weight: 400;
+} */
 
 /* Loader */
 
@@ -276,17 +279,17 @@ img {
     }
 
     .profile-user-name {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
     }
 
-    .profile-edit-btn {
+    .btn-edit-follow-unfollow {
         order: 1;
         padding: 0;
         text-align: center;
         margin-top: 1rem;
     }
 
-    .profile-edit-btn {
+    .btn-edit-follow-unfollow {
         margin-left: 0;
     }
 
@@ -295,7 +298,7 @@ img {
         margin-top: 1.5rem;
     }
 
-    .profile-edit-btn,
+    .btn-edit-follow-unfollow,
     .profile-bio,
     .profile-stats {
         flex-basis: 100%;
@@ -379,14 +382,14 @@ Remove or comment-out the code block below to see how the browser will fall-back
             grid-gap: 1rem;
         }
 
-        .profile-edit-btn,
+        .btn-edit-follow-unfollow,
         .profile-stats,
         .profile-bio {
             grid-column: 1 / -1;
         }
 
         .profile-user-settings,
-        .profile-edit-btn,
+        .btn-edit-follow-unfollow,
         .profile-settings-btn,
         .profile-bio,
         .profile-stats {
