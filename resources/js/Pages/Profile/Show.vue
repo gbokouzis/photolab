@@ -38,22 +38,22 @@
 
 <header>
 
+    <form id="profile-form" class="p-5" @submit.prevent="submit">
+        <profile-avatar class="h-40 w-40 rounded-full"  v-model="form.avatar" :defaulte-src="img"></profile-avatar>
+    </form>
+    
 	<div class="max-w-6xl mx-auto px-4">
+		<div class="profile mr-4 lg:mr-16">
 
-		<div class="profile">
-
-			<div class="profile-image">
-
+			<!-- <div class="profile-image">
 				<img class="rounded-full" src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
-
-			</div>
+			</div> -->
+            
 
 			<div class="profile-user-settings">
-
 				<h1 class="inline-block text-4xl font-normal text-neutral-700">
                     {{ $page.props.auth.user.username }} <span class="font-light">@{{ $page.props.auth.user.name }}</span>
                 </h1>
-
 
 				<button class="btn btn-edit-follow-unfollow">Edit Profile</button>
 				<!-- <button class="btn btn-edit-follow-unfollow">Follow</button>
@@ -61,24 +61,20 @@
 			</div>
 
 			<div class="profile-stats">
-
 				<ul>
 					<li><span class="profile-stat-count">164</span> posts</li>
 					<li><span class="profile-stat-count">188</span> followers</li>
 					<li><span class="profile-stat-count">206</span> following</li>
 				</ul>
-
 			</div>
 
 			<div class="profile-bio">
-
 				<p>
                     <span class="">
                         Jane Doe
                     </span> 
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️
                 </p>
-
 			</div>
 
 		</div>
@@ -91,9 +87,9 @@
 
 <main>
 
-	<div class="container">
+	<div class="mx-auto px-4">
 
-
+        <Masonry :posts="posts" />
 		<!-- <div class="loader"></div> -->
 
 	</div>
@@ -106,23 +102,43 @@
 
 <script>
 import { useForm } from "@inertiajs/inertia-vue3";
+import Masonry from '../../Components/Masonry.vue'
+import ProfileAvatar from '../../Components/ProfileAvatar.vue'
+
 export default {
+    components: {
+        Masonry,
+        ProfileAvatar
+    },
     props: {
         user: Object,
         posts: Object
     },
-    setup() {
-        let form = useForm({
-            image: null,
-        })
-
-        let submit = () => {
-            // console.log(form)
-            // form.post('/posts', form)
+    data() {
+        return {
+            form: {
+                avatar: null
+            },
+            img: '/storage/images/profile_image.png'
         }
+    },
+    methods: {
+        submit() {
+            console.log('submitting', this.form)
+        }
+    },
+    // setup() {
+    //     let form = useForm({
+    //         image: null,
+    //     })
 
-        return { form, submit }
-    }
+    //     let submit = () => {
+    //         // console.log(form)
+    //         // form.post('/posts', form)
+    //     }
+
+    //     return { form, submit }
+    // }
 }
 </script>
 
@@ -130,12 +146,6 @@ export default {
 
 img {
     display: block;
-}
-
-.container {
-    max-width: 93.5rem;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 .btn {
@@ -228,12 +238,6 @@ img {
     margin-top: 2.3rem;
 }
 
-/* .profile-real-name,
-.profile-stat-count,
-.btn-edit-follow-unfollow {
-    font-weight: 400;
-} */
-
 /* Loader */
 
 .loader {
@@ -276,10 +280,6 @@ img {
         display: flex;
         flex-wrap: wrap;
         margin-top: 1rem;
-    }
-
-    .profile-user-name {
-        font-size: 1.5rem;
     }
 
     .btn-edit-follow-unfollow {

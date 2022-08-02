@@ -24,15 +24,22 @@ class UserController extends Controller
         //
     }
 
-    public function show(User $user)
+    public function show(User $user, Request $request)
     {
         // dd($user);
         
         $posts = $user->imagePosts()
             ->with('image')
-            ->withCount('likes as likes')
+            ->withCount(['likes as liked' => function ($q) {
+                $q->where('user_id', Auth()->id());
+            }])
+            ->withCasts(['liked' => 'boolean'])
             ->paginate();
-            // get();
+
+        if ($request->wantsJson()) {
+            return $posts;
+        }
+
         return Inertia::render('Profile/Show', [
             'user' => $user,
             'posts' => $posts

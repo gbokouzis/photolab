@@ -69,24 +69,15 @@
 		<div class="">
 			<img :src="post.image.path" alt="" class="pxHeight w-full object-scale-down rounded-lg" loading="lazy">
 		</div>
-        <div class="mt-4 text-xs font-medium flex items-center row-start-2">
-            <div class="text-indigo-600 flex items-center px-2 mr-4">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0H24V24H0z"/>
-                <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228z" fill="rgba(79,70,229,1)"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
-                <path fill="none" d="M0 0H24V24H0z"/><path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" fill="rgba(79,70,229,1)"/>
-            </svg> -->
-
-                <LikeUnlike :post="post" />
-                <span v-if="post.likes !== 0" class="px-2 text-sm">{{ post.likes }}</span>
-                <span v-else class="px-2 text-sm">Ηas no likes</span>
-            </div>
-            <div v-if="post.tags" class="flex flex-wrap">
-                <span v-for="tag in post.tags" :key="tag.id" class="tag">
-                    #{{ tag.content }}
-                </span>
-            </div>
+        <div class="text-indigo-600 font-medium flex items-center px-2 mt-2">
+            <LikeUnlike :post="post" />
+            <span v-if="post.likes !== 0" class="px-2 text-sm">{{ post.likes }}</span>
+            <span v-else class="px-2 text-sm">Ηas no likes</span>
+        </div>
+        <div v-if="post.tags" class="font-medium flex flex-wrap">
+            <span v-for="tag in post.tags" :key="tag.id" class="tag">
+                #{{ tag.content }}
+            </span>
         </div>
         <!-- <div class="mt-4 col-start-1 row-start-3 self-center ">
             <button type="button" class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Check availability</button>

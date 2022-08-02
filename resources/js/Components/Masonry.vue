@@ -1,6 +1,13 @@
 <template>
-    <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 max-w-screen-2xl mx-auto sm:p-4 lg:p-6 xl:p-8">
-        <div v-for="post in dataPosts.data" :key="post.id" class="relative mb-4 before:content-[''] before:rounded-sm before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
+    <div class="columns-1 sm:columns-2 lg:columns-3 mx-auto sm:p-4 lg:p-6 xl:p-8"
+        :class="{
+            'xl:columns-4 max-w-screen-2xl': $page.component === 'Posts/Index',
+            'max-w-screen-lg': $page.component === 'Profile/Show'
+        }"
+
+    >
+        <div v-for="post in dataPosts.data" :key="post.id" 
+            class="relative mb-4 before:content-[''] before:rounded-sm before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
             <div v-if="post.image">
                 
                 <img class="w-full rounded-sm" :src="post.image.path">
