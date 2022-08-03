@@ -27,7 +27,8 @@ class UserController extends Controller
     public function show(User $user, Request $request)
     {
         // dd($user);
-        
+        $profileImg = $user->image()->first();
+
         $posts = $user->imagePosts()
             ->with('image')
             ->withCount(['likes as liked' => function ($q) {
@@ -41,8 +42,9 @@ class UserController extends Controller
         }
 
         return Inertia::render('Profile/Show', [
-            'user' => $user,
-            'posts' => $posts
+            'profileImg' => $profileImg,
+            'posts' => $posts,
+            'user' => $user
         ]);
     }
     

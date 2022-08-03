@@ -38,18 +38,18 @@
 
 <header>
 
-    <form id="profile-form" class="p-5" @submit.prevent="submit">
+    <!-- <div id="profile-form" class="p-5" @submit.prevent="submit">
         <profile-avatar class="h-40 w-40 rounded-full"  v-model="form.avatar" :defaulte-src="img"></profile-avatar>
-    </form>
+    </div> -->
+
     
-	<div class="max-w-6xl mx-auto px-4">
-		<div class="profile mr-4 lg:mr-16">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="profile mr-4 lg:mr-16">
 
-			<!-- <div class="profile-image">
-				<img class="rounded-full" src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
-			</div> -->
+            <div class="profile-image">
+                <ProfileAvatar :user="user" :profileImg="profileImg" />
+			</div>
             
-
 			<div class="profile-user-settings">
 				<h1 class="inline-block text-4xl font-normal text-neutral-700">
                     {{ $page.props.auth.user.username }} <span class="font-light">@{{ $page.props.auth.user.name }}</span>
@@ -76,25 +76,15 @@
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️
                 </p>
 			</div>
-
 		</div>
-		<!-- End of profile section -->
-
 	</div>
-	<!-- End of container -->
-
 </header>
 
 <main>
-
 	<div class="mx-auto px-4">
-
         <Masonry :posts="posts" />
 		<!-- <div class="loader"></div> -->
-
 	</div>
-	<!-- End of container -->
-
 </main>
 
 
@@ -112,33 +102,9 @@ export default {
     },
     props: {
         user: Object,
-        posts: Object
+        posts: Object,
+        profileImg: Object
     },
-    data() {
-        return {
-            form: {
-                avatar: null
-            },
-            img: '/storage/images/profile_image.png'
-        }
-    },
-    methods: {
-        submit() {
-            console.log('submitting', this.form)
-        }
-    },
-    // setup() {
-    //     let form = useForm({
-    //         image: null,
-    //     })
-
-    //     let submit = () => {
-    //         // console.log(form)
-    //         // form.post('/posts', form)
-    //     }
-
-    //     return { form, submit }
-    // }
 }
 </script>
 
