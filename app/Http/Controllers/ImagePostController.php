@@ -49,7 +49,7 @@ class ImagePostController extends Controller
     public function store(StoreImagePostRequest $request)
     {
         sleep(2);
-
+        
         // dd($request);
         // $image = $request->file('photos');
         // $image = Storage::disk('public')->putFile('photos', $request->image);

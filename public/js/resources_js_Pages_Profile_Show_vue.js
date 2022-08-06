@@ -116,6 +116,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     user: Object,
@@ -125,15 +129,19 @@ __webpack_require__.r(__webpack_exports__);
     return {
       src: null,
       file: null,
+      img: '/storage/images/profile_image.png' // form: {
+      //     image: null,
+      // }
       // form: {
-      //     avatar: null
-      // },
-      img: '/storage/images/profile_image.png'
+      //     image: null,
+      // }
+
     };
   },
   mounted: function mounted() {
     if (this.profileImg) {
       this.src = this.profileImg.path;
+      this.file = null;
     } else {
       this.src = this.img;
     }
@@ -164,13 +172,46 @@ __webpack_require__.r(__webpack_exports__);
 
       render.onload = function (e) {
         _this.src = e.target.result;
-      };
+      }; // this.form.image = this.file
 
-      console.log('change', this.src, this.file);
+
+      console.log('change', this.src, this.form, this.file);
     } // submit() {
-    //     console.log('submitting', this.form)
+    //     // console.log('submitting', this.form)
+    //     Inertia.post(`/users/avatar`, {
+    //         _method: 'put',
+    //         avatar: this.file,
+    //     })
+    // submit() {
+    //     // console.log('submitting', this.form)
+    //     this.form.post('/users/avatar', {
+    //         onError: (e) => {
+    //             console.log(e)
+    //         }
+    //     })
+    // }
     // }
 
+  },
+  setup: function setup() {
+    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+      avatar: null
+    });
+
+    var submit = function submit() {
+      console.log(form);
+      form.post('/users/avatar', {
+        form: form,
+        onSuccess: function onSuccess() {
+          return form.reset('avatar');
+        }
+      });
+    };
+
+    return {
+      form: form,
+      submit: submit
+    };
   }
 });
 
@@ -394,42 +435,11 @@ var _hoisted_3 = ["src"];
 var _hoisted_4 = {
   "class": "absolute top-0 h-full w-full bg-black rounded-full bg-opacity-25 flex items-center justify-center"
 };
+var _hoisted_5 = {
+  key: 0
+};
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24",
-  width: "32",
-  height: "32"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  fill: "none",
-  d: "M0 0h24v24H0z"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z",
-  fill: "rgba(40,40,40,1)"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_6 = [_hoisted_5];
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24",
-  width: "32",
-  height: "32"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  fill: "none",
-  d: "M0 0h24v24H0z"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z",
-  fill: "rgba(40,40,40,1)"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_8 = [_hoisted_7];
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
   width: "32",
@@ -444,20 +454,61 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_7 = [_hoisted_6];
+var _hoisted_8 = {
+  key: 1,
+  type: "submit",
+  "class": "rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  width: "32",
+  height: "32"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  fill: "none",
+  d: "M0 0h24v24H0z"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+})], -1
+/* HOISTED */
+);
+
 var _hoisted_10 = [_hoisted_9];
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  width: "32",
+  height: "32"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  fill: "none",
+  d: "M0 0h24v24H0z"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z",
+  fill: "rgba(40,40,40,1)"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_12 = [_hoisted_11];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     id: "profile-form",
     "class": "",
     onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return _ctx.submit && _ctx.submit.apply(_ctx, arguments);
+      return $setup.submit && $setup.submit.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     accept: "image/*",
     "class": "hidden",
     ref: "file",
-    onChange: _cache[0] || (_cache[0] = function () {
+    onInput: _cache[0] || (_cache[0] = function ($event) {
+      return $setup.form.avatar = $event.target.files[0];
+    }),
+    onChange: _cache[1] || (_cache[1] = function () {
       return $options.change && $options.change.apply($options, arguments);
     })
   }, null, 544
@@ -476,28 +527,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "h-40 w-40 object-cover rounded-full"
   }, null, 8
   /* PROPS */
-  , _hoisted_3)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [!$data.file ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  , _hoisted_3)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button v-if=\"file\" @click=\"remove()\" type=\"button\" class=\"rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none\">\r\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"32\" height=\"32\"><path fill=\"none\" d=\"M0 0h24v24H0z\"/><path d=\"M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z\" fill=\"rgba(40,40,40,1)\"/></svg>\r\n                </button> "), $setup.form.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [$data.file ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return $options.remove(), $setup.form.avatar = !$setup.form.avatar;
+    }),
+    type: "button",
+    "class": "rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
+  }, _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.file ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_8, _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.browse();
     }),
     type: "button",
     "class": "rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
-  }, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.file ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 1,
-    onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $options.remove();
-    }),
-    type: "button",
-    "class": "rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
-  }, _hoisted_8)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.file ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 2,
-    onClick: _cache[3] || (_cache[3] = function ($event) {
-      return $options.remove();
-    }),
-    type: "button",
-    "class": "rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
-  }, _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 32
+  }, _hoisted_12))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form>\r\n            <div v-if=\"file\" form=\"profile\" :loading=\"form.processing\" class=\"w-full mx-auto flex justify-center\">\r\n                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"32\" height=\"32\"><path fill=\"none\" d=\"M0 0h24v24H0z\"/><path d=\"M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z\" fill=\"rgba(40,40,40,1)\"/></svg>\r\n            </div>\r\n        </form> ")], 32
   /* HYDRATE_EVENTS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form id=\"profile-form\" class=\"p-5\" @submit.prevent=\"submit\">\r\n        <div class=\"relative inline-block\">\r\n            <input type=\"file\" accept=\"image/*\" class=\"hidden\" ref=\"file\" @change=\"change\">\r\n            <img :src=\"src\" alt=\"Avatar\" class=\"h-full w-full rounded-full object-cover\">\r\n            <div class=\"absolute top-0 h-full w-full bg-black rounded-full bg-opacity-25 flex items-center justify-center\">\r\n                <button @click=\"browse()\" type=\"button\" class=\"rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none\">\r\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"32\" height=\"32\"><path fill=\"none\" d=\"M0 0h24v24H0z\"/><path d=\"M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z\" fill=\"rgba(40,40,40,1)\"/></svg>\r\n                </button>\r\n                <button v-if=\"value\" @click=\"remove()\" type=\"button\" class=\"rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none\">\r\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"32\" height=\"32\"><path fill=\"none\" d=\"M0 0h24v24H0z\"/><path d=\"M19.586 21H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h.586L1.393 2.808l1.415-1.415 19.799 19.8-1.415 1.414L19.586 21zm-14-14H4v12h13.586l-2.18-2.18A5.5 5.5 0 0 1 7.68 9.094L5.586 7zm3.524 3.525a3.5 3.5 0 0 0 4.865 4.865L9.11 10.525zM22 17.785l-2-2V7h-3.828l-2-2H9.828l-.307.307-1.414-1.414L9 3h6l2 2h4a1 1 0 0 1 1 1v11.786zM11.263 7.05a5.5 5.5 0 0 1 6.188 6.188l-2.338-2.338a3.515 3.515 0 0 0-1.512-1.512l-2.338-2.338z\" fill=\"rgba(40,40,40,1)\"/></svg>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </form> ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */

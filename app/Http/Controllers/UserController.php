@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAvatarPostRequest;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -14,15 +19,17 @@ class UserController extends Controller
         return Inertia::render('Profile/Index', compact('users'));
     }
 
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
+
+
 
     public function show(User $user, Request $request)
     {
@@ -48,18 +55,49 @@ class UserController extends Controller
         ]);
     }
     
-    public function edit(User $user)
+    // public function edit(User $user)
+    // {
+    //     //
+    // }
+
+    // public function update(Request $request, User $user)
+    // {
+    //     //
+    // }
+
+    // public function destroy(User $user)
+    // {
+    //     //
+    // }
+
+    public function avatar(StoreAvatarPostRequest $request)
     {
-        //
+        $data = $request->validated();
+        // dd($data);
+
+        $user = Auth()->user();
+
+        // TODO xriazete to if
+        if ($request->hasFile('avatar')) {
+            $oldAvatar = Image::where('imageable_type', '=', 'App\Models\User')
+                ->where('imageable_id', '=', $user->id)
+                ->first();
+
+            $path = $request->file('avatar')->store('public/avatar');
+            $user->image()->save(
+                Image::make([
+                    'path' => Storage::url($path),
+                ])
+            );
+
+            if ($oldAvatar) 
+            {
+                $oldAvatar->delete();
+            }
+        }
+
+        return Redirect::route('users.show', ['user'=> $user->name]);
     }
 
-    public function update(Request $request, User $user)
-    {
-        //
-    }
 
-    public function destroy(User $user)
-    {
-        //
-    }
 }
