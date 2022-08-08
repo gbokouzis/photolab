@@ -155,8 +155,15 @@ class ImagePostController extends Controller
     {         
         // $post = ImagePost::findOrFail($id);
         $this->authorize('delete', $post);
-        $post->delete();
-
+        $postWithImage = $post->image()->first();
+        $postWithImageReplace = str_replace('/storage', '', $postWithImage->path);
+        // dd($postWithImageReplace);
+        $isDeleting = Storage::disk('public')->delete($postWithImageReplace);
+        if ($isDeleting) 
+        {
+            $postWithImage->delete();
+            $post->delete();
+        }
         return redirect()->route('posts.index');
     }
 }
