@@ -241,7 +241,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     user: Object,
     posts: Object,
-    profileImg: Object
+    profileImg: Object,
+    isFollower: Boolean
   }
 });
 
@@ -567,53 +568,147 @@ var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-348d746c"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
 
-var _hoisted_1 = {
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Unfollow ");
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Follow ");
+
+var _hoisted_3 = {
   "class": "max-w-6xl mx-auto px-4"
 };
-var _hoisted_2 = {
+var _hoisted_4 = {
   "class": "profile mr-4 lg:mr-16"
 };
-var _hoisted_3 = {
+var _hoisted_5 = {
   "class": "profile-image"
 };
-var _hoisted_4 = {
+var _hoisted_6 = {
   "class": "profile-user-settings"
 };
-var _hoisted_5 = {
-  "class": "inline-block text-4xl font-normal text-neutral-700"
+var _hoisted_7 = {
+  "class": "md:inline-block pb-2 text-4xl font-normal text-neutral-700"
 };
-var _hoisted_6 = {
-  "class": "font-light"
+var _hoisted_8 = {
+  "class": "sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1"
 };
 
-var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-edit-follow-unfollow"
-  }, "Edit Profile", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Profile ");
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Unfollow ");
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Follow ");
+
+var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "profile-stats"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "profile-stat-count"
+  }, "164"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" posts")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "profile-stat-count"
+  }, "188"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" followers")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "profile-stat-count"
+  }, "206"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" following")])])], -1
   /* HOISTED */
   );
 });
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"profile-stats\" data-v-348d746c><ul data-v-348d746c><li data-v-348d746c><span class=\"profile-stat-count\" data-v-348d746c>164</span> posts</li><li data-v-348d746c><span class=\"profile-stat-count\" data-v-348d746c>188</span> followers</li><li data-v-348d746c><span class=\"profile-stat-count\" data-v-348d746c>206</span> following</li></ul></div><div class=\"profile-bio\" data-v-348d746c><p data-v-348d746c><span class=\"\" data-v-348d746c> Jane Doe </span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️ </p></div>", 2);
-
-var _hoisted_10 = {
+var _hoisted_13 = {
+  "class": "profile-bio"
+};
+var _hoisted_14 = {
+  key: 0
+};
+var _hoisted_15 = {
   "class": "mx-auto px-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
   var _component_ProfileAvatar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ProfileAvatar");
 
   var _component_Masonry = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Masonry");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h1>\r\n        Username is: {{ user.name }} \r\n    </h1>\r\n\r\n    <div>\r\n        <Link as=\"button\" :href=\"`/${$page.props.auth.user.name}/follow/${user.id}`\" method=\"POST\"> \r\n            Follow               \r\n        </Link>\r\n\r\n        <Link as=\"button\" :href=\"`/${$page.props.auth.user.name}/unfollow/${user.id}`\" method=\"DELETE\"> \r\n            Unfollow               \r\n        </Link>\r\n    </div>\r\n    \r\n    <div class=\"flex items-center justify-center p-12\">\r\n        <div class=\"mx-auto w-full max-w-md\">\r\n            <form @submit.prevent=\"submit\">\r\n                \r\n                image\r\n                <div class=\"mb-5\">\r\n                    <input type=\"file\" @input=\"form.image = $event.target.files[0]\" />\r\n                    <div v-if=\"form.errors.image\" v-text=\"form.errors.image\" \r\n                        class=\"text-red-500 text-xs mt-1\" />\r\n                </div>\r\n                <div>\r\n                    <button\r\n                        :disabled=\"form.processing\"\r\n                        type=\"submit\"\r\n                        class=\"hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none\"\r\n                    >\r\n                        Submit\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"profile-form\" class=\"p-5\" @submit.prevent=\"submit\">\r\n        <profile-avatar class=\"h-40 w-40 rounded-full\"  v-model=\"form.avatar\" :defaulte-src=\"img\"></profile-avatar>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ProfileAvatar, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, " Username is: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    as: "button",
+    href: "/".concat(_ctx.$page.props.auth.user.name, "/unfollow/").concat($props.user.id),
+    method: "DELETE"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_1];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    as: "button",
+    href: "/".concat(_ctx.$page.props.auth.user.name, "/follow/").concat($props.user.id),
+    method: "POST"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_2];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex items-center justify-center p-12\">\r\n        <div class=\"mx-auto w-full max-w-md\">\r\n            <form @submit.prevent=\"submit\">\r\n                \r\n                image\r\n                <div class=\"mb-5\">\r\n                    <input type=\"file\" @input=\"form.image = $event.target.files[0]\" />\r\n                    <div v-if=\"form.errors.image\" v-text=\"form.errors.image\" \r\n                        class=\"text-red-500 text-xs mt-1\" />\r\n                </div>\r\n                <div>\r\n                    <button\r\n                        :disabled=\"form.processing\"\r\n                        type=\"submit\"\r\n                        class=\"hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none\"\r\n                    >\r\n                        Submit\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"profile-form\" class=\"p-5\" @submit.prevent=\"submit\">\r\n        <profile-avatar class=\"h-40 w-40 rounded-full\"  v-model=\"form.avatar\" :defaulte-src=\"img\"></profile-avatar>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ProfileAvatar, {
     user: $props.user,
     profileImg: $props.profileImg
   }, null, 8
   /* PROPS */
-  , ["user", "profileImg"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.username) + " ", 1
+  , ["user", "profileImg"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.username), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, "@" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.name), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_8, " @" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1
   /* TEXT */
-  )]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"btn btn-edit-follow-unfollow\">Follow</button>\r\n\t\t\t\t<button class=\"btn btn-edit-follow-unfollow\">Unfollow</button> ")]), _hoisted_8])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Masonry, {
+  ), $props.user.name === _ctx.$page.props.auth.user.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+    key: 0,
+    as: "button",
+    href: "#",
+    "class": "btn btn-edit-follow-unfollow"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_9];
+    }),
+    _: 1
+    /* STABLE */
+
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isFollower && $props.user.name !== _ctx.$page.props.auth.user.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+    key: 1,
+    as: "button",
+    href: "/".concat(_ctx.$page.props.auth.user.name, "/unfollow/").concat($props.user.id),
+    method: "DELETE",
+    "class": "btn btn-edit-follow-unfollow"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_10];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$props.isFollower && $props.user.name !== _ctx.$page.props.auth.user.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+    key: 2,
+    as: "button",
+    href: "/".concat(_ctx.$page.props.auth.user.name, "/follow/").concat($props.user.id),
+    method: "POST",
+    "class": "btn btn-edit-follow-unfollow"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_11];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$props.user.bio ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.bio), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Masonry, {
     posts: $props.posts
   }, null, 8
   /* PROPS */
@@ -640,7 +735,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-348d746c] {\r\n    display: block;\n}\n.btn[data-v-348d746c] {\r\n    display: inline-block;\r\n    font: inherit;\r\n    background: none;\r\n    border: none;\r\n    color: inherit;\r\n    padding: 0;\r\n    cursor: pointer;\n}\n.btn[data-v-348d746c]:focus {\r\n    outline: 0.5rem auto rgb(75, 85, 99);\n}\r\n\r\n/* Profile Section */\n.profile[data-v-348d746c] {\r\n    padding: 5rem 0;\n}\n.profile[data-v-348d746c]::after {\r\n    content: \"\";\r\n    display: block;\r\n    clear: both;\n}\n.profile-image[data-v-348d746c] {\r\n    float: left;\r\n    width: calc(33.333% - 1rem);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin-right: 3rem;\n}\n.profile-image img[data-v-348d746c] {\r\n    border-radius: 50%;\n}\n.profile-user-settings[data-v-348d746c],\r\n.profile-stats[data-v-348d746c],\r\n.profile-bio[data-v-348d746c] {\r\n    float: left;\r\n    width: calc(66.666% - 2rem);\n}\n.profile-user-settings[data-v-348d746c] {\r\n    margin-top: 1.1rem;\n}\r\n\r\n/* .profile-user-name {\r\n    display: inline-block;\r\n    font-size: 2.8rem;\r\n    font-weight: 300;\r\n} */\n.btn-edit-follow-unfollow[data-v-348d746c] {\r\n    font-size: 1.4rem;\r\n    line-height: 1.8;\r\n    border: 0.1rem solid #4b5563;\r\n    border-radius: 0.3rem;\r\n    padding: 0 2.4rem;\r\n    margin-top: 1rem;\r\n    margin-left: 2rem;\n}\n.profile-stats[data-v-348d746c] {\r\n    margin-top: 2.3rem;\n}\n.profile-stats li[data-v-348d746c] {\r\n    display: inline-block;\r\n    font-size: 1.6rem;\r\n    line-height: 1.5;\r\n    margin-right: 4rem;\r\n    cursor: pointer;\n}\n.profile-stats li[data-v-348d746c]:last-of-type {\r\n    margin-right: 0;\n}\n.profile-bio[data-v-348d746c] {\r\n    font-size: 1.4rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    margin-top: 2.3rem;\n}\r\n\r\n/* Loader */\n.loader[data-v-348d746c] {\r\n    width: 5rem;\r\n    height: 5rem;\r\n    border: 0.6rem solid #999;\r\n    border-bottom-color: transparent;\r\n    border-radius: 50%;\r\n    margin: 0 auto;\r\n    -webkit-animation: loader-348d746c 500ms linear infinite;\r\n            animation: loader-348d746c 500ms linear infinite;\n}\r\n\r\n/* Media Query */\n@media screen and (max-width: 46rem) {\n.profile[data-v-348d746c] {\r\n        display: flex;\r\n        flex-wrap: wrap;\r\n        padding: 4rem 0;\n}\n.profile[data-v-348d746c]::after {\r\n        display: none;\n}\n.profile-image[data-v-348d746c],\r\n    .profile-user-settings[data-v-348d746c],\r\n    .profile-bio[data-v-348d746c],\r\n    .profile-stats[data-v-348d746c] {\r\n        float: none;\r\n        width: auto;\n}\n.profile-image img[data-v-348d746c] {\r\n        width: 7.7rem;\n}\n.profile-user-settings[data-v-348d746c] {\r\n        flex-basis: calc(100% - 10.7rem);\r\n        display: flex;\r\n        flex-wrap: wrap;\r\n        margin-top: 1rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c] {\r\n        order: 1;\r\n        padding: 0;\r\n        text-align: center;\r\n        margin-top: 1rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c] {\r\n        margin-left: 0;\n}\n.profile-bio[data-v-348d746c] {\r\n        font-size: 1.4rem;\r\n        margin-top: 1.5rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c],\r\n    .profile-bio[data-v-348d746c],\r\n    .profile-stats[data-v-348d746c] {\r\n        flex-basis: 100%;\n}\n.profile-stats[data-v-348d746c] {\r\n        order: 1;\r\n        margin-top: 1.5rem;\n}\n.profile-stats ul[data-v-348d746c] {\r\n        display: flex;\r\n        text-align: center;\r\n        padding: 1.2rem 0;\r\n        border-top: 0.1rem solid #dadada;\r\n        border-bottom: 0.1rem solid #dadada;\n}\n.profile-stats li[data-v-348d746c] {\r\n        font-size: 1.4rem;\r\n        flex: 1;\r\n        margin: 0;\n}\n.profile-stat-count[data-v-348d746c] {\r\n        display: block;\n}\n}\r\n\r\n/* Spinner Animation */\n@-webkit-keyframes loader-348d746c {\nto {\r\n        transform: rotate(360deg);\n}\n}\n@keyframes loader-348d746c {\nto {\r\n        transform: rotate(360deg);\n}\n}\r\n\r\n/*\r\n\r\nThe following code will only run if your browser supports CSS grid.\r\n\r\nRemove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. \r\n\r\n*/\n@supports (display: grid) {\n.profile[data-v-348d746c] {\r\n        display: grid;\r\n        grid-template-columns: 1fr 2fr;\r\n        grid-template-rows: repeat(3, auto);\r\n        grid-column-gap: 3rem;\r\n        align-items: center;\n}\n.profile-image[data-v-348d746c] {\r\n        grid-row: 1 / -1;\n}\n.profile-image[data-v-348d746c],\r\n    .profile-user-settings[data-v-348d746c],\r\n    .profile-stats[data-v-348d746c],\r\n    .profile-bio[data-v-348d746c]\r\n    {\r\n        width: auto;\r\n        margin: 0;\n}\n@media (max-width: 46rem) {\n.profile[data-v-348d746c] {\r\n            grid-template-columns: auto 1fr;\r\n            grid-row-gap: 1.5rem;\n}\n.profile-image[data-v-348d746c] {\r\n            grid-row: 1 / 2;\n}\n.profile-user-settings[data-v-348d746c] {\r\n            display: grid;\r\n            grid-template-columns: auto 1fr;\r\n            grid-gap: 1rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c],\r\n        .profile-stats[data-v-348d746c],\r\n        .profile-bio[data-v-348d746c] {\r\n            grid-column: 1 / -1;\n}\n.profile-user-settings[data-v-348d746c],\r\n        .btn-edit-follow-unfollow[data-v-348d746c],\r\n        .profile-settings-btn[data-v-348d746c],\r\n        .profile-bio[data-v-348d746c],\r\n        .profile-stats[data-v-348d746c] {\r\n            margin: 0;\n}\n}\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-348d746c] {\r\n    display: block;\n}\n.btn[data-v-348d746c] {\r\n    display: inline-block;\r\n    font: inherit;\r\n    background: none;\r\n    border: none;\r\n    color: inherit;\r\n    padding: 0;\r\n    cursor: pointer;\n}\n.btn[data-v-348d746c]:focus {\r\n    outline: 0.5rem auto rgb(75, 85, 99);\n}\r\n\r\n/* Profile Section */\n.profile[data-v-348d746c] {\r\n    padding: 5rem 0;\n}\r\n\r\n/* .profile::after {\r\n    content: \"\";\r\n    display: block;\r\n    clear: both;\r\n} */\n.profile-image[data-v-348d746c] {\r\n    float: left;\r\n    width: calc(33.333% - 1rem);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    margin-right: 3rem;\n}\n.profile-image img[data-v-348d746c] {\r\n    border-radius: 50%;\n}\n.profile-user-settings[data-v-348d746c],\r\n.profile-stats[data-v-348d746c],\r\n.profile-bio[data-v-348d746c] {\r\n    float: left;\r\n    width: calc(66.666% - 2rem);\n}\n.profile-user-settings[data-v-348d746c] {\r\n    margin-top: 1.1rem;\n}\r\n\r\n/* .profile-user-name {\r\n    display: inline-block;\r\n    font-size: 2.8rem;\r\n    font-weight: 300;\r\n} */\n.btn-edit-follow-unfollow[data-v-348d746c] {\r\n    font-size: 1.4rem;\r\n    line-height: 1.8;\r\n    border: 0.1rem solid #4b5563;\r\n    border-radius: 0.3rem;\r\n    padding: 0 2.4rem;\r\n    margin-top: 1rem;\r\n    margin-left: 2rem;\n}\n.profile-stats[data-v-348d746c] {\r\n    margin-top: 2.3rem;\n}\n.profile-stats li[data-v-348d746c] {\r\n    display: inline-block;\r\n    font-size: 1.6rem;\r\n    line-height: 1.5;\r\n    margin-right: 4rem;\r\n    cursor: pointer;\n}\n.profile-stats li[data-v-348d746c]:last-of-type {\r\n    margin-right: 0;\n}\n.profile-bio[data-v-348d746c] {\r\n    font-size: 1.4rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    margin-top: 2.3rem;\n}\r\n\r\n/* Loader */\n.loader[data-v-348d746c] {\r\n    width: 5rem;\r\n    height: 5rem;\r\n    border: 0.6rem solid #999;\r\n    border-bottom-color: transparent;\r\n    border-radius: 50%;\r\n    margin: 0 auto;\r\n    -webkit-animation: loader-348d746c 500ms linear infinite;\r\n            animation: loader-348d746c 500ms linear infinite;\n}\r\n\r\n/* Media Query */\n@media screen and (max-width: 46rem) {\n.profile[data-v-348d746c] {\r\n        display: flex;\r\n        flex-wrap: wrap;\r\n        padding: 4rem 0;\n}\r\n\r\n    /* .profile::after {\r\n        display: none;\r\n    } */\r\n\r\n    /* .profile-image,\r\n    .profile-user-settings,\r\n    .profile-bio,\r\n    .profile-stats {\r\n        float: none;\r\n        width: auto;\r\n    } */\n.profile-image img[data-v-348d746c] {\r\n        width: 7.7rem;\n}\n.profile-user-settings[data-v-348d746c] {\r\n        flex-basis: calc(100% - 10.7rem);\r\n        display: flex;\r\n        flex-wrap: wrap;\r\n        margin-top: 1rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c] {\r\n        order: 1;\r\n        padding: 0;\r\n        text-align: center;\r\n        margin-top: 1rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c] {\r\n        margin-left: 0;\n}\n.profile-bio[data-v-348d746c] {\r\n        font-size: 1.4rem;\r\n        margin-top: 1.5rem;\n}\n.btn-edit-follow-unfollow[data-v-348d746c],\r\n    .profile-bio[data-v-348d746c],\r\n    .profile-stats[data-v-348d746c] {\r\n        flex-basis: 100%;\n}\n.profile-stats[data-v-348d746c] {\r\n        order: 1;\r\n        margin-top: 1.5rem;\n}\n.profile-stats ul[data-v-348d746c] {\r\n        display: flex;\r\n        text-align: center;\r\n        padding: 1.2rem 0;\r\n        border-top: 0.1rem solid #dadada;\r\n        border-bottom: 0.1rem solid #dadada;\n}\n.profile-stats li[data-v-348d746c] {\r\n        font-size: 1.4rem;\r\n        flex: 1;\r\n        margin: 0;\n}\n.profile-stat-count[data-v-348d746c] {\r\n        display: block;\n}\n}\r\n\r\n/* Spinner Animation */\n@-webkit-keyframes loader-348d746c {\nto {\r\n        transform: rotate(360deg);\n}\n}\n@keyframes loader-348d746c {\nto {\r\n        transform: rotate(360deg);\n}\n}\r\n\r\n/*\r\n\r\nThe following code will only run if your browser supports CSS grid.\r\n\r\nRemove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. \r\n\r\n*/\n@supports (display: grid) {\n.profile[data-v-348d746c] {\r\n        display: grid;\r\n        grid-template-columns: 1fr 2fr;\r\n        grid-template-rows: repeat(3, auto);\r\n        grid-column-gap: 3rem;\r\n        align-items: center;\n}\n.profile-image[data-v-348d746c] {\r\n        grid-row: 1 / -1;\n}\n.profile-image[data-v-348d746c],\r\n    .profile-user-settings[data-v-348d746c],\r\n    .profile-stats[data-v-348d746c],\r\n    .profile-bio[data-v-348d746c]\r\n    {\r\n        width: auto;\r\n        margin: 0;\n}\n@media (max-width: 46rem) {\n.profile[data-v-348d746c] {\r\n            grid-template-columns: auto 1fr;\r\n            grid-row-gap: 1.5rem;\n}\r\n\r\n        /* .profile-image {\r\n            grid-row: 1 / 2;\r\n        } */\r\n\r\n        /* .profile-user-settings {\r\n            display: grid;\r\n            grid-template-columns: auto 1fr;\r\n            grid-gap: 1rem;\r\n        } */\n.btn-edit-follow-unfollow[data-v-348d746c],\r\n        .profile-stats[data-v-348d746c],\r\n        .profile-bio[data-v-348d746c] {\r\n            grid-column: 1 / -1;\n}\n.profile-user-settings[data-v-348d746c],\r\n        .btn-edit-follow-unfollow[data-v-348d746c],\r\n        .profile-settings-btn[data-v-348d746c],\r\n        .profile-bio[data-v-348d746c],\r\n        .profile-stats[data-v-348d746c] {\r\n            margin: 0;\n}\n}\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

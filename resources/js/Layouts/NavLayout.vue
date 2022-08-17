@@ -84,10 +84,8 @@
         </div>
 
         <!-- Search -->
-        <div class="flex w-full items-center">
-            <!-- <a href="#" class="text-gray-600 hover:text-neutral-900 px-3 py-2 rounded-md text-sm font-medium">Team</a> -->
-            <input v-model="search" type="text" placeholder="Search" class="flex-1 border h-10 px-2 rounded-full">
-        </div>
+        <Search />
+        
 
         <!-- Right -->
         <div v-if="$page.props.auth" class="flex flex-shrink items-center px-2 sm:px-4 lg:px-8">
@@ -102,15 +100,23 @@
             <div class="relative flex-grow-0 w-8 ml-2 sm:ml-4 lg:ml-8">
                 <div @click="imgMenuShow = !imgMenuShow">
                     <div>
-                        <button type="button" class="bg-gray-800 flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <button type="button" class="bg-gray-800 flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900"
+                            id="user-menu-button" aria-expanded="false" aria-haspopup="true"
+                        >
                             <img class="w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                         </button>
                     </div>
                 </div>
-                <div v-if="imgMenuShow" class="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <div v-if="imgMenuShow" 
+                    class="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                >
                     <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                     <Link href="/logout" method="post"
-                            class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900" role="menuitem" tabindex="-1" id="user-menu-item-2">
+                        class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900"
+                        role="menuitem" tabindex="-1" 
+                        id="user-menu-item-2"
+                    >
                         Log out
                     </Link>
                 </div>
@@ -145,9 +151,9 @@
                     </Link>
                 </li>
                 <li>
-                    <Link href="#" class="font-semibold tracking-tight block cursor-pointer p-2 
+                    <Link href="/following" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
-                        :class="{ 'font-bold underline': $page.component === '' }"
+                        :class="{ 'font-bold underline': $page.component === 'Posts/Following' }"
                     >
                         Following
                     </Link>
@@ -180,12 +186,16 @@
 </template>
 
 <script>
+import Search from '../Components/Search.vue';
+
 export default {
+    components: { Search },
     data() {
-        return { 
-            imgMenuShow: false
-        }
-    }
+        return {
+            imgMenuShow: false,
+            selectShow: false
+        };
+    },
 }
 </script>
 

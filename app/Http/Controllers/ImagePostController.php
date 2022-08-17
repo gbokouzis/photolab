@@ -10,8 +10,10 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\ImagePost;
 use App\Models\ImagePostTag;
+use App\Models\Relationship;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +42,26 @@ class ImagePostController extends Controller
         return Inertia::render('Posts/Index', [ 'posts' => $posts ]);
     }
 
+    public function posts_following(Request $request)
+    {
+        $followedIds = Relationship::where('follower_id', Auth()->id())->pluck('followed_id')->toArray();
+
+        $posts = ImagePost::desc()
+            ->whereIn('user_id', $followedIds)
+            ->with('image', 'user')
+            ->withCount(['likes as liked' => function ($q) {
+                $q->where('user_id', Auth()->id());
+            }])
+            ->withCasts(['liked' => 'boolean'])
+            ->paginate();
+
+        if ($request->wantsJson()) {
+            return $posts;
+        }
+
+        return Inertia::render('Posts/Following', [ 'posts' => $posts ]);
+    }
+
     public function create()
     {
         $categories = Category::all();
@@ -64,20 +86,20 @@ class ImagePostController extends Controller
             $idFromTags = [];
             
             foreach ($data['tags'] as $tag) {
-                $dbTag = Tag::where('content', 'LIKE', $tag)->first();
+                $dbTag = Tag::where('name', 'LIKE', $tag)->first();
 
                 if ( $dbTag !== null ) {
                     array_push($idFromTags, $dbTag->id);
                 }
                 
                 if ( $dbTag === null ) {
-                    $newTag = Tag::create(['content' => $tag]);
+                    $newTag = Tag::create(['name' => $tag]);
                     array_push($idFromTags, $newTag->id);
                 }
             }
         }
         
-        $category = Category::where('content', 'LIKE', $data['category'])->first();
+        $category = Category::where('name', 'LIKE', $data['category'])->first();
         unset($data['category']);
         $data['user_id'] = $request->user()->id;
         $data['category_id'] = $category->id;
@@ -128,7 +150,7 @@ class ImagePostController extends Controller
         // $post = new ImagePostResource($post);
         $this->authorize('update', $post);
         
-        $post = ImagePost::with('tags:content')->findOrFail($post->id);
+        $post = ImagePost::with('tags:name')->findOrFail($post->id);
         // $post = new UpdateImagePostResource($post);
         
 
@@ -166,4 +188,6 @@ class ImagePostController extends Controller
         }
         return redirect()->route('posts.index');
     }
+
+
 }

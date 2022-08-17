@@ -76,7 +76,7 @@
         </div>
         <div v-if="post.tags" class="font-medium flex flex-wrap">
             <span v-for="tag in post.tags" :key="tag.id" class="tag">
-                #{{ tag.content }}
+                #{{ tag.name }}
             </span>
         </div>
         <!-- <div class="mt-4 col-start-1 row-start-3 self-center ">

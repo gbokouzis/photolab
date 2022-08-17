@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAvatarPostRequest;
 use App\Models\Image;
+use App\Models\Relationship;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,10 @@ class UserController extends Controller
     public function show(User $user, Request $request)
     {
         // dd($user);
+        $isFollower = Relationship::where('follower_id', Auth()->id())
+            ->where('followed_id', $user->id)
+            ->exists();
+
         $profileImg = $user->image()->first();
 
         $posts = $user->imagePosts()
@@ -47,11 +52,12 @@ class UserController extends Controller
         if ($request->wantsJson()) {
             return $posts;
         }
-
+        // dd($user, $isFollower);
         return Inertia::render('Profile/Show', [
             'profileImg' => $profileImg,
             'posts' => $posts,
-            'user' => $user
+            'user' => $user,
+            'isFollower' => $isFollower,
         ]);
     }
     

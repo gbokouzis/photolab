@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LikedImagePostController;
 use App\Http\Controllers\RelationshipController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,10 @@ use Inertia\Inertia;
 |
 */
 
+// Route::get('/search{search}', [\App\Http\Controllers\SearchController::class, 'search']);
+Route::get('/search/users', [SearchController::class, 'users_search']);
+Route::get('/search/tags', [SearchController::class, 'tags_search']);
+
 Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index']);
 
 Route::get('/home', function () {
@@ -26,6 +31,7 @@ Route::get('/home', function () {
 
 // Resource posts
 Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth');
+Route::get('/following', [\App\Http\Controllers\ImagePostController::class, 'posts_following'])->middleware('auth')->name('posts.followng');
 
 // Resource categories
 Route::resource('categories', \App\Http\Controllers\CategoryController::class)->middleware('auth');

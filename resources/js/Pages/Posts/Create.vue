@@ -54,11 +54,12 @@
                             border-gray-300 
                             text-gray-900 text-sm rounded-lg 
                             focus:ring-blue-500 
-                            focus:border-blue-500 block w-full p-2.5"
+                            focus:border-blue-500 block w-full p-2.5
+                            outline-none"
                         v-model="form.category"
                     >
                         <option selected>Choose a category</option>
-                        <option v-for="category in categories" :value="category.content">{{category.content}}</option>
+                        <option v-for="category in categories" :value="category.name">{{category.name}}</option>
                     </select>
                     <div v-if="form.errors.category" v-text="form.errors.category" 
                         class="text-red-500 text-xs mt-1" />

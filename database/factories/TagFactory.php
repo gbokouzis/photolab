@@ -17,7 +17,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'content' => str_replace(' ', '', $this->faker->text($maxNbChars = 15)),
+            'name' => str_replace(' ', '', $this->faker->text($maxNbChars = 15)),
             'created_at' => $this->faker->dateTimeBetween('-1 months'),
         ];
     }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('content');
+            $table->text('name');
             
             // $table->foreignIdFor(ImagePost::class);
             $table->unsignedBigInteger('image_post_id')->index();

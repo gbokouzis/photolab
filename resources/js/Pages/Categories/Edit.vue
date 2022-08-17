@@ -10,9 +10,9 @@
                     <label for="category" class="block font-medium text-sm text-gray-700">
                         Category
                     </label>
-                    <input v-model="form.content" type="text" id="category" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <div v-if="errors.content" class="text-red-600">
-                        {{ errors.content }}
+                    <input v-model="form.name" type="text" id="category" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <div v-if="errors.name" class="text-red-600">
+                        {{ errors.name }}
                     </div>
                 </div>
             </div>

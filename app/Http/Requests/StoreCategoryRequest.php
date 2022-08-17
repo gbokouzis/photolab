@@ -25,7 +25,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required', 'min:2', 'max:50', ValidationRule::unique('categories', 'content')],
+            'name' => ['required', 'min:2', 'max:50', ValidationRule::unique('categories', 'name')],
         ];
     }
 }

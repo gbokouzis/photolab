@@ -12,7 +12,7 @@
             <div class="text-xl mb-2">
                 <Link :href="route('categories.show', category.id)"> 
                     <h1>
-                        {{ category.content }}
+                        {{ category.name }}
                     </h1>
                 </Link>
             </div>

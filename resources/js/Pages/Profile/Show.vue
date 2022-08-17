@@ -1,19 +1,19 @@
 <template>
-    <!-- <h1>
+    <h1>
         Username is: {{ user.name }} 
     </h1>
 
     <div>
-        <Link as="button" :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST"> 
-            Follow               
-        </Link>
 
         <Link as="button" :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE"> 
             Unfollow               
         </Link>
+        <Link as="button" :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST"> 
+            Follow               
+        </Link>
     </div>
     
-    <div class="flex items-center justify-center p-12">
+    <!-- <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-md">
             <form @submit.prevent="submit">
                 
@@ -43,7 +43,7 @@
     </div> -->
 
     
-    <div class="max-w-6xl mx-auto px-4">
+        <div class="max-w-6xl mx-auto px-4">
         <div class="profile mr-4 lg:mr-16">
 
             <div class="profile-image">
@@ -51,13 +51,35 @@
 			</div>
             
 			<div class="profile-user-settings">
-				<h1 class="inline-block text-4xl font-normal text-neutral-700">
-                    {{ $page.props.auth.user.username }} <span class="font-light">@{{ $page.props.auth.user.name }}</span>
+				<h1 class="md:inline-block pb-2 text-4xl font-normal text-neutral-700">
+                    {{ user.username }} 
                 </h1>
-
-				<button class="btn btn-edit-follow-unfollow">Edit Profile</button>
-				<!-- <button class="btn btn-edit-follow-unfollow">Follow</button>
-				<button class="btn btn-edit-follow-unfollow">Unfollow</button> -->
+                <h2 class="sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1">
+                    @{{ user.name }}
+                </h2>
+                
+                <Link as="button" 
+                    v-if="user.name === $page.props.auth.user.name"
+                    :href="`#`"
+                    class="btn btn-edit-follow-unfollow"
+                >
+                    Edit Profile
+                </Link>
+                <Link as="button" 
+                    v-if="isFollower && user.name !== $page.props.auth.user.name" 
+                    :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE" 
+                    class="btn btn-edit-follow-unfollow"
+                >
+                    Unfollow
+                </Link>
+                <Link as="button" 
+                    v-if="!isFollower && user.name !== $page.props.auth.user.name" 
+                    :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST" 
+                    class="btn btn-edit-follow-unfollow"
+                >
+                    Follow
+                </Link>
+                
 			</div>
 
 			<div class="profile-stats">
@@ -69,11 +91,8 @@
 			</div>
 
 			<div class="profile-bio">
-				<p>
-                    <span class="">
-                        Jane Doe
-                    </span> 
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️
+				<p v-if="user.bio">
+                    {{ user.bio }}
                 </p>
 			</div>
 		</div>
@@ -103,7 +122,8 @@ export default {
     props: {
         user: Object,
         posts: Object,
-        profileImg: Object
+        profileImg: Object,
+        isFollower: Boolean
     },
 }
 </script>
@@ -134,11 +154,11 @@ img {
     padding: 5rem 0;
 }
 
-.profile::after {
+/* .profile::after {
     content: "";
     display: block;
     clear: both;
-}
+} */
 
 .profile-image {
     float: left;
@@ -225,17 +245,17 @@ img {
         padding: 4rem 0;
     }
 
-    .profile::after {
+    /* .profile::after {
         display: none;
-    }
+    } */
 
-    .profile-image,
+    /* .profile-image,
     .profile-user-settings,
     .profile-bio,
     .profile-stats {
         float: none;
         width: auto;
-    }
+    } */
 
     .profile-image img {
         width: 7.7rem;
@@ -338,15 +358,15 @@ Remove or comment-out the code block below to see how the browser will fall-back
             grid-row-gap: 1.5rem;
         }
 
-        .profile-image {
+        /* .profile-image {
             grid-row: 1 / 2;
-        }
+        } */
 
-        .profile-user-settings {
+        /* .profile-user-settings {
             display: grid;
             grid-template-columns: auto 1fr;
             grid-gap: 1rem;
-        }
+        } */
 
         .btn-edit-follow-unfollow,
         .profile-stats,

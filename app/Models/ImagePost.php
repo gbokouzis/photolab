@@ -58,9 +58,9 @@ class ImagePost extends Model
         return $query->orderBy(static::CREATED_AT, 'desc');
     }
 
-    public function tagWithContent()
+    public function tagWithName()
     {
-        return $this->belongsToMany('\App\Models\Tag', 'image_post_tags')->select(array('content'));
+        return $this->belongsToMany('\App\Models\Tag', 'image_post_tags')->select(array('name'));
     }
     
     public function scopeImagePostCategoryWithUsers(Builder $query, $id) 

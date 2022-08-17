@@ -14,14 +14,14 @@
                         Category
                     </label>
                     <input
-                        v-model="form.content"
+                        v-model="form.name"
                         type="text"
                         name="category"
                         id="category"
                         placeholder="Category"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                     />
-                    <div v-if="form.errors.content" v-text="form.errors.content" 
+                    <div v-if="form.errors.name" v-text="form.errors.name" 
                         class="text-red-500 text-xs mt-1" />
                 </div>
                 <div>
@@ -44,7 +44,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 export default {
     setup() {
         const form = useForm({
-            content: '',
+            name: '',
         })
 
         const submit = () => {

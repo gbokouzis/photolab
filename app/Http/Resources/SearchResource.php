@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UpdateImagePostResource extends JsonResource
+class SearchResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -12,13 +12,15 @@ class UpdateImagePostResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
+    // public function toArray($request)
+    // {
+    //     return parent::toArray($request);
+    // }
     public function toArray($request)
     {
         return [
-            'description' => $this->description,
-            'tags' => array_map(function($item) {
-                return $item['name'];
-            }, $this->tags)
+            'id' => $this->id,
+            'name' => $this->name,
         ];
     }
 }

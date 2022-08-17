@@ -18,7 +18,7 @@ class CategoriesSeeder extends Seeder
         $categories = ['Science', 'Sport', 'Politics', 'Entartainment', 'Economy'];
 
         foreach($categories as $category) {
-            Category::create(['content' => $category]);
+            Category::create(['name' => $category]);
         }
     }
 }

@@ -326,7 +326,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: tag.id,
       "class": "tag"
-    }, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(tag.content), 1
+    }, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(tag.name), 1
     /* TEXT */
     );
   }), 128

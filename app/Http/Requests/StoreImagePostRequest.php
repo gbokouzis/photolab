@@ -25,7 +25,7 @@ class StoreImagePostRequest extends FormRequest
      */
     public function rules()
     {
-        $categories = Category::all()->pluck('content');
+        $categories = Category::all()->pluck('name');
         return [
             'description' => 'required|min:3|max:50',
             'camera' => 'required|min:2|max:50',
