@@ -5,9 +5,8 @@
         New Category
     </Link>
 
-    <div class="max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto"
+    <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto"
     v-for="category in categories" :key="category.id">
-        <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
         <div class="px-6 py-4 m-4">
             <div class="text-xl mb-2">
                 <Link :href="route('categories.show', category.id)"> 
@@ -23,16 +22,20 @@
                 Delete {{category.id}}
             </button>
         </div>
-    </div>
+    </div> -->
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto px-2 py-8">
         <div 
             v-for="category in categories" :key="category.id"
             class="zoom shadow-lg rounded-lg relative overflow-hidden bg-no-repeat bg-cover"
             data-mdb-ripple="true" data-mdb-ripple-color="dark"
-        > 
-            <img :src="category.image_posts[0].image.path"
-                class="w-full transition duration-300 ease-linear align-middle" />
+        >
+            <img v-if="category.image_posts[0]" :src="category.image_posts[0].image.path"
+                class="w-full h-64 object-cover transition duration-200 ease-linear align-middle" 
+            />
+            <img v-else src="/storage/images/Image_not_available.png"
+                class=" bg-neutral-300 w-full h-64 object-cover transition duration-200 ease-linear align-middle" 
+            />
             <Link :href="route('categories.show', category.id)"> 
                 <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed">
                     <div class="flex justify-start items-end h-full">
