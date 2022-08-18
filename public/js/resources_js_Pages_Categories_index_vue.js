@@ -60,14 +60,7 @@ var _hoisted_5 = ["onClick"];
 var _hoisted_6 = {
   "class": "grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto"
 };
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "https://mdbootstrap.com/img/new/standard/city/041.jpg",
-  "class": "w-full transition duration-300 ease-linear align-middle"
-}, null, -1
-/* HOISTED */
-);
-
+var _hoisted_7 = ["src"];
 var _hoisted_8 = {
   "class": "absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
 };
@@ -147,7 +140,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "zoom shadow-lg rounded-lg relative overflow-hidden bg-no-repeat bg-cover",
       "data-mdb-ripple": "true",
       "data-mdb-ripple-color": "dark"
-    }, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: category.image_posts[0].image.path,
+      "class": "w-full transition duration-300 ease-linear align-middle"
+    }, null, 8
+    /* PROPS */
+    , _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
       href: _ctx.route('categories.show', category.id)
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

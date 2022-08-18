@@ -31,7 +31,7 @@
             class="zoom shadow-lg rounded-lg relative overflow-hidden bg-no-repeat bg-cover"
             data-mdb-ripple="true" data-mdb-ripple-color="dark"
         > 
-            <img src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+            <img :src="category.image_posts[0].image.path"
                 class="w-full transition duration-300 ease-linear align-middle" />
             <Link :href="route('categories.show', category.id)"> 
                 <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed">
