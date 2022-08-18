@@ -887,10 +887,12 @@ var map = {
 	],
 	"./Categories/Index": [
 		"./resources/js/Pages/Categories/Index.vue",
+		"/js/vendor",
 		"resources_js_Pages_Categories_Index_vue"
 	],
 	"./Categories/Index.vue": [
 		"./resources/js/Pages/Categories/Index.vue",
+		"/js/vendor",
 		"resources_js_Pages_Categories_Index_vue"
 	],
 	"./Categories/Show": [

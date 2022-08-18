@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use App\Models\ImagePost;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -19,6 +20,30 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $items = array();
+        foreach($categories as $category) {
+            $item = $category::with(['imagePosts' => function($q) {
+                $q->where('created_at', '>',(new Carbon)->subDays(1)->toDateString())
+                ->withCount('likes as likes')
+                ->orderBy('likes')
+                ->with('image')
+                ->first();
+            }])
+            ->first();
+            array_push($items, $item);
+        }
+
+        dd($items);
+        
+        // $categories = Category::with(['imagePosts' => function($q) {
+        //     $q->where('created_at', '>',(new Carbon)->subDays(1)->toDateString())
+        //     ->withCount('likes as likes')
+        //     ->with('image');
+        // }])
+        // ->get();
+        
+        // dd($categories);
+
         return Inertia::render('Categories/Index', compact('categories'));
     }
 

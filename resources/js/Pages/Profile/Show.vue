@@ -51,12 +51,14 @@
 			</div>
             
 			<div class="profile-user-settings">
-				<h1 class="md:inline-block pb-2 text-4xl font-normal text-neutral-700">
-                    {{ user.username }} 
-                </h1>
-                <h2 class="sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1">
-                    @{{ user.name }}
-                </h2>
+                <div>
+                    <h1 class="md:inline-block pb-2 text-4xl font-normal text-neutral-700">
+                        {{ user.username }} 
+                    </h1>
+                    <h2 class="sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1">
+                        @{{ user.name }}
+                    </h2>
+                </div>
                 
                 <Link as="button" 
                     v-if="user.name === $page.props.auth.user.name"
@@ -75,11 +77,10 @@
                 <Link as="button" 
                     v-if="!isFollower && user.name !== $page.props.auth.user.name" 
                     :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST" 
-                    class="btn btn-edit-follow-unfollow"
+                    class="btn btn-edit-follow-unfollow block"
                 >
                     Follow
                 </Link>
-                
 			</div>
 
 			<div class="profile-stats">
@@ -197,7 +198,7 @@ img {
     border-radius: 0.3rem;
     padding: 0 2.4rem;
     margin-top: 1rem;
-    margin-left: 2rem;
+    margin-left: 0rem;
 }
 
 

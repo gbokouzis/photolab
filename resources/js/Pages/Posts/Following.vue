@@ -5,7 +5,9 @@
         New Post
     </Link>
 
-    <Masonry :posts="posts"/>
+    <div class="mx-auto px-4">
+        <Masonry :posts="posts" />
+	</div>
 
   
 </template>
