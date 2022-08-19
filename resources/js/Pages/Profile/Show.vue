@@ -85,9 +85,9 @@
 
 			<div class="profile-stats">
 				<ul>
-					<li><span class="profile-stat-count">164</span> posts</li>
-					<li><span class="profile-stat-count">188</span> followers</li>
-					<li><span class="profile-stat-count">206</span> following</li>
+					<li><span class="profile-stat-count">{{ countPosts }}</span> posts</li>
+					<li><span class="profile-stat-count">{{ countFollowers }}</span> followers</li>
+					<li><span class="profile-stat-count">{{ countFollowings }}</span> following</li>
 				</ul>
 			</div>
 
@@ -124,7 +124,10 @@ export default {
         user: Object,
         posts: Object,
         profileImg: Object,
-        isFollower: Boolean
+        isFollower: Boolean,
+        countFollowers: Number,
+        countFollowings: Number,
+        countPosts: Number
     },
 }
 </script>

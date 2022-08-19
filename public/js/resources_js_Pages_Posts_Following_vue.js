@@ -273,7 +273,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"relative\">\r\n                        <a class=\"test__link absolute inset-0\" target=\"_blank\" href=\"/\"></a>\r\n                        <h1 class=\"test__title text-3xl font-bold mb-3\">Title post</h1>\r\n                        <p class=\"test__author font-sm font-light\">Author</p>\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
       as: "button",
       href: _ctx.route('posts.show', post.id),
-      "class": "h-2/4 flex justify-center shrink-0 opacity-50 translate-y-3/4"
+      "class": "m-auto w-28 h-1/6 flex justify-center shrink-0 opacity-50 translate-y-2/4"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [_hoisted_4];

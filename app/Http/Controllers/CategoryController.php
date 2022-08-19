@@ -22,15 +22,13 @@ class CategoryController extends Controller
         $categories = Category::all();
         $items = array();
         foreach($categories as $category) {
-            // print_r($category);
-            $item = $category::with(['imagePosts' => function($q) {
+            $item = Category::with(['imagePosts' => function($q) {
                 $q->where('created_at', '>',(new Carbon)->subDays(7)->toDateString())
                 ->withCount('likes as likes')
-                ->orderBy('likes')
+                ->orderBy('likes', 'desc')
                 ->with('image')
                 ->first();
             }])
-            // ->first()
             ->findOrFail($category->id);
             array_push($items, $item);
         }

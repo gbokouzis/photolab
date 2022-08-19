@@ -41,6 +41,12 @@ class UserController extends Controller
 
         $profileImg = $user->image()->first();
 
+        $countFollowers = $user->followers()->count();
+        $countFollowings = $user->followings()->count();
+        $countPosts = $user->imagePosts()->count();
+
+        // dd($countFollowers, $countFollowings, $countPosts);
+
         $posts = $user->imagePosts()
             ->with('image')
             ->withCount(['likes as liked' => function ($q) {
@@ -58,6 +64,9 @@ class UserController extends Controller
             'posts' => $posts,
             'user' => $user,
             'isFollower' => $isFollower,
+            'countFollowers' => $countFollowers,
+            'countFollowings' => $countFollowings,
+            'countPosts' => $countPosts
         ]);
     }
     
