@@ -80,10 +80,23 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Request $request, Category $category)
     {
-        $posts = ImagePost::imagePostCategoryWithUsers($category->id)->get();
-        return Inertia::render('Categories/Show', compact('posts'));
+        // $posts = ImagePost::imagePostCategoryWithUsers($category->id)->get();
+        
+        $posts = $category->imagePosts()
+            ->with('image', 'user')
+            ->withCount(['likes as liked' => function ($q) {
+                $q->where('user_id', Auth()->id());
+            }])
+            ->withCasts(['liked' => 'boolean'])
+            ->paginate();
+
+        if ($request->wantsJson()) {
+            return $posts;
+        }
+
+        return Inertia::render('Tags/Show', compact('posts'));
     }
 
     /**

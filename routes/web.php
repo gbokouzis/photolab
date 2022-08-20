@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LikedImagePostController;
 use App\Http\Controllers\RelationshipController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,15 +23,10 @@ use Inertia\Inertia;
 // Route::get('/search{search}', [\App\Http\Controllers\SearchController::class, 'search']);
 Route::get('/search/users', [SearchController::class, 'users_search']);
 Route::get('/search/tags', [SearchController::class, 'tags_search']);
-
-Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index']);
-
-Route::get('/home', function () {
-    return Inertia::render('Welcome');
-});
-
-// Resource posts
-Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth');
+    
+// Posts
+Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index'])->name('posts.index');
+Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth')->only(['create', 'store', 'show', 'edit', 'update', 'destroy']);;
 Route::get('/following', [\App\Http\Controllers\ImagePostController::class, 'posts_following'])->middleware('auth')->name('posts.followng');
 
 // Resource categories
@@ -53,6 +49,9 @@ Route::delete('/{user:name}/unfollow/{id}', [RelationshipController::class, 'unf
 Route::post('/posts/{imagepost}/like', [LikedImagePostController::class, 'like']);
 Route::post('/posts/{imagepost}/unlike', [LikedImagePostController::class, 'unlike']);
 // Route::post('/posts/{imagepost}/like', [LikedImagePostController::class, 'toggle']);
+
+// Tags
+Route::get('/tags/{tag:name}', [TagController::class, 'show'])->name('tags.show');
 
 // Auth
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');

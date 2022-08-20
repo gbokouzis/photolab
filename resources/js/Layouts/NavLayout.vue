@@ -97,13 +97,14 @@
             </button>
 
             <!-- Profile dropdown -->
-            <div class="relative flex-grow-0 w-8 ml-2 sm:ml-4 lg:ml-8">
+            <div class="relative flex-grow-0 w-10 ml-2 sm:ml-4 lg:ml-8">
                 <div @click="imgMenuShow = !imgMenuShow">
                     <div>
                         <button type="button" class="bg-gray-800 flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true"
                         >
-                            <img class="w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                            <img v-if="$page.props.auth.user.img" class="w-10 h-10 object-cover rounded-full" :src="$page.props.auth.user.img.imgPath" alt="">
+                            <img v-else class="w-10 h-10 object-cover rounded-full" src="/storage/images/profile_image.png" alt="">
                         </button>
                     </div>
                 </div>
@@ -135,21 +136,21 @@
         <div class="w-full flex justify-center flex-col sm:flex-row items-center px-6 py-4 mx-auto">
             <ul class="flex flex-col sm:flex-row md:space-x-5 w-full items-center justify-center md:text-lg">
                 <li>
-                    <Link href="/home" class="font-semibold tracking-tight block cursor-pointer p-2 
+                    <Link href="/" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
                         :class="{ 'font-bold underline': $page.component === 'Welcome' }"
                     >
                         Home
                     </Link>
                 </li>
-                <li>
+                <!-- <li>
                     <Link href="/posts" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
                         :class="{ 'font-bold underline': $page.component === 'Posts/Index' }"
                     >
                         Posts
                     </Link>
-                </li>
+                </li> -->
                 <li>
                     <Link href="/following" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"

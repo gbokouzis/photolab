@@ -107,7 +107,7 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_Auth_Login_vue":1,"resources_js_Pages_Auth_Register_vue":1,"resources_js_Pages_Categories_Create_vue":1,"resources_js_Pages_Categories_Edit_vue":1,"resources_js_Pages_Categories_Index_vue":1,"resources_js_Pages_Categories_Show_vue":1,"resources_js_Pages_Posts_Create_vue":1,"resources_js_Pages_Posts_Edit_vue":1,"resources_js_Pages_Posts_Following_vue":1,"resources_js_Pages_Posts_Index_vue":1,"resources_js_Pages_Posts_Show_vue":1,"resources_js_Pages_Profile_Followers_vue":1,"resources_js_Pages_Profile_Followings_vue":1,"resources_js_Pages_Profile_Index_vue":1,"resources_js_Pages_Profile_Show_vue":1,"resources_js_Pages_Welcome_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_Auth_Login_vue":1,"resources_js_Pages_Auth_Register_vue":1,"resources_js_Pages_Categories_Create_vue":1,"resources_js_Pages_Categories_Edit_vue":1,"resources_js_Pages_Categories_Index_vue":1,"resources_js_Pages_Categories_Show_vue":1,"resources_js_Pages_Posts_Create_vue":1,"resources_js_Pages_Posts_Edit_vue":1,"resources_js_Pages_Posts_Following_vue":1,"resources_js_Pages_Posts_Index_vue":1,"resources_js_Pages_Posts_Show_vue":1,"resources_js_Pages_Profile_Followers_vue":1,"resources_js_Pages_Profile_Followings_vue":1,"resources_js_Pages_Profile_Index_vue":1,"resources_js_Pages_Profile_Show_vue":1,"resources_js_Pages_Tags_Show_vue":1,"resources_js_Pages_Welcome_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

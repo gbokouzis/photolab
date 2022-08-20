@@ -75,9 +75,12 @@
             <span v-else class="px-2 text-sm">Ηas no likes</span>
         </div>
         <div v-if="post.tags" class="font-medium flex flex-wrap">
-            <span v-for="tag in post.tags" :key="tag.id" class="tag">
+            <Link v-for="tag in post.tags" :key="tag.id" 
+                :href="route('tags.show', tag.name)"    
+                class="tag"
+            >
                 #{{ tag.name }}
-            </span>
+            </Link>
         </div>
         <!-- <div class="mt-4 col-start-1 row-start-3 self-center ">
             <button type="button" class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Check availability</button>

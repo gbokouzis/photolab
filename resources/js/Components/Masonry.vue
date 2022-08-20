@@ -1,7 +1,10 @@
 <template>
     <div class="columns-1 sm:columns-2 lg:columns-3 mx-auto sm:p-4 lg:p-6 xl:p-8"
         :class="{
-            'xl:columns-4 max-w-screen-2xl': $page.component === 'Posts/Index' || $page.component === 'Posts/Following',
+            'xl:columns-4 max-w-screen-2xl': 
+                $page.component === 'Posts/Index' 
+                || $page.component === 'Posts/Following'
+                || $page.component === 'Tags/Show',
             'max-w-screen-lg': $page.component === 'Profile/Show'
         }"
 
