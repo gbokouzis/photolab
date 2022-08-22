@@ -377,7 +377,7 @@ var _hoisted_7 = {
 };
 var _hoisted_8 = {
   type: "button",
-  "class": "bg-gray-800 flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900",
+  "class": "flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900",
   id: "user-menu-button",
   "aria-expanded": "false",
   "aria-haspopup": "true"

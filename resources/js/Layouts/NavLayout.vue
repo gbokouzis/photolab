@@ -100,7 +100,7 @@
             <div class="relative flex-grow-0 w-10 ml-2 sm:ml-4 lg:ml-8">
                 <div @click="imgMenuShow = !imgMenuShow">
                     <div>
-                        <button type="button" class="bg-gray-800 flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900"
+                        <button type="button" class="flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true"
                         >
                             <img v-if="$page.props.auth.user.img" class="w-10 h-10 object-cover rounded-full" :src="$page.props.auth.user.img.imgPath" alt="">

@@ -70,7 +70,7 @@ class ImagePostController extends Controller
 
     public function store(StoreImagePostRequest $request)
     {
-        sleep(2);
+        // sleep(2);
         
         // dd($request);
         // $image = $request->file('photos');
@@ -80,7 +80,20 @@ class ImagePostController extends Controller
         // dd($x);
 
         $data = $request->validated();
+        
+        $imageExif = exif_read_data($data['image']);
+        $imageExifComputed = $imageExif['COMPUTED'];
+        
+        if(array_key_exists('Model', $imageExif) && $imageExif['Model'] != '--' ) {
+            $data['camera'] = $imageExif['Model'];
+            $data['iso'] = $imageExif['ISOSpeedRatings'];
+            $data['aperture'] = $imageExifComputed['ApertureFNumber'];
+        }
+        $data['height'] = $imageExifComputed['Height'];
+        $data['width'] = $imageExifComputed['Width'];
+
         // dd($data);
+        // $data[]
 
         if ( count($data['tags']) !== 0 ) {
             $idFromTags = [];

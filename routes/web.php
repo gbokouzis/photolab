@@ -19,11 +19,16 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    return Inertia::render('Posts/Testt');
+});
+
+
 
 // Route::get('/search{search}', [\App\Http\Controllers\SearchController::class, 'search']);
 Route::get('/search/users', [SearchController::class, 'users_search']);
 Route::get('/search/tags', [SearchController::class, 'tags_search']);
-    
+
 // Posts
 Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index'])->name('posts.index');
 Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth')->only(['create', 'store', 'show', 'edit', 'update', 'destroy']);;

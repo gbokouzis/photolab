@@ -1,10 +1,10 @@
 <template>
     <form id="profile-form" class="" @submit.prevent="submit">
         <div class="relative inline-block h-40 w-40">
-            <input type="file" accept="image/*" class="hidden" ref="file" @input="form.avatar = $event.target.files[0]" @change="change">
+            <input v-if="$page.props.auth.user.name === user.name" type="file" accept="image/*" class="hidden" ref="file" @input="form.avatar = $event.target.files[0]" @change="change">
             <img v-if="profileImg" :src="src" alt="Avatar" class="h-40 w-40 object-cover rounded-full">
             <img v-else :src="src" alt="Avatar" class="h-40 w-40 object-cover rounded-full">
-            <div class="absolute top-0 h-full w-full bg-black rounded-full bg-opacity-25 flex items-center justify-center">
+            <div v-if="$page.props.auth.user.name === user.name" class="absolute top-0 h-full w-full bg-black rounded-full bg-opacity-25 flex items-center justify-center">
                 <!-- <button v-if="file" @click="remove()" type="button" class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="rgba(40,40,40,1)"/></svg>
                 </button> -->

@@ -20,8 +20,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('location')->nullable();
             $table->text('camera')->nullable();
-            $table->text('lens')->nullable();
-            $table->text('dimensions')->nullable();
+            $table->text('iso')->nullable();
+            $table->text('aperture')->nullable();
+            $table->text('height')->nullable();
+            $table->text('width')->nullable();
 
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

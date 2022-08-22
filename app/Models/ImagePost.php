@@ -14,8 +14,10 @@ class ImagePost extends Model
         'description',
         'location',
         'camera',
-        'lens',
-        'dimensions',
+        'iso',
+        'aperture',
+        'height',
+        'width',
         'user_id',
         'category_id',
     ];
