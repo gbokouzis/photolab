@@ -329,7 +329,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $setup.deleteTag(tag);
       },
-      "class": "inline-block mx-0 my-2 p-2 bg-gray-200 text-neutral-700 rounded-xl cursor-pointer"
+      "class": "inline-block mx-0 my-2 mr-1 p-2 bg-gray-200 text-neutral-700 rounded-2xl cursor-pointer"
     }, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(tag), 9
     /* TEXT, PROPS */
     , _hoisted_20);

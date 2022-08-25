@@ -25,6 +25,7 @@ class UpdateImagePostRequest extends FormRequest
     {
         return [
             'description' => 'required|min:3|max:50',
+            'tags' => 'required|array',
         ];
     }
 }

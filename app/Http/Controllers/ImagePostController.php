@@ -88,10 +88,6 @@ class ImagePostController extends Controller
 
         // dd($data);
         // $data[]
-
-
-        
-
         
         $country = ucwords($data['country']); 
         $city = ucwords($data['city']);
@@ -122,12 +118,6 @@ class ImagePostController extends Controller
         $data['location_id'] = $locationID;
         
         // dd($data);
-        
-
-
-
-
-
 
 
         if ( count($data['tags']) !== 0 ) {
@@ -192,12 +182,17 @@ class ImagePostController extends Controller
 
     public function edit(ImagePost $post)
     {
+        // dd($post);
         // $post = ImagePost::findOrFail($post->id);
         // $post = new ImagePostResource($post);
         $this->authorize('update', $post);
         
-        $post = ImagePost::with('tags:name')->findOrFail($post->id);
-        // $post = new UpdateImagePostResource($post);
+        // $post = ImagePost::with('tags:name')->findOrFail($post->id);
+
+        $post = $post::with('tags:name')->findOrFail($post->id);
+        $post = new UpdateImagePostResource($post);
+
+        // dd($post);
         
 
 
@@ -207,14 +202,28 @@ class ImagePostController extends Controller
 
     public function update(UpdateImagePostRequest $request, ImagePost $post)
     {
-        // dd($post);
-        // $post = ImagePost::findOrFail($request->id);
-        // $this->authorize('update', $post);
-        // $data = $request->validated();
-        // $post->fill($data)->save();
-
         $this->authorize('update', $post);
-        $post->update($request->validated());
+        $data = $request->validated();
+        
+        if ( count($data['tags']) !== 0 ) {
+            $idFromTags = [];
+            
+            foreach ($data['tags'] as $tag) {
+                $dbTag = Tag::where('name', 'LIKE', $tag)->first();
+
+                if ( $dbTag !== null ) array_push($idFromTags, $dbTag->id);
+                
+                if ( $dbTag === null ) {
+                    $newTag = Tag::create(['name' => $tag]);
+                    array_push($idFromTags, $newTag->id);
+                }
+            }
+
+            $post->tags()->sync($idFromTags);
+            unset($data['tags']);
+        }
+
+        $post->update($data);
 
         return redirect()->route('posts.index');
     }

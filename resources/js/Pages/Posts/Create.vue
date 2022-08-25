@@ -92,7 +92,7 @@
                         @keydown.enter.prevent="handleEnter"
                     >
                     <div v-for="tag in form.tags" :key="tag" @click="deleteTag(tag)" 
-                        class="inline-block mx-0 my-2 p-2 bg-gray-200 text-neutral-700 rounded-xl cursor-pointer"
+                        class="inline-block mx-0 my-2 mr-1 p-2 bg-gray-200 text-neutral-700 rounded-2xl cursor-pointer"
                     >
                         #{{ tag }}
                     </div>

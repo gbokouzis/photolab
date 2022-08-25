@@ -32,9 +32,10 @@
                     <div @click="showUser(post.user.name)" class='mr-1 text-xs text-indigo-600 cursor-pointer font-normal'>
                         @{{ post.user.name }}
                     </div>
-                    <div class='text-xs font-thin text-gray-400'>
-                        • 30 seconds ago
-                    </div>
+                    <!-- <div class='text-xs font-thin text-gray-400'>
+                        • 30 seconds ago 
+                        {{ post.created_at | fromNow }}
+                    </div> -->
                 </div>
             </div>
             <div v-if="$page.props.auth.user.name === post.user.name" class="relative flex justify-end">
@@ -86,7 +87,7 @@
             <button type="button" class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Check availability</button>
         </div> -->
         <p class="mt-2 leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 text-neutral-700">
-            This sunny and spacious room is for those traveling light and looking for a comfy and cosy place to lay their head for a night or two. This beach house sits in a vibrant neighborhood littered with cafes, pubs, restaurants and supermarkets and is close to all the major attractions such as Edinburgh Castle and Arthur's Seat.
+            {{ post.description }}
         </p>
         <div class="mt-4 text-neutral-700">
             <div class="flex items-center">
@@ -134,6 +135,7 @@
 <script>
 import { Inertia } from '@inertiajs/inertia'
 import LikeUnlike from '../../Components/LikeUnlike.vue'
+// import moment from "moment";
 
 export default {
     components: {
@@ -144,9 +146,14 @@ export default {
     },
     data() {
         return { 
-            imgMenuShow: false
+            imgMenuShow: false,
         }
-    },
+    }, 
+    // filters: {
+    //     fromNow(value) {
+    //         return moment(value).fromNow();
+    //     }
+    // },
     setup() {
         const destroy = (post) => {
             if (confirm('Are you sure?')) {

@@ -1005,12 +1005,10 @@ var map = {
 	],
 	"./Posts/Edit": [
 		"./resources/js/Pages/Posts/Edit.vue",
-		"/js/vendor",
 		"resources_js_Pages_Posts_Edit_vue"
 	],
 	"./Posts/Edit.vue": [
 		"./resources/js/Pages/Posts/Edit.vue",
-		"/js/vendor",
 		"resources_js_Pages_Posts_Edit_vue"
 	],
 	"./Posts/Following": [

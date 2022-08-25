@@ -5,6 +5,8 @@ import { createInertiaApp, Head, Link } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import Layout from './Layouts/Layout.vue'
 
+
+
 createInertiaApp({
     resolve: async name => {
       let page = (await import(`./Pages/${name}`)).default;

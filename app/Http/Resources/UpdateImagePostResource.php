@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Tag;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UpdateImagePostResource extends JsonResource
@@ -14,11 +15,12 @@ class UpdateImagePostResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        // dd($request);
         return [
+            'id' => $this->id,
             'description' => $this->description,
-            'tags' => array_map(function($item) {
-                return $item['name'];
-            }, $this->tags)
+            'tags' => $this->tags->pluck('name')
         ];
     }
 }
