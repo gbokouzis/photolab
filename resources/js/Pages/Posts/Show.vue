@@ -32,10 +32,9 @@
                     <div @click="showUser(post.user.name)" class='mr-1 text-xs text-indigo-600 cursor-pointer font-normal'>
                         @{{ post.user.name }}
                     </div>
-                    <!-- <div class='text-xs font-thin text-gray-400'>
-                        • 30 seconds ago 
-                        {{ post.created_at | fromNow }}
-                    </div> -->
+                    <div class='text-xs font-thin text-gray-400'>
+                        {{ fromNow }}
+                    </div>
                 </div>
             </div>
             <div v-if="$page.props.auth.user.name === post.user.name" class="relative flex justify-end">
@@ -135,7 +134,7 @@
 <script>
 import { Inertia } from '@inertiajs/inertia'
 import LikeUnlike from '../../Components/LikeUnlike.vue'
-// import moment from "moment";
+import moment from "moment";
 
 export default {
     components: {
@@ -148,12 +147,12 @@ export default {
         return { 
             imgMenuShow: false,
         }
-    }, 
-    // filters: {
-    //     fromNow(value) {
-    //         return moment(value).fromNow();
-    //     }
-    // },
+    },
+    computed: {
+        fromNow() {
+            return moment(this.post.created_at).fromNow();
+        }
+    },
     setup() {
         const destroy = (post) => {
             if (confirm('Are you sure?')) {

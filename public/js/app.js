@@ -1034,12 +1034,12 @@ var map = {
 	"./Posts/Show": [
 		"./resources/js/Pages/Posts/Show.vue",
 		"/js/vendor",
-		"resources_js_Pages_Posts_Show_vue"
+		"node_modules_moment_locale_sync_recursive_-resources_js_Pages_Posts_Show_vue"
 	],
 	"./Posts/Show.vue": [
 		"./resources/js/Pages/Posts/Show.vue",
 		"/js/vendor",
-		"resources_js_Pages_Posts_Show_vue"
+		"node_modules_moment_locale_sync_recursive_-resources_js_Pages_Posts_Show_vue"
 	],
 	"./Profile/Followers": [
 		"./resources/js/Pages/Profile/Followers.vue",
