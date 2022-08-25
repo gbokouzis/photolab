@@ -20,6 +20,7 @@ class ImagePost extends Model
         'width',
         'user_id',
         'category_id',
+        'location_id',
     ];
 
     protected $hidden = ['pivot'];
@@ -52,6 +53,11 @@ class ImagePost extends Model
     public function likes() 
     {
         return $this->hasMany('\App\Models\Like');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo('\App\Models\Location');
     }
     
     // scope

@@ -4,7 +4,8 @@
             'xl:columns-4 max-w-screen-2xl': 
                 $page.component === 'Posts/Index' 
                 || $page.component === 'Posts/Following'
-                || $page.component === 'Tags/Show',
+                || $page.component === 'Tags/Show'
+                || $page.component === 'Locations/Show',
             'max-w-screen-lg': $page.component === 'Profile/Show'
         }"
 

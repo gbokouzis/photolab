@@ -26,6 +26,44 @@
                     <div v-if="form.errors.description" v-text="form.errors.description" 
                         class="text-red-500 text-base mt-1" />
                 </div>
+                <!-- location country -->
+                <div class="mb-5">
+                    <label
+                        for="country"
+                        class="mb-3 block text-base font-medium text-[#07074D]"
+                    >
+                        Country
+                    </label>
+                    <input
+                        v-model="form.country"
+                        type="text"
+                        name="country"
+                        id="country"
+                        placeholder="Country"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                </div>
+                    <div v-if="form.errors.country" v-text="form.errors.country" 
+                        class="text-red-500 text-base mt-1" />
+                <!-- location city -->
+                <div class="mb-5">
+                    <label
+                        for="city"
+                        class="mb-3 block text-base font-medium text-[#07074D]"
+                    >
+                        City or Vilage
+                    </label>
+                    <input
+                        v-model="form.city"
+                        type="text"
+                        name="city"
+                        id="city"
+                        placeholder="City"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                    <div v-if="form.errors.city" v-text="form.errors.city" 
+                        class="text-red-500 text-base mt-1" />
+                </div>
                 <!-- categories -->
                 <div class="mb-5">
                     <label for="categories" class="block mb-2 text-base font-medium text-neutral-700">Select an option</label>
@@ -33,8 +71,8 @@
                         class="bg-gray-50 border 
                             border-gray-300 
                             text-gray-900 text-sm rounded-lg 
-                            focus:ring-blue-500 
-                            focus:border-blue-500 block w-full p-2.5
+                            focus:ring-indigo-600 
+                            focus:border-indigo-600 block w-full p-2.5
                             outline-none"
                         v-model="form.category"
                     >
@@ -119,7 +157,6 @@
 <script>
 import { useForm } from "@inertiajs/inertia-vue3";
 import { ref } from '@vue/reactivity';
-import { onMounted } from '@vue/runtime-core';
 
 export default {
     props: {
@@ -127,15 +164,6 @@ export default {
     },
     setup() {
         const tag = ref('')
-        // const streetRef = ref(null)
-        // const src = "https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
-
-        // onMounted(() => {
-        //     new Promise((resolve, reject) => {
-        //         let script = document.querySelector(`script[scr="${src}"]`)
-
-        //     })
-        // })
 
         const handleEnter = () => {
             tag.value = tag.value.replace(/\s/g,'')
@@ -153,7 +181,8 @@ export default {
         
         let form = useForm({
             description: '',
-            camera: '',
+            country: '',
+            city: '',
             tags: [],
             category: '',
             image: null,

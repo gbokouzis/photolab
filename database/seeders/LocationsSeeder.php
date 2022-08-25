@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ImagePostsSeeder extends Seeder
+class LocationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ImagePostsSeeder extends Seeder
      */
     public function run()
     {
-        $p = $this->command->ask('How many posts to create?', 100);
-        \App\Models\ImagePost::factory($p)->create();  
+        $u = $this->command->ask('How many locatios to create?', 5);
+        \App\Models\Location::factory($u)->create();
     }
 }

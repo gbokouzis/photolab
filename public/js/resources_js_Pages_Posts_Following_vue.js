@@ -258,7 +258,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["columns-1 sm:columns-2 lg:columns-3 mx-auto sm:p-4 lg:p-6 xl:p-8", {
-      'xl:columns-4 max-w-screen-2xl': _ctx.$page.component === 'Posts/Index' || _ctx.$page.component === 'Posts/Following' || _ctx.$page.component === 'Tags/Show',
+      'xl:columns-4 max-w-screen-2xl': _ctx.$page.component === 'Posts/Index' || _ctx.$page.component === 'Posts/Following' || _ctx.$page.component === 'Tags/Show' || _ctx.$page.component === 'Locations/Show',
       'max-w-screen-lg': _ctx.$page.component === 'Profile/Show'
     }])
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dataPosts.data, function (post) {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LikedImagePostController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RelationshipController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
@@ -26,8 +27,10 @@ Route::get('/test', function () {
 
 
 // Route::get('/search{search}', [\App\Http\Controllers\SearchController::class, 'search']);
+// Search
 Route::get('/search/users', [SearchController::class, 'users_search']);
 Route::get('/search/tags', [SearchController::class, 'tags_search']);
+Route::get('/search/locations', [SearchController::class, 'locations_search']);
 
 // Posts
 Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index'])->name('posts.index');
@@ -57,6 +60,9 @@ Route::post('/posts/{imagepost}/unlike', [LikedImagePostController::class, 'unli
 
 // Tags
 Route::get('/tags/{tag:name}', [TagController::class, 'show'])->name('tags.show');
+
+// Location
+Route::get('/locations/{location:country_city}', [LocationController::class, 'show'])->name('locations.show');
 
 // Auth
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');

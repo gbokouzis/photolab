@@ -12,6 +12,7 @@ use App\Models\ImagePost;
 use App\Models\ImagePostTag;
 use App\Models\Relationship;
 use App\Models\Tag;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Request;
@@ -71,20 +72,13 @@ class ImagePostController extends Controller
     public function store(StoreImagePostRequest $request)
     {
         // sleep(2);
-        
-        // dd($request);
-        // $image = $request->file('photos');
-        // $image = Storage::disk('public')->putFile('photos', $request->image);
-        // dd($image);
-        // $x = Storage::url($image);
-        // dd($x);
-
+    
         $data = $request->validated();
         
         $imageExif = exif_read_data($data['image']);
         $imageExifComputed = $imageExif['COMPUTED'];
         
-        if(array_key_exists('Model', $imageExif) && $imageExif['Model'] != '--' ) {
+        if ( array_key_exists('Model', $imageExif) && $imageExif['Model'] != '--' ) {
             $data['camera'] = $imageExif['Model'];
             $data['iso'] = $imageExif['ISOSpeedRatings'];
             $data['aperture'] = $imageExifComputed['ApertureFNumber'];
@@ -95,15 +89,54 @@ class ImagePostController extends Controller
         // dd($data);
         // $data[]
 
+
+        
+
+        
+        $country = ucwords($data['country']); 
+        $city = ucwords($data['city']);
+        $locationID = null;
+        unset($data['country'], $data['city']);
+
+
+        $city_country = $city . ' ' . $country;
+        $country_city = $country . ' ' . $city;
+        
+
+        $dbLocation = Location::where('country', 'LIKE', $country)
+            ->where('city', 'LIKE', $city)->first();
+        
+        if ($dbLocation === null) {
+            $newLocation = Location::create([
+                'country' => $country,
+                'city' => $city,
+                'city_country' => $city_country,
+                'country_city' => $country_city,
+            ]);
+            $locationID = $newLocation->id;          
+        } 
+
+
+        if ($dbLocation !== null) $locationID = $dbLocation->id;
+        
+        $data['location_id'] = $locationID;
+        
+        // dd($data);
+        
+
+
+
+
+
+
+
         if ( count($data['tags']) !== 0 ) {
             $idFromTags = [];
             
             foreach ($data['tags'] as $tag) {
                 $dbTag = Tag::where('name', 'LIKE', $tag)->first();
 
-                if ( $dbTag !== null ) {
-                    array_push($idFromTags, $dbTag->id);
-                }
+                if ( $dbTag !== null ) array_push($idFromTags, $dbTag->id);
                 
                 if ( $dbTag === null ) {
                     $newTag = Tag::create(['name' => $tag]);
@@ -146,7 +179,7 @@ class ImagePostController extends Controller
     public function show($id)
     {
         return Inertia::render('Posts/Show', [
-            'post' => ImagePost::with(['user', 'tags', 'comments', 'image'])
+            'post' => ImagePost::with(['user', 'tags', 'comments', 'image', 'location'])
                 ->withCount('likes as likes')
                 ->withCount(['likes as liked' => function ($q) {
                     $q->where('user_id', Auth()->id());

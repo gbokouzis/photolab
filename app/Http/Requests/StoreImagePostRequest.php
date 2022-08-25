@@ -28,6 +28,8 @@ class StoreImagePostRequest extends FormRequest
         $categories = Category::all()->pluck('name');
         return [
             'description' => 'max:50',
+            'country' => 'required|min:3|max:50',
+            'city' => 'required|min:3|max:50',
             'tags' => 'required|array',
             'category' => ['required', ValidationRule::in($categories)],
             'image' => 'required|image|mimes:jpg,jpeg|min:512',

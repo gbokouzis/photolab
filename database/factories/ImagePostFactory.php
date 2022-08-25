@@ -21,11 +21,13 @@ class ImagePostFactory extends Factory
     {
         $users = \App\Models\User::all();       
         $categories = \App\Models\Category::all();       
+        $locations = \App\Models\Location::all();       
         return [
             'description' => $this->faker->text($maxNbChars = 50),
             'camera' => $this->faker->text($maxNbChars = 10),
             'user_id' => $users->random()->id,
             'category_id' => $categories->random()->id,
+            'location_id' => $locations->random()->id,
             'created_at' => $this->faker->dateTimeBetween('-1 months'),
         ];
     }

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->text('description')->nullable();
-            $table->text('location')->nullable();
             $table->text('camera')->nullable();
             $table->text('iso')->nullable();
             $table->text('aperture')->nullable();

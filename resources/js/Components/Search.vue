@@ -1,14 +1,8 @@
 <template>
     <!-- Search -->
     <div class="flex w-full items-center">
-        <!-- <a href="#" class="text-gray-600 hover:text-neutral-900 px-3 py-2 rounded-md text-sm font-medium">Team</a> -->
-        <!-- <input v-model="search" type="text" placeholder="Search" class="flex-1 border h-10 px-2 rounded-full"> -->
         <div class="flex flex-1 h-10 w-28 pl-2">
-            <!-- <label for="search-dropdown"
-                class="mb-2 text-sm font-medium text-gray-700 sr-only"
-            >
-                Your Email
-            </label> -->
+
             <button @click="selectShow = !selectShow"  
                 class=" flex-shrink-0 z-10 inline-flex items-center px-2 text-sm font-medium text-center text-gray-900 bg-neutral-50 border border-gray-300 rounded-l-full hover:bg-neutral-100" 
                 type="button"
@@ -30,6 +24,9 @@
                     <li>
                         <button @click="selectSearch = 'Tags'" type="button" class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100">Tags</button>
                     </li>
+                    <li>
+                        <button @click="selectSearch = 'Location'" type="button" class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100">Location</button>
+                    </li>
                 </ul>
             </div>
 
@@ -40,18 +37,35 @@
                 >
                 <div v-if="showSearchData" class="flex justify-center overflow-auto mr-12">
                     <ul class="z-10 overflow-auto max-h-40 bg-white rounded-lg border border-gray-200 w-full text-gray-900">
-                        <li v-for="item in searchData" :key="item.id"
+                        <li v-if="selectSearch === 'Users'" 
+                            v-for="item in searchData" :key="item.id"
                             class="flex items-center px-6 border-t border-gray-200 w-full hover:bg-gray-100"
                         >
-                            <p v-if="selectSearch === 'Users'"
-                                @mousedown="showUser(item.name)" 
+                            <p @mousedown="showUser(item.name)" 
                                 class="cursor-pointer w-full py-2"
                             >
-                                {{ item.username }}
+                                {{ item.username }} <span class="pl-1">(@{{ item.name }})</span>
                             </p>
-                            <span v-else>
+                        </li>
+                        <li v-if="selectSearch === 'Tags'" 
+                            v-for="item in searchData" :key="item.id"
+                            class="flex items-center px-6 border-t border-gray-200 w-full hover:bg-gray-100"
+                        >
+                            <p @mousedown="showTag(item.name)" 
+                                class="cursor-pointer w-full py-2"
+                            >
                                 {{ item.name }}
-                            </span>
+                            </p>
+                        </li>
+                        <li v-if="selectSearch === 'Location'" 
+                            v-for="item in searchData" :key="item.id"
+                            class="flex items-center px-6 border-t border-gray-200 w-full hover:bg-gray-100"
+                        >
+                            <p @mousedown="showLocation(item.country_city)" 
+                                class="cursor-pointer w-full py-2"
+                            >
+                                {{ item.country }} {{ item.city }}
+                            </p>
                         </li>
                         <li v-if="search&&!searchData.length"
                             class="px-6 py-2 border-t border-gray-200 w-full hover:bg-gray-100 font-semibold"
@@ -87,8 +101,15 @@ export default {
     watch: {
         search() {
             // console.log('changed ' + value)
-            this.selectSearch === 'Users' ? this.getUsers() : this.getTags()
-            // this.getUsers();
+            if(this.search != null && this.search.length > 0) {
+                if (this.selectSearch === 'Users') {
+                    this.getUsers()
+                } else {
+                    this.getTags()
+                }
+            } else {
+                this.searchData = []
+            }
         }
     },
     methods: {
@@ -100,6 +121,10 @@ export default {
             await axios.get('/search/tags', { params: { q: this.search } })
                 .then(res => this.searchData = res.data)
         },
+        async getTags() {
+            await axios.get('/search/locations', { params: { q: this.search } })
+                .then(res => this.searchData = res.data)
+        },
         click() {
             console.log('fgfgf')
         }
@@ -108,8 +133,15 @@ export default {
         const showUser = (userName) => {
             Inertia.get(route('users.show', userName))
         }
+        const showTag = (tagName) => {
+            Inertia.get(route('tags.show', tagName))
+        }
+        const showLocation = (location) => {
+            // console.log(location)
+            Inertia.get(route('locations.show', location))
+        }
 
-        return { showUser }
+        return { showUser, showTag, showLocation }
     }
 
 }
