@@ -16,12 +16,12 @@ class ImageSeeder extends Seeder
     public function run()
     {
         $images = [
-            '/storage/images/UrU7i8ZBSTyMiA3ZwEqatHbkil5tpa151rhnjHu6.jpg',
-            '/storage/images/vEfIDVclPKkVKmIlqU9pKGDOaDx0qym0sYB0VuAw.jpg',
-            '/storage/images/yyZk14GOdYPeVnYJXQD6raOXjS2tK6Yq4JycFSWI.jpg',
-            '/storage/images/ixO0YB8kjAf6su1UMn8UCc1rteNIPqApkhhyeWud.jpg',
-            '/storage/images/4qsO9jV7kw82msXePMYu88xQjdGKYEZLWCd0D7LH.jpg',
-            '/storage/images/DanKiPmQsi1ySSYYQPpRxErgdwHRzjMcV1cCYSn5.jpg'
+            '/storage/images/photo1.jpg',
+            '/storage/images/photo2.jpg',
+            '/storage/images/photo3.jpg',
+            '/storage/images/photo4.jpg',
+            '/storage/images/photo5.jpg',
+            '/storage/images/photo6.jpg',
         ];
 
         $posts = \App\Models\ImagePost::all();

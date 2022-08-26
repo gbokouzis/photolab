@@ -97,31 +97,8 @@
             </button>
 
             <!-- Profile dropdown -->
-            <div class="relative flex-grow-0 w-10 ml-2 sm:ml-4 lg:ml-8">
-                <div @click="imgMenuShow = !imgMenuShow">
-                    <div>
-                        <button type="button" class="flex rounded-full focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900"
-                            id="user-menu-button" aria-expanded="false" aria-haspopup="true"
-                        >
-                            <img v-if="$page.props.auth.user.img" class="w-10 h-10 object-cover rounded-full" :src="$page.props.auth.user.img.imgPath" alt="">
-                            <img v-else class="w-10 h-10 object-cover rounded-full" src="/storage/images/profile_image.png" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div v-if="imgMenuShow" 
-                    class="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
-                >
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                    <Link href="/logout" method="post"
-                        class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900"
-                        role="menuitem" tabindex="-1" 
-                        id="user-menu-item-2"
-                    >
-                        Log out
-                    </Link>
-                </div>
-            </div>
+            <AvatarDropdown />
+
         </div>
         <div v-else class="flex flex-shrink items-center px-2 sm:px-4 lg:px-8">
             <Link :href="route('login')" as="button" class="inline-block px-6 py-2 border border-gray-400 text-gray-600 
@@ -187,13 +164,16 @@
 </template>
 
 <script>
-import Search from '../Components/Search.vue';
+import Search from '../Components/Nav/Search.vue';
+import AvatarDropdown from '../Components/Nav/AvatarDropdown.vue';
 
 export default {
-    components: { Search },
+    components: { 
+        Search,
+        AvatarDropdown
+    },
     data() {
         return {
-            imgMenuShow: false,
             selectShow: false
         };
     },

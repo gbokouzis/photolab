@@ -87,8 +87,9 @@ class UserController extends Controller
 
     public function avatar(StoreAvatarPostRequest $request)
     {
+        // dd($image);
         $data = $request->validated();
-        // dd($data);
+        dd($data);
 
         $user = Auth()->user();
 

@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\ImagePost;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class ImagePostPolicy
 {
@@ -53,7 +54,7 @@ class ImagePostPolicy
      */
     public function update(User $user, ImagePost $imagePost)
     {
-        return true;
+        return $user->id == $imagePost->user_id;
     }
 
     /**
@@ -65,7 +66,7 @@ class ImagePostPolicy
      */
     public function delete(User $user, ImagePost $imagePost)
     {
-        return $user->id == $imagePost->user_id;
+        return $user->id == $imagePost->user_id || Auth()->user()->is_admin;
     }
 
     /**
