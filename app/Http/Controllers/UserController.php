@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAvatarPostRequest;
 use App\Models\Image;
 use App\Models\Relationship;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -14,9 +15,13 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+
+    use SoftDeletes;
+
     public function index()
     {
-        $users = User::all();
+        $users = User::onlyTrashed()->with('image')->get();
+        // dd($users);
         return Inertia::render('Profile/Index', compact('users'));
     }
 
@@ -80,10 +85,14 @@ class UserController extends Controller
     //     //
     // }
 
-    // public function destroy(User $user)
-    // {
-    //     //
-    // }
+    public function destroy(User $user)
+    {
+        // dd($user);
+        $user->delete();
+        // $user->forceDelete();
+
+        return redirect()->route('posts.index');
+    }
 
     public function avatar(StoreAvatarPostRequest $request)
     {
@@ -108,7 +117,7 @@ class UserController extends Controller
 
             if ($oldAvatar) 
             {
-                $oldAvatar->delete();
+                $oldAvatar->softDeletes();
             }
         }
 

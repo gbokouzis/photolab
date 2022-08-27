@@ -43,6 +43,7 @@ Route::resource('categories', \App\Http\Controllers\CategoryController::class)->
 // Users
 Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::get('users/{user:name}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+Route::delete('users/{user:name}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 Route::post('/users/avatar', [\App\Http\Controllers\UserController::class, 'avatar']);
 
 // Show followings followers
