@@ -91,7 +91,14 @@ class UserController extends Controller
         $user->delete();
         // $user->forceDelete();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('users.banned');
+    }
+    public function restore($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+
+        return redirect()->route('users.banned');
     }
 
     public function avatar(StoreAvatarPostRequest $request)

@@ -12,10 +12,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _Components_PopUp_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/PopUp.vue */ "./resources/js/Components/PopUp.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    PopUp: _Components_PopUp_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   props: {
     users: Object
+  },
+  data: function data() {
+    return {
+      showPopup: null,
+      title: 'Restore account',
+      description: 'Are you sure you want to restore your account?',
+      buttonName: 'Restore'
+    };
+  },
+  setup: function setup() {
+    var restore = function restore(id) {
+      if (confirm('Are you sure?')) {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia.put(route('users.restore', id));
+      }
+    };
+
+    return {
+      restore: restore
+    };
   }
 });
 
@@ -33,21 +57,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"my-4 px-12 py-6 rounded overflow-hidden shadow-lg flex justify-between hover:bg-gray-100 bg-gray-50 text-neutral-600\"><div class=\"flex space-y-0 space-x-6 flex-row\"><img src=\"https://source.unsplash.com/75x75/?portrait\" alt=\"\" class=\"flex-shrink-0 w-18 h-18 border rounded-full justify-self-start bg-gray-500 border-gray-700\"><div class=\"flex flex-col\"><h4 class=\"text-lg font-semibold text-left\">Leroy Jenkins</h4><p class=\"text-neutral-600\">Leroy Jenkins</p><p class=\"text-neutral-600\">Leroy Jenkins</p></div></div><div class=\"flex items-center\"><button type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"32\" height=\"32\"><path fill=\"none\" d=\"M0 0h24v24H0z\"></path><path d=\"M18.537 19.567A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 2.136-.67 4.116-1.81 5.74L17 12h3a8 8 0 1 0-2.46 5.772l.997 1.795z\" fill=\"rgba(79,70,229,1)\"></path></svg></button></div></div>", 1);
-
+var _hoisted_1 = {
+  "class": "my-4 px-12 py-6 rounded overflow-hidden shadow-lg flex justify-between hover:bg-gray-100 bg-gray-50 text-neutral-600"
+};
 var _hoisted_2 = {
-  "class": "max-w-lg mt-10 mx-auto w-full items-center justify-center"
-};
-var _hoisted_3 = {
-  "class": "flex flex-col w-full"
+  "class": "flex space-y-0 space-x-6 flex-row"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"cursor-pointer flex flex-1 items-center p-4 bg-gray-50 hover:bg-gray-100 text-neutral-600\"><div class=\"flex flex-col w-10 h-10 justify-center items-center mr-4\"><a href=\"#\" class=\"block relative\"><img alt=\"profil\" src=\"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=150&amp;q=80\" class=\"mx-auto object-cover rounded-full h-10 w-10\"></a></div><div class=\"flex-1 pl-1\"><div class=\"font-medium dark:text-white\"> Jean Marc </div><div class=\"text-gray-600 dark:text-gray-200 text-sm\"> Developer </div></div><div class=\"flex flex-row justify-center\"><div class=\"text-gray-600 dark:text-gray-200 text-xs\"> 6:00 AM </div></div></div>", 1);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "https://source.unsplash.com/75x75/?portrait",
+  alt: "",
+  "class": "flex-shrink-0 w-18 h-18 border rounded-full justify-self-start bg-gray-500 border-gray-700"
+}, null, -1
+/* HOISTED */
+);
 
-var _hoisted_5 = [_hoisted_4];
+var _hoisted_4 = {
+  "class": "flex flex-col"
+};
+var _hoisted_5 = {
+  "class": "text-lg font-semibold text-left"
+};
+var _hoisted_6 = {
+  "class": "text-neutral-600"
+};
+var _hoisted_7 = {
+  "class": "text-neutral-600"
+};
+var _hoisted_8 = {
+  "class": "flex items-center"
+};
+var _hoisted_9 = ["onClick"];
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  width: "32",
+  height: "32"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  fill: "none",
+  d: "M0 0h24v24H0z"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M18.537 19.567A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 2.136-.67 4.116-1.81 5.74L17 12h3a8 8 0 1 0-2.46 5.772l.997 1.795z",
+  fill: "rgba(79,70,229,1)"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_11 = [_hoisted_10];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
+
+  var _component_PopUp = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PopUp");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Index"
@@ -55,17 +116,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: user.id,
       "class": "max-w-lg mt-4 mx-auto"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"px-6 py-4 m-4\">\r\n            <div class=\"text-xl mb-2\">\r\n                <Link :href=\"route('users.show', user.name)\"> \r\n                    Username: {{ user.name }}\r\n                </Link>\r\n            </div>\r\n        </div> "), _hoisted_1]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img class=\"w-full\" src=\"/img/card-top.jpg\" alt=\"Sunset in the mountains\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"px-6 py-4 m-4\">\r\n            <div class=\"text-xl mb-2\">\r\n                <Link :href=\"route('users.show', user.name)\"> \r\n                    Username: {{ user.name }}\r\n                </Link>\r\n            </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.username), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "@" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.email), 1
+    /* TEXT */
+    )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return $data.showPopup = user.id;
+      },
+      type: "button"
+    }, _hoisted_11, 8
+    /* PROPS */
+    , _hoisted_9)])]), $data.showPopup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_PopUp, {
+      key: 0,
+      onClose: _cache[0] || (_cache[0] = function ($event) {
+        return $data.showPopup = null;
+      }),
+      onActionBtn: _cache[1] || (_cache[1] = function ($event) {
+        return $setup.restore($data.showPopup);
+      }),
+      title: $data.title,
+      description: $data.description,
+      buttonName: $data.buttonName
+    }, null, 8
+    /* PROPS */
+    , ["title", "description", "buttonName"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.users, function (user) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-      key: user.id,
-      "class": "my-4 flex flex-row rounded overflow-hidden shadow-lg"
-    }, _hoisted_5);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])])], 64
+  ))], 64
   /* STABLE_FRAGMENT */
   );
 }

@@ -17,22 +17,22 @@
                             <h3 class="text-lg leading-6 font-medium text-gray-900" 
                                 id="modal-title"
                             >
-                                Delete account
+                                {{ title }}
                             </h3>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500">
-                                    Are you sure you want to delete your account? After this move you can't go back.
+                                    {{ description }}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button @click="destroy($page.props.auth.user.name)"
+                    <button @click="actionn"
                         type="button" 
                         class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm"
                     >
-                        Delete
+                        {{ buttonName }}
                     </button>
                     <button @click="closePopup"
                         type="button" 
@@ -49,23 +49,21 @@
 </template>
 
 <script>
-import { Inertia } from '@inertiajs/inertia'
 
 export default {
+    props: {
+        buttonName: String,
+        title: String,
+        description: String
+    },
     methods: {
         closePopup() {
             this.$emit('close')
+        },
+        actionn() {
+            this.$emit('actionBtn')
         }
     },
-    setup() {
-        const destroy = (name) => {
-            if (confirm('Are you sure?')) {
-                Inertia.delete(route('users.destroy', name))
-            }
-        }
-
-        return { destroy }
-    }
 
 }
 </script>

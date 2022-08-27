@@ -41,9 +41,11 @@ Route::get('/following', [\App\Http\Controllers\ImagePostController::class, 'pos
 Route::resource('categories', \App\Http\Controllers\CategoryController::class)->middleware('auth');
 
 // Users
-Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('users/banned', [\App\Http\Controllers\UserController::class, 'index'])->name('users.banned');
 Route::get('users/{user:name}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
 Route::delete('users/{user:name}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+Route::delete('ban/{user:name}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+Route::put('restore/{id}', [\App\Http\Controllers\UserController::class, 'restore'])->name('users.restore');
 Route::post('/users/avatar', [\App\Http\Controllers\UserController::class, 'avatar']);
 
 // Show followings followers

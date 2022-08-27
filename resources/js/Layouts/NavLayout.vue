@@ -137,19 +137,19 @@
                     </Link>
                 </li>
                 <li>
-                    <Link href="/users" class="font-semibold tracking-tight block cursor-pointer p-2 
-                        text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
-                        :class="{ 'font-bold underline': $page.component === 'Profile/Index' }"
-                    >
-                        Users
-                    </Link>
-                </li>
-                <li>
                     <Link href="/categories" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
                         :class="{ 'font-bold underline': $page.component === 'Categories/Index' }"
                     >
                         Categories
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/users/banned" class="font-semibold tracking-tight block cursor-pointer p-2 
+                        text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
+                        :class="{ 'font-bold underline': $page.component === 'Profile/Index' }"
+                    >
+                        Banned Users
                     </Link>
                 </li>
             </ul>
@@ -174,7 +174,7 @@ export default {
     },
     data() {
         return {
-            selectShow: false
+            selectShow: false,
         };
     },
 }

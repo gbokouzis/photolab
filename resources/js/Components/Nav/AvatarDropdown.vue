@@ -36,11 +36,18 @@
         </div>
     </div>
 
-    <PopUp v-if="showPopup" @close="showPopup = false"/>
+    <PopUp v-if="showPopup" 
+        @close="showPopup = false"
+        @actionBtn="destroy($page.props.auth.user.name)"
+        :title="title"
+        :description="description"
+        :buttonName="buttonName"
+    />
 </template>
 
 <script>
-import PopUp from './PopUp.vue';
+import { Inertia } from '@inertiajs/inertia';
+import PopUp from '../PopUp.vue';
 
 export default {
     components: { 
@@ -49,9 +56,21 @@ export default {
     data() {
         return {
             imgMenuShow: false,
-            showPopup: false
+            showPopup: false,
+            title: 'Delete account',
+            description: `Are you sure you want to delete your account? After this move you can't go back.`,
+            buttonName: 'Delete'
         };
     },
+    setup() {
+        const destroy = (name) => {
+            if (confirm('Are you sure?')) {
+                Inertia.delete(route('users.destroy', name))
+            }
+        }
+
+        return { destroy }
+    }
 }
 </script>
 
