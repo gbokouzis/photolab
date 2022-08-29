@@ -1,9 +1,9 @@
 <template>
     <Head title="Index" />
 
-    <Link href="/categories/create" class="">
+    <!-- <Link href="/categories/create" class="">
         New Category
-    </Link>
+    </Link> -->
 
     <!-- <div class="max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto"
     v-for="category in categories" :key="category.id">

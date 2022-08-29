@@ -38,9 +38,9 @@
         </div>
     </div>
     
-    <div class="relative w-full flex sm:h-12 shadow-sm">
+    <div class="relative w-full flex sm:h-12 shadow-sm items-center">
         <div class="w-full flex justify-center flex-col sm:flex-row items-center px-6 py-4 mx-auto">
-            <ul class="flex flex-col sm:flex-row md:space-x-5 w-full items-center justify-center md:text-lg">
+            <ul class="flex flex-col sm:flex-row sm:space-x-2 md:space-x-5 w-full items-center justify-center sm:text-lg">
                 <li>
                     <Link href="/" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
@@ -49,14 +49,7 @@
                         Home
                     </Link>
                 </li>
-                <!-- <li>
-                    <Link href="/posts" class="font-semibold tracking-tight block cursor-pointer p-2 
-                        text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
-                        :class="{ 'font-bold underline': $page.component === 'Posts/Index' }"
-                    >
-                        Posts
-                    </Link>
-                </li> -->
+
                 <li>
                     <Link href="/following" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
@@ -73,7 +66,7 @@
                         Categories
                     </Link>
                 </li>
-                <li>
+                <li v-if="$page.props.auth.user.is_admin">
                     <Link href="/users/banned" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
                         :class="{ 'font-bold underline': $page.component === 'Profile/Index' }"
@@ -84,7 +77,9 @@
             </ul>
         </div>
         <div v-if="$page.props.auth" class="hidden flex-shrink-0 sm:block">
-            <span class="flex items-center justify-end mx-2 sm:mx-4 lg:mx-8">Hi {{$page.props.auth.user.name}}!</span>
+            <span class="text-gray-700 font-medium flex items-center justify-end mx-2 md:mx-4 lg:mx-8">
+                Hi {{$page.props.auth.user.name}}!
+            </span>
         </div>
     </div>
 

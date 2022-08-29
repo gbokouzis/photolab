@@ -66,7 +66,7 @@
                             @{{ user.name }}
                         </h2>
                     </div>
-                    
+                
                     <Link as="button" 
                         v-if="user.name === $page.props.auth.user.name"
                         :href="`#`"
@@ -159,7 +159,6 @@ export default {
         };
     },
     setup() {
-
         const ban = (name) => {
             console.log(name)
             if (confirm('Are you sure?')) {
@@ -192,17 +191,10 @@ img {
     outline: 0.5rem auto rgb(75, 85, 99);
 }
 
-/* Profile Section */
 
 .profile {
     padding: 5rem 0;
 }
-
-/* .profile::after {
-    content: "";
-    display: block;
-    clear: both;
-} */
 
 .profile-image {
     float: left;
@@ -227,12 +219,6 @@ img {
 .profile-user-settings {
     margin-top: 1.1rem;
 }
-
-/* .profile-user-name {
-    display: inline-block;
-    font-size: 2.8rem;
-    font-weight: 300;
-} */
 
 .btn-edit-follow-unfollow {
     font-size: 1.4rem;
@@ -288,18 +274,6 @@ img {
         flex-wrap: wrap;
         padding: 4rem 0;
     }
-
-    /* .profile::after {
-        display: none;
-    } */
-
-    /* .profile-image,
-    .profile-user-settings,
-    .profile-bio,
-    .profile-stats {
-        float: none;
-        width: auto;
-    } */
 
     .profile-image img {
         width: 7.7rem;
@@ -366,14 +340,6 @@ img {
     }
 }
 
-/*
-
-The following code will only run if your browser supports CSS grid.
-
-Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
-
-*/
-
 @supports (display: grid) {
     .profile {
         display: grid;
@@ -402,28 +368,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
             grid-row-gap: 1.5rem;
         }
 
-        /* .profile-image {
-            grid-row: 1 / 2;
-        } */
-
-        /* .profile-user-settings {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            grid-gap: 1rem;
-        } */
-
         .btn-edit-follow-unfollow,
         .profile-stats,
         .profile-bio {
             grid-column: 1 / -1;
-        }
-
-        .profile-user-settings,
-        .btn-edit-follow-unfollow,
-        .profile-settings-btn,
-        .profile-bio,
-        .profile-stats {
-            margin: 0;
         }
     }
 }

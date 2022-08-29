@@ -9,14 +9,25 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="rgba(40,40,40,1)"/></svg>
                 </button> -->
                 <div v-if="form.avatar">
-                    <button v-if="file" @click="remove(), form.avatar= !form.avatar" type="button" class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none">
+                    <button v-if="file"
+                        @click="remove(), form.avatar= !form.avatar" 
+                        type="button" 
+                        class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" fill="rgba(40,40,40,1)"/></svg>
                     </button>
-                    <button v-if="file" type="submit" class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"/></svg>
+                    <button v-if="file" 
+                        type="submit"
+                        class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="rgba(40,40,40,1)"/></svg>
                     </button>
                 </div>
-                <button v-else @click="browse()" type="button" class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none">
+                <button v-else 
+                    @click="browse()" 
+                    type="button" 
+                    class="rounded-full hover:bg-white hover:bg-opacity-25 p-2 focus:outline-none"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" fill="rgba(40,40,40,1)"/></svg>
                 </button>
             </div>

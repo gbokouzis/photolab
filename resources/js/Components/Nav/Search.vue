@@ -19,13 +19,28 @@
             >
                 <ul class="py-1 text-sm text-gray-700">
                     <li>
-                        <button @click="selectSearch = 'Users'" type="button" class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100">Users</button>
+                        <button @click="selectSearch = 'Users', selectShow = false" 
+                            type="button"
+                            class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100"
+                        >
+                            Users
+                        </button>
                     </li>
                     <li>
-                        <button @click="selectSearch = 'Tags'" type="button" class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100">Tags</button>
+                        <button @click="selectSearch = 'Tags', selectShow = false" 
+                            type="button"
+                            class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100"
+                        >
+                            Tags
+                        </button>
                     </li>
                     <li>
-                        <button @click="selectSearch = 'Location'" type="button" class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100">Location</button>
+                        <button @click="selectSearch = 'Locations', selectShow = false" 
+                            type="button"
+                            class="inline-flex py-2 px-4 w-full hover:text-neutral-900 hover:bg-gray-100"
+                        >
+                            Locations
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -57,7 +72,7 @@
                                 {{ item.name }}
                             </p>
                         </li>
-                        <li v-if="selectSearch === 'Location'" 
+                        <li v-if="selectSearch === 'Locations'" 
                             v-for="item in searchData" :key="item.id"
                             class="flex items-center px-6 border-t border-gray-200 w-full hover:bg-gray-100"
                         >
@@ -87,6 +102,7 @@
 import axios from 'axios';
 import { Inertia } from '@inertiajs/inertia';
 
+
 export default {
     data() {
         return {
@@ -101,11 +117,13 @@ export default {
     watch: {
         search() {
             // console.log('changed ' + value)
-            if(this.search != null && this.search.length > 0) {
+            if (this.search != null && this.search.length > 0) {
                 if (this.selectSearch === 'Users') {
                     this.getUsers()
-                } else {
+                } else if (this.selectSearch === 'Tags') {
                     this.getTags()
+                } else {
+                    this.showLocations()
                 }
             } else {
                 this.searchData = []
@@ -121,13 +139,10 @@ export default {
             await axios.get('/search/tags', { params: { q: this.search } })
                 .then(res => this.searchData = res.data)
         },
-        async getTags() {
+        async showLocations() {
             await axios.get('/search/locations', { params: { q: this.search } })
                 .then(res => this.searchData = res.data)
         },
-        click() {
-            console.log('fgfgf')
-        }
     },
     setup() {
         const showUser = (userName) => {
@@ -136,9 +151,9 @@ export default {
         const showTag = (tagName) => {
             Inertia.get(route('tags.show', tagName))
         }
-        const showLocation = (location) => {
+        const showLocation = (locations) => {
             // console.log(location)
-            Inertia.get(route('locations.show', location))
+            Inertia.get(route('locations.show', locations))
         }
 
         return { showUser, showTag, showLocation }

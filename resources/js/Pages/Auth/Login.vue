@@ -34,8 +34,7 @@
         </div>
 
         <div class="mb-6 flex items-center">
-            <input checked 
-                v-model="form.remember"
+            <input v-model="form.remember"
                 id="purple-checkbox" type="checkbox" value="" 
                 class="w-4 h-4 accent-indigo-700 rounded"
             >

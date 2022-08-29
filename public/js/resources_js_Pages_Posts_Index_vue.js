@@ -310,33 +310,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New Post ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
-
-  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   var _component_Masonry = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Masonry");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Index"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/posts/create",
-    "class": ""
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
-    }),
-    _: 1
-    /* STABLE */
-
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Masonry, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Link href=\"/posts/create\" class=\"\">\r\n        New Post\r\n    </Link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Masonry, {
     posts: $props.posts
   }, null, 8
   /* PROPS */
-  , ["posts"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"relative mb-4 before:content-[''] before:rounded-sm before:absolute before:inset-0 before:bg-black before:bg-opacity-20\">\r\n    <img class=\"w-full rounded-sm\" src=\"https://source.unsplash.com/random/2\">\r\n    <div class=\"test__body absolute inset-0 p-8 text-white flex flex-col opacity-0 hover:opacity-100\">\r\n      <div class=\"relative\">\r\n        <a class=\"test__link absolute inset-0\" target=\"_blank\" href=\"/\"></a>\r\n        <h1 class=\"test__title text-3xl font-bold mb-3\">Title post</h1>\r\n        <p class=\"test__author font-sm font-light\">Author</p>\r\n      </div>\r\n      <div class=\"mt-auto\">\r\n        <span class=\"test__tag bg-white bg-opacity-60 py-1 px-4 rounded-md text-black\">#tag</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  \r\n  \r\n  <div class=\"relative mb-4 before:content-[''] before:rounded-sm before:absolute before:inset-0 before:bg-black before:bg-opacity-20\">\r\n    <img class=\"w-full rounded-sm\" src=\"https://source.unsplash.com/random/5\">\r\n    <div class=\"test__body absolute inset-0 p-8 text-white flex flex-col\">\r\n      <div class=\"relative\">\r\n        <a class=\"test__link absolute inset-0\" target=\"_blank\" href=\"/\"></a>\r\n        <h1 class=\"test__title text-3xl font-bold mb-3\">Title post</h1>\r\n        <p class=\"test__author font-sm font-light\">Author</p>\r\n      </div>\r\n      <div class=\"mt-auto\">\r\n        <span class=\"test__tag bg-white bg-opacity-60 py-1 px-4 rounded-md text-black\">#tag</span>\r\n      </div>\r\n    </div>\r\n  </div> ")], 64
+  , ["posts"])], 64
   /* STABLE_FRAGMENT */
   );
 }
