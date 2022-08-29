@@ -1,85 +1,12 @@
 <template>
-    <!-- <nav
-      class="bg-white dark:bg-black dark:text-white flex flex-col md:flex-row items-center  px-6 py-4 border-b border-b-gray-60 shadow-sm max-w-screen-2xl mx-auto"
-    >
-        <div>
-            <h2 class="text-3xl font-bold ml-2 mr-5">
-                <a>My <span class="text-blue-600">B</span>rand</a>
-            </h2>
-        </div>
-        <div class="mt-5 md:mt-0">
-            <ul class="flex flex-col md:flex-row md:space-x-5 w-full items-center">
-                <li>
-                        <Link href="/home" class="font-semibold tracking-tight block cursor-pointer p-2 
-                            hover:text-blue-500 hover:underline transition-colors duration-300"
-                            :class="{ 'font-bold underline': $page.component === 'Welcome' }"
-                        >
-                            Home
-                        </Link>
-                </li>
-                <li>
-                        <Link href="/posts" class="font-semibold tracking-tight block cursor-pointer p-2 
-                            hover:text-blue-500 hover:underline transition-colors duration-300"
-                            :class="{ 'font-bold underline': $page.component === 'Posts/Index' }"
-                        >
-                            Posts
-                        </Link>
-                </li>
-                <li>
-                        <Link href="/users" class="font-semibold tracking-tight block cursor-pointer p-2 
-                            hover:text-blue-500 hover:underline transition-colors duration-300"
-                            :class="{ 'font-bold underline': $page.component === 'Profile/Index' }"
-                        >
-                            Users
-                        </Link>
-                </li>
-                <li>
-                        <Link href="/categories" class="font-semibold tracking-tight block cursor-pointer p-2 
-                            hover:text-blue-500 hover:underline transition-colors duration-300"
-                            :class="{ 'font-bold underline': $page.component === 'Categories/Index' }"
-                        >
-                            Categories
-                        </Link>
-                </li>
-                <li>
-                    <Link href="/register" class="font-semibold tracking-tight block cursor-pointer p-2 
-                        hover:text-blue-500 hover:underline transition-colors duration-300"
-                    >
-                        Register
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/login" class="font-semibold tracking-tight block cursor-pointer p-2 
-                        hover:text-blue-500 hover:underline transition-colors duration-300"
-                    >
-                        Login
-                    </Link>
-                </li>
-            </ul>
-            <div class="">
-                <Link href="/logout" method="post"
-                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150 ml-4">
-                    Log out
-                </Link>
-            </div>
-        </div>
-    
-    </nav> -->
-
-<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.827 21.763L14.31 14l3.532 6.117A9.955 9.955 0 0 1 12 22c-.746 0-1.473-.082-2.173-.237zM7.89 21.12A10.028 10.028 0 0 1 2.458 15h8.965L7.89 21.119zM2.05 13a9.964 9.964 0 0 1 2.583-7.761L9.112 13H2.05zm4.109-9.117A9.955 9.955 0 0 1 12 2c.746 0 1.473.082 2.173.237L9.69 10 6.159 3.883zM16.11 2.88A10.028 10.028 0 0 1 21.542 9h-8.965l3.533-6.119zM21.95 11a9.964 9.964 0 0 1-2.583 7.761L14.888 11h7.064z"/></svg> -->
-<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg> -->
-
-
-
-
-
 <nav class="bg-neutral-50">
     <div class="relative w-full flex h-16">
         <!-- Logo -->
         <div class="flex flex-grow-0 items-center justify-start px-2 sm:px-4 lg:px-8">
             <div class="flex-shrink-0 flex items-center">
-                <!-- <svg class="block lg:hidden h-10 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg> -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="rgba(23,23,23,1)"/></svg>
+                <Link href="/" >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm0-2a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="rgba(23,23,23,1)"/></svg>
+                </Link>
             </div>
         </div>
 
@@ -88,7 +15,9 @@
         
 
         <!-- Right -->
-        <div v-if="$page.props.auth" class="flex flex-shrink items-center px-2 sm:px-4 lg:px-8">
+        <div v-if="$page.props.auth" 
+            class="flex flex-shrink items-center px-2 sm:px-4 lg:px-8"
+        >
             <!-- Upload -->
             <button type="button" class="block p-1 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900">
                 <Link href="/posts/create" class="">
@@ -115,7 +44,7 @@
                 <li>
                     <Link href="/" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
-                        :class="{ 'font-bold underline': $page.component === 'Welcome' }"
+                        :class="{ 'font-bold underline': $page.component === 'Posts/Index' }"
                     >
                         Home
                     </Link>

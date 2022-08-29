@@ -226,11 +226,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  key: 0
+  key: 0,
+  "class": "hover:scale-105 transition duration-200 ease-linear align-middle"
 };
 var _hoisted_2 = ["src"];
 var _hoisted_3 = {
-  "class": "test__body absolute inset-0 p-8 text-white flex flex-col opacity-0 hover:opacity-100"
+  "class": "hover:scale-105 transition duration-200 ease-linear align-middle absolute inset-0 p-8 text-white flex flex-col opacity-0 hover:opacity-100"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
@@ -264,13 +265,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dataPosts.data, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: post.id,
-      "class": "relative mb-4 before:content-[''] before:rounded-sm before:absolute before:inset-0 before:bg-black before:bg-opacity-20"
+      "class": "relative mb-4"
     }, [post.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       "class": "w-full rounded-sm",
       src: post.image.path
     }, null, 8
     /* PROPS */
-    , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"relative\">\r\n                        <a class=\"test__link absolute inset-0\" target=\"_blank\" href=\"/\"></a>\r\n                        <h1 class=\"test__title text-3xl font-bold mb-3\">Title post</h1>\r\n                        <p class=\"test__author font-sm font-light\">Author</p>\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
       as: "button",
       href: _ctx.route('posts.show', post.id),
       "class": "m-auto w-28 h-1/6 flex justify-center shrink-0 opacity-50 translate-y-2/4"

@@ -25,10 +25,25 @@ class ImagePostController extends Controller
     // TODO na mpoun sxolia
     // TODO middleware auth gia to ImagePost apo to route (->only([])) na to fero edo
 
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only([
+                'create',
+                'show', 
+                'store', 
+                'edit', 
+                'update', 
+                'destroy',
+                'posts_following'
+            ]);
+    }
+
     public function index(Request $request)
     {
         // sleep(1);
         $posts = ImagePost::desc()
+            ->has('user')
             ->with('user', 'image')
             ->withCount(['likes as liked' => function ($q) {
                 $q->where('user_id', Auth()->id());
@@ -169,7 +184,7 @@ class ImagePostController extends Controller
     public function show($id)
     {
         return Inertia::render('Posts/Show', [
-            'post' => ImagePost::with(['user', 'tags', 'comments', 'image', 'location'])
+            'post' => ImagePost::with(['user', 'user.image', 'tags', 'comments', 'image', 'location'])
                 ->withCount('likes as likes')
                 ->withCount(['likes as liked' => function ($q) {
                     $q->where('user_id', Auth()->id());
@@ -182,21 +197,13 @@ class ImagePostController extends Controller
 
     public function edit(ImagePost $post)
     {
-        // dd($post);
-        // $post = ImagePost::findOrFail($post->id);
-        // $post = new ImagePostResource($post);
-        $this->authorize('update', $post);
-        
         // $post = ImagePost::with('tags:name')->findOrFail($post->id);
+
+        $this->authorize('update', $post);
 
         $post = $post::with('tags:name')->findOrFail($post->id);
         $post = new UpdateImagePostResource($post);
 
-        // dd($post);
-        
-
-
-        // dd($postt);
         return inertia('Posts/Edit', compact('post'));
     }
 

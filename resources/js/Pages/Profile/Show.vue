@@ -1,5 +1,5 @@
 <template>
-    <h1>
+    <!-- <h1>
         Username is: {{ user.name }} 
     </h1>
 
@@ -11,8 +11,8 @@
         <Link as="button" :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST"> 
             Follow               
         </Link>
-    </div>
-    
+    </div> -->
+
     <!-- <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-md">
             <form @submit.prevent="submit">
@@ -36,77 +36,93 @@
         </div>
     </div> -->
 
-<header>
+    <div>
 
-    <!-- <div id="profile-form" class="p-5" @submit.prevent="submit">
-        <profile-avatar class="h-40 w-40 rounded-full"  v-model="form.avatar" :defaulte-src="img"></profile-avatar>
-    </div> -->
+        <button @click="showPopup = true"
+            type="button"
+            class="m-4 py-1 px-4 rounded-md border-2 font-medium transition duration-200 ease-linear align-middle text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-gray-100"
+        >
+            Ban
+        </button>
 
-    
-        <div class="max-w-6xl mx-auto px-4">
-        <div class="profile mr-4 lg:mr-16">
+        <!-- <div id="profile-form" class="p-5" @submit.prevent="submit">
+            <profile-avatar class="h-40 w-40 rounded-full"  v-model="form.avatar" :defaulte-src="img"></profile-avatar>
+        </div> -->
 
-            <div class="profile-image">
-                <ProfileAvatar :user="user" :profileImg="profileImg" />
-			</div>
-            
-			<div class="profile-user-settings">
-                <div>
-                    <h1 class="md:inline-block pb-2 text-4xl font-normal text-neutral-700">
-                        {{ user.username }} 
-                    </h1>
-                    <h2 class="sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1">
-                        @{{ user.name }}
-                    </h2>
+        
+            <div class="max-w-6xl mx-auto px-4">
+            <div class="profile mr-4 lg:mr-16">
+
+                <div class="profile-image">
+                    <ProfileAvatar :user="user" :profileImg="profileImg" />
                 </div>
                 
-                <Link as="button" 
-                    v-if="user.name === $page.props.auth.user.name"
-                    :href="`#`"
-                    class="btn btn-edit-follow-unfollow"
-                >
-                    Edit Profile
-                </Link>
-                <Link as="button" 
-                    v-if="isFollower && user.name !== $page.props.auth.user.name" 
-                    :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE" 
-                    class="btn btn-edit-follow-unfollow"
-                >
-                    Unfollow
-                </Link>
-                <Link as="button" 
-                    v-if="!isFollower && user.name !== $page.props.auth.user.name" 
-                    :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST" 
-                    class="btn btn-edit-follow-unfollow block"
-                >
-                    Follow
-                </Link>
-			</div>
+                <div class="profile-user-settings">
+                    <div>
+                        <h1 class="md:inline-block pb-2 text-4xl font-normal text-neutral-700">
+                            {{ user.username }} 
+                        </h1>
+                        <h2 class="sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1">
+                            @{{ user.name }}
+                        </h2>
+                    </div>
+                    
+                    <Link as="button" 
+                        v-if="user.name === $page.props.auth.user.name"
+                        :href="`#`"
+                        class="btn btn-edit-follow-unfollow"
+                    >
+                        Edit Profile
+                    </Link>
+                    <Link as="button" 
+                        v-if="isFollower && user.name !== $page.props.auth.user.name" 
+                        :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE" 
+                        class="btn btn-edit-follow-unfollow"
+                    >
+                        Unfollow
+                    </Link>
+                    <Link as="button" 
+                        v-if="!isFollower && user.name !== $page.props.auth.user.name" 
+                        :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST" 
+                        class="btn btn-edit-follow-unfollow block"
+                    >
+                        Follow
+                    </Link>
+                </div>
 
-			<div class="profile-stats">
-				<ul>
-					<li><span class="profile-stat-count">{{ countPosts }}</span> posts</li>
-					<li><span class="profile-stat-count">{{ countFollowers }}</span> followers</li>
-					<li><span class="profile-stat-count">{{ countFollowings }}</span> following</li>
-				</ul>
-			</div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="profile-stat-count">{{ countPosts }}</span> posts</li>
+                        <li><span class="profile-stat-count">{{ countFollowers }}</span> followers</li>
+                        <li><span class="profile-stat-count">{{ countFollowings }}</span> following</li>
+                    </ul>
+                </div>
 
-			<div class="profile-bio">
-				<p v-if="user.bio">
-                    {{ user.bio }}
-                </p>
-			</div>
-		</div>
-	</div>
-</header>
+                <div class="profile-bio">
+                    <p v-if="user.bio">
+                        {{ user.bio }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<main>
-	<div class="mx-auto px-4">
-        <Masonry :posts="posts" />
-		<!-- <div class="loader"></div> -->
-	</div>
-</main>
+    <main>
+        <div class="mx-auto px-4">
+            <Masonry :posts="posts" />
+            <!-- <div class="loader"></div> -->
+        </div>
+    </main>
 
+    <PopUp v-if="showPopup" 
+        @close="showPopup = false"
+        @actionBtn="ban(user.name)"
+        :title="title"
+        :description="description"
+        :buttonName="buttonName"
+        :colorBtn="colorBtn"
+        :colorBgIcon="colorBgIcon"
+    />
 
 </template>
 
@@ -114,11 +130,14 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 import Masonry from '../../Components/Masonry.vue'
 import ProfileAvatar from '../../Components/ProfileAvatar.vue'
+import PopUp from '../../Components/PopUp.vue'
+import { Inertia } from '@inertiajs/inertia';
 
 export default {
     components: {
         Masonry,
-        ProfileAvatar
+        ProfileAvatar,
+        PopUp
     },
     props: {
         user: Object,
@@ -129,6 +148,27 @@ export default {
         countFollowings: Number,
         countPosts: Number
     },
+    data() {
+        return {
+            showPopup: null,
+            title: 'Ban account',
+            description: 'Are you sure you want to ban this account?',
+            buttonName: 'Ban',
+            colorBtn: 'bg-indigo-600 hover:bg-indigo-800',
+            colorBgIcon: 'bg-indigo-100',
+        };
+    },
+    setup() {
+
+        const ban = (name) => {
+            console.log(name)
+            if (confirm('Are you sure?')) {
+                Inertia.delete(route('users.ban', name))
+            }
+        }
+
+        return { ban }
+    }
 }
 </script>
 

@@ -30,16 +30,17 @@
                 </button>
             </div>
         </div>
-
-        <PopUp v-if="showPopup" 
-            @close="showPopup = null"
-            @actionBtn="restore(showPopup)"
-            :title="title"
-            :description="description"
-            :buttonName="buttonName"
-        />
-
     </div>
+
+    <PopUp v-if="showPopup" 
+        @close="showPopup = null"
+        @actionBtn="restore(showPopup)"
+        :title="title"
+        :description="description"
+        :buttonName="buttonName"
+        :colorBtn="colorBtn"
+        :colorBgIcon="colorBgIcon"
+    />
 
 </template>
 
@@ -59,7 +60,9 @@ export default {
             showPopup: null,
             title: 'Restore account',
             description: 'Are you sure you want to restore your account?',
-            buttonName: 'Restore'
+            buttonName: 'Restore',
+            colorBtn: 'bg-indigo-600 hover:bg-indigo-800',
+            colorBgIcon: 'bg-indigo-100',
         };
     },
     setup() {

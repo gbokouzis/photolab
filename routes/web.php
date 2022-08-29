@@ -34,7 +34,7 @@ Route::get('/search/locations', [SearchController::class, 'locations_search']);
 
 // Posts
 Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index'])->name('posts.index');
-Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth')->only(['create', 'store', 'show', 'edit', 'update', 'destroy']);;
+Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->middleware('auth')->middleware('auth')->only(['create', 'store', 'show', 'edit', 'update', 'destroy']);;
 Route::get('/following', [\App\Http\Controllers\ImagePostController::class, 'posts_following'])->middleware('auth')->name('posts.followng');
 
 // Resource categories
@@ -44,7 +44,7 @@ Route::resource('categories', \App\Http\Controllers\CategoryController::class)->
 Route::get('users/banned', [\App\Http\Controllers\UserController::class, 'index'])->name('users.banned');
 Route::get('users/{user:name}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
 Route::delete('users/{user:name}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
-Route::delete('ban/{user:name}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+Route::delete('ban/{user:name}', [\App\Http\Controllers\UserController::class, 'ban'])->name('users.ban');
 Route::put('restore/{id}', [\App\Http\Controllers\UserController::class, 'restore'])->name('users.restore');
 Route::post('/users/avatar', [\App\Http\Controllers\UserController::class, 'avatar']);
 

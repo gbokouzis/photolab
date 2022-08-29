@@ -66,7 +66,7 @@ class ImagePostPolicy
      */
     public function delete(User $user, ImagePost $imagePost)
     {
-        return $user->id == $imagePost->user_id || Auth()->user()->is_admin;
+        return $user->id === $imagePost->user_id;
     }
 
     /**

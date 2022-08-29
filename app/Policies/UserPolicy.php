@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -17,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->is_admin;
     }
 
     /**
@@ -52,7 +53,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        return $user->id == $model->user_id;
     }
 
     /**
@@ -64,7 +65,8 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return $user->id === $model->id;
+        // return false;
     }
 
     /**
@@ -76,7 +78,12 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //
+        return $user->is_admin;
+    }
+
+    public function ban(User $user, User $model)
+    {
+        return $user->is_admin;
     }
 
     /**
@@ -88,6 +95,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //
+        return $user->is_admin;
     }
 }

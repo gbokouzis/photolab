@@ -230,13 +230,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _Components_Masonry_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Masonry.vue */ "./resources/js/Components/Masonry.vue");
 /* harmony import */ var _Components_ProfileAvatar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Components/ProfileAvatar.vue */ "./resources/js/Components/ProfileAvatar.vue");
+/* harmony import */ var _Components_PopUp_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/PopUp.vue */ "./resources/js/Components/PopUp.vue");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Masonry: _Components_Masonry_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ProfileAvatar: _Components_ProfileAvatar_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    ProfileAvatar: _Components_ProfileAvatar_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    PopUp: _Components_PopUp_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: {
     user: Object,
@@ -246,6 +251,29 @@ __webpack_require__.r(__webpack_exports__);
     countFollowers: Number,
     countFollowings: Number,
     countPosts: Number
+  },
+  data: function data() {
+    return {
+      showPopup: null,
+      title: 'Ban account',
+      description: 'Are you sure you want to ban this account?',
+      buttonName: 'Ban',
+      colorBtn: 'bg-indigo-600 hover:bg-indigo-800',
+      colorBgIcon: 'bg-indigo-100'
+    };
+  },
+  setup: function setup() {
+    var ban = function ban(name) {
+      console.log(name);
+
+      if (confirm('Are you sure?')) {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia["delete"](route('users.ban', name));
+      }
+    };
+
+    return {
+      ban: ban
+    };
   }
 });
 
@@ -348,11 +376,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  key: 0
+  key: 0,
+  "class": "hover:scale-105 transition duration-200 ease-linear align-middle"
 };
 var _hoisted_2 = ["src"];
 var _hoisted_3 = {
-  "class": "test__body absolute inset-0 p-8 text-white flex flex-col opacity-0 hover:opacity-100"
+  "class": "hover:scale-105 transition duration-200 ease-linear align-middle absolute inset-0 p-8 text-white flex flex-col opacity-0 hover:opacity-100"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
@@ -386,13 +415,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dataPosts.data, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: post.id,
-      "class": "relative mb-4 before:content-[''] before:rounded-sm before:absolute before:inset-0 before:bg-black before:bg-opacity-20"
+      "class": "relative mb-4"
     }, [post.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       "class": "w-full rounded-sm",
       src: post.image.path
     }, null, 8
     /* PROPS */
-    , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"relative\">\r\n                        <a class=\"test__link absolute inset-0\" target=\"_blank\" href=\"/\"></a>\r\n                        <h1 class=\"test__title text-3xl font-bold mb-3\">Title post</h1>\r\n                        <p class=\"test__author font-sm font-light\">Author</p>\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
       as: "button",
       href: _ctx.route('posts.show', post.id),
       "class": "m-auto w-28 h-1/6 flex justify-center shrink-0 opacity-50 translate-y-2/4"
@@ -573,108 +602,84 @@ var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-348d746c"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Unfollow ");
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Follow ");
-
-var _hoisted_3 = {
+var _hoisted_1 = {
   "class": "max-w-6xl mx-auto px-4"
 };
-var _hoisted_4 = {
+var _hoisted_2 = {
   "class": "profile mr-4 lg:mr-16"
 };
-var _hoisted_5 = {
+var _hoisted_3 = {
   "class": "profile-image"
 };
-var _hoisted_6 = {
+var _hoisted_4 = {
   "class": "profile-user-settings"
 };
-var _hoisted_7 = {
+var _hoisted_5 = {
   "class": "md:inline-block pb-2 text-4xl font-normal text-neutral-700"
 };
-var _hoisted_8 = {
+var _hoisted_6 = {
   "class": "sm:pl-2 md:inline-block pb-2 font-light text-3xl shrink-1"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Profile ");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit Profile ");
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Unfollow ");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Unfollow ");
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Follow ");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Follow ");
 
-var _hoisted_12 = {
+var _hoisted_10 = {
   "class": "profile-stats"
 };
+var _hoisted_11 = {
+  "class": "profile-stat-count"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" posts");
+
 var _hoisted_13 = {
   "class": "profile-stat-count"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" posts");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" followers");
 
 var _hoisted_15 = {
   "class": "profile-stat-count"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" followers");
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" following");
 
 var _hoisted_17 = {
-  "class": "profile-stat-count"
-};
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" following");
-
-var _hoisted_19 = {
   "class": "profile-bio"
 };
-var _hoisted_20 = {
+var _hoisted_18 = {
   key: 0
 };
-var _hoisted_21 = {
+var _hoisted_19 = {
   "class": "mx-auto px-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
-
   var _component_ProfileAvatar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ProfileAvatar");
+
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   var _component_Masonry = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Masonry");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, " Username is: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    as: "button",
-    href: "/".concat(_ctx.$page.props.auth.user.name, "/unfollow/").concat($props.user.id),
-    method: "DELETE"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
-    }),
-    _: 1
-    /* STABLE */
+  var _component_PopUp = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PopUp");
 
-  }, 8
-  /* PROPS */
-  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    as: "button",
-    href: "/".concat(_ctx.$page.props.auth.user.name, "/follow/").concat($props.user.id),
-    method: "POST"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h1>\r\n        Username is: {{ user.name }} \r\n    </h1>\r\n\r\n    <div>\r\n\r\n        <Link as=\"button\" :href=\"`/${$page.props.auth.user.name}/unfollow/${user.id}`\" method=\"DELETE\"> \r\n            Unfollow               \r\n        </Link>\r\n        <Link as=\"button\" :href=\"`/${$page.props.auth.user.name}/follow/${user.id}`\" method=\"POST\"> \r\n            Follow               \r\n        </Link>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex items-center justify-center p-12\">\r\n        <div class=\"mx-auto w-full max-w-md\">\r\n            <form @submit.prevent=\"submit\">\r\n                \r\n                image\r\n                <div class=\"mb-5\">\r\n                    <input type=\"file\" @input=\"form.image = $event.target.files[0]\" />\r\n                    <div v-if=\"form.errors.image\" v-text=\"form.errors.image\" \r\n                        class=\"text-red-500 text-xs mt-1\" />\r\n                </div>\r\n                <div>\r\n                    <button\r\n                        :disabled=\"form.processing\"\r\n                        type=\"submit\"\r\n                        class=\"hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none\"\r\n                    >\r\n                        Submit\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $data.showPopup = true;
     }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex items-center justify-center p-12\">\r\n        <div class=\"mx-auto w-full max-w-md\">\r\n            <form @submit.prevent=\"submit\">\r\n                \r\n                image\r\n                <div class=\"mb-5\">\r\n                    <input type=\"file\" @input=\"form.image = $event.target.files[0]\" />\r\n                    <div v-if=\"form.errors.image\" v-text=\"form.errors.image\" \r\n                        class=\"text-red-500 text-xs mt-1\" />\r\n                </div>\r\n                <div>\r\n                    <button\r\n                        :disabled=\"form.processing\"\r\n                        type=\"submit\"\r\n                        class=\"hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none\"\r\n                    >\r\n                        Submit\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"profile-form\" class=\"p-5\" @submit.prevent=\"submit\">\r\n        <profile-avatar class=\"h-40 w-40 rounded-full\"  v-model=\"form.avatar\" :defaulte-src=\"img\"></profile-avatar>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ProfileAvatar, {
+    type: "button",
+    "class": "m-4 py-1 px-4 rounded-md border-2 font-medium transition duration-200 ease-linear align-middle text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-gray-100"
+  }, " Ban "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"profile-form\" class=\"p-5\" @submit.prevent=\"submit\">\r\n            <profile-avatar class=\"h-40 w-40 rounded-full\"  v-model=\"form.avatar\" :defaulte-src=\"img\"></profile-avatar>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ProfileAvatar, {
     user: $props.user,
     profileImg: $props.profileImg
   }, null, 8
   /* PROPS */
-  , ["user", "profileImg"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.username), 1
+  , ["user", "profileImg"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.username), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_8, " @" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_6, " @" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1
   /* TEXT */
   )]), $props.user.name === _ctx.$page.props.auth.user.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
     key: 0,
@@ -683,7 +688,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-edit-follow-unfollow"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_9];
+      return [_hoisted_7];
     }),
     _: 1
     /* STABLE */
@@ -696,7 +701,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-edit-follow-unfollow"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_10];
+      return [_hoisted_8];
     }),
     _: 1
     /* STABLE */
@@ -711,26 +716,41 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-edit-follow-unfollow block"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_11];
+      return [_hoisted_9];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.countPosts), 1
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.countPosts), 1
   /* TEXT */
-  ), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.countFollowers), 1
+  ), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.countFollowers), 1
   /* TEXT */
-  ), _hoisted_16]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.countFollowings), 1
+  ), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.countFollowings), 1
   /* TEXT */
-  ), _hoisted_18])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [$props.user.bio ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.bio), 1
+  ), _hoisted_16])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [$props.user.bio ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.bio), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Masonry, {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Masonry, {
     posts: $props.posts
   }, null, 8
   /* PROPS */
-  , ["posts"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"loader\"></div> ")])])], 64
+  , ["posts"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"loader\"></div> ")])]), $data.showPopup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_PopUp, {
+    key: 0,
+    onClose: _cache[1] || (_cache[1] = function ($event) {
+      return $data.showPopup = false;
+    }),
+    onActionBtn: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.ban($props.user.name);
+    }),
+    title: $data.title,
+    description: $data.description,
+    buttonName: $data.buttonName,
+    colorBtn: $data.colorBtn,
+    colorBgIcon: $data.colorBgIcon
+  }, null, 8
+  /* PROPS */
+  , ["title", "description", "buttonName", "colorBtn", "colorBgIcon"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }

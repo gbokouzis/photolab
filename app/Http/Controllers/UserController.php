@@ -18,10 +18,28 @@ class UserController extends Controller
 
     use SoftDeletes;
 
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only([
+                'index',
+
+                'show', 
+
+                
+                
+                'destroy',
+                'ban',
+                'restore',
+                'avatar',
+            ]);
+    }
+
     public function index()
     {
+        $this->authorize('viewAny', Auth()->user());
         $users = User::onlyTrashed()->with('image')->get();
-        // dd($users);
+        
         return Inertia::render('Profile/Index', compact('users'));
     }
 
@@ -34,8 +52,6 @@ class UserController extends Controller
     // {
     //     //
     // }
-
-
 
     public function show(User $user, Request $request)
     {
@@ -87,14 +103,26 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        // dd($user);
-        $user->delete();
-        // $user->forceDelete();
+        $this->authorize('delete', $user);
+
+        $user->forceDelete();
 
         return redirect()->route('users.banned');
     }
+
+    public function ban(User $user)
+    {
+        $this->authorize('ban', $user);
+
+        $user->delete();
+
+        return redirect()->route('users.banned');
+    }
+
     public function restore($id)
     {
+        $this->authorize('restore', Auth()->user());
+
         $user = User::onlyTrashed()->findOrFail($id);
         $user->restore();
 
@@ -105,7 +133,6 @@ class UserController extends Controller
     {
         // dd($image);
         $data = $request->validated();
-        dd($data);
 
         $user = Auth()->user();
 

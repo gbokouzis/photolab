@@ -27,7 +27,9 @@ __webpack_require__.r(__webpack_exports__);
       showPopup: null,
       title: 'Restore account',
       description: 'Are you sure you want to restore your account?',
-      buttonName: 'Restore'
+      buttonName: 'Restore',
+      colorBtn: 'bg-indigo-600 hover:bg-indigo-800',
+      colorBgIcon: 'bg-indigo-100'
     };
   },
   setup: function setup() {
@@ -129,23 +131,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "button"
     }, _hoisted_11, 8
     /* PROPS */
-    , _hoisted_9)])]), $data.showPopup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_PopUp, {
-      key: 0,
-      onClose: _cache[0] || (_cache[0] = function ($event) {
-        return $data.showPopup = null;
-      }),
-      onActionBtn: _cache[1] || (_cache[1] = function ($event) {
-        return $setup.restore($data.showPopup);
-      }),
-      title: $data.title,
-      description: $data.description,
-      buttonName: $data.buttonName
-    }, null, 8
-    /* PROPS */
-    , ["title", "description", "buttonName"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    , _hoisted_9)])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))], 64
+  )), $data.showPopup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_PopUp, {
+    key: 0,
+    onClose: _cache[0] || (_cache[0] = function ($event) {
+      return $data.showPopup = null;
+    }),
+    onActionBtn: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.restore($data.showPopup);
+    }),
+    title: $data.title,
+    description: $data.description,
+    buttonName: $data.buttonName,
+    colorBtn: $data.colorBtn,
+    colorBgIcon: $data.colorBgIcon
+  }, null, 8
+  /* PROPS */
+  , ["title", "description", "buttonName", "colorBtn", "colorBgIcon"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }

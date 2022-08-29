@@ -23,8 +23,17 @@
 <main class="py-6">
 	<div class="max-w-4xl mx-auto p-4 shadow-lg rounded-lg">
         <div class="flex py-2">
-            <div @click="showUser(post.user.name)" class="w-auto flex-shrink-0 h-auto border-2 border-indigo-600 rounded-full">
-                <img class='object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500' alt='User avatar' src='https://source.unsplash.com/nBJHO6wmRWw/200x200j'>
+            <div @click="showUser(post.user.name)"
+                class="w-auto flex-shrink-0 h-auto border-2 border-indigo-600 rounded-full"
+            >
+                <img v-if="post.user.image" 
+                    :src="post.user.image.path" alt=""
+                    class="object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500" 
+                >
+                <img v-else 
+                    src="/storage/images/profile_image.png" alt=""
+                    class="object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500" 
+                >
             </div>
             <div class="w-full flex flex-col mt-1 mb-2 ml-4">
                 <div @click="showUser(post.user.name)" class='text-sm font-semibold text-gray-600 cursor-pointer'>{{ post.user.username }}</div>

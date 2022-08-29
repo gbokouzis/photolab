@@ -33,6 +33,19 @@
                 class="text-red-500 text-xs mt-1" />
         </div>
 
+        <div class="mb-6 flex items-center">
+            <input checked 
+                v-model="form.remember"
+                id="purple-checkbox" type="checkbox" value="" 
+                class="w-4 h-4 accent-indigo-700 rounded"
+            >
+            <label for="purple-checkbox" 
+                class="ml-2 text-sm font-medium text-gray-700"
+            >
+                Remember me
+            </label>
+        </div>
+
         <!-- <div class="flex items-center justify-between">
             <div class="flex items-center">
                 <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
@@ -80,6 +93,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 let form = useForm({
     email: '',
     password:'',
+    remember: false
 })
 
 let submit = () => {
