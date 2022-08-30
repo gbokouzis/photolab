@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ImagePost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -19,34 +20,23 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $items = array();
-        foreach($categories as $category) {
-            $item = Category::with(['imagePosts' => function($q) {
-                $q->where('created_at', '>',(new Carbon)->subDays(7)->toDateString())
-                ->withCount('likes as likes')
-                ->orderBy('likes', 'desc')
-                ->with('image')
-                ->first();
-            }])
-            ->findOrFail($category->id);
-            array_push($items, $item);
-        }
-
-        // dd($items);
-        
-        // $categories = Category::with(['imagePosts' => function($q) {
-        //     $q->where('created_at', '>',(new Carbon)->subDays(7)->toDateString())
-        //         ->withCount('likes as likes')
-        //         ->orderBy('likes')
-        //         ->with('image');
-        //         // ->first();
-        //     }])
-        //     ->get();
-        
-        // dd($categories);
-
-        return Inertia::render('Categories/Index', ['categories' => $items]);
+        $categories = Cache::remember("categories", now()->addSeconds(60), function () {
+            $categories = Category::all();
+            $items = array();
+            foreach($categories as $category) {
+                $item = Category::with(['imagePosts' => function($q) {
+                    $q->where('created_at', '>',(new Carbon)->subDays(7)->toDateString())
+                    ->withCount('likes as likes')
+                    ->orderBy('likes', 'desc')
+                    ->with('image')
+                    ->first();
+                }])
+                ->findOrFail($category->id);
+                array_push($items, $item);
+            }
+            return $items;
+        });
+        return Inertia::render('Categories/Index', ['categories' => $categories]);
     }
 
     /**
@@ -69,6 +59,8 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         Category::create($data);
+
+        Cache::forget("categories");
 
         return Redirect::route('categories.index');
     }

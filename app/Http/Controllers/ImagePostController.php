@@ -15,6 +15,7 @@ use App\Models\Tag;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 // use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -183,16 +184,18 @@ class ImagePostController extends Controller
     
     public function show($id)
     {
-        return Inertia::render('Posts/Show', [
-            'post' => ImagePost::with(['user', 'user.image', 'tags', 'comments', 'image', 'location'])
+        $post = Cache::remember("show-post-{$id}", now()->addSeconds(30), function () use($id) {
+            return ImagePost::with(['user', 'user.image', 'tags', 'comments', 'image', 'location'])
                 ->withCount('likes as likes')
                 ->withCount(['likes as liked' => function ($q) {
                     $q->where('user_id', Auth()->id());
                 }])
                 ->withCasts(['liked' => 'boolean'])
                 // ->withCasts(['liked' => 'boolean'])
-                ->findOrFail($id)
-        ]);
+                ->findOrFail($id);
+        });
+
+        return Inertia::render('Posts/Show', ['post' => $post]);
     }
 
     public function edit(ImagePost $post)
@@ -231,6 +234,8 @@ class ImagePostController extends Controller
         }
 
         $post->update($data);
+
+        Cache::forget("show-post-{$post->id}");
 
         return redirect()->route('posts.index');
     }
