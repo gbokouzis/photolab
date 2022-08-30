@@ -1,53 +1,12 @@
 <template>
-    <!-- <h1>
-        Username is: {{ user.name }} 
-    </h1>
-
     <div>
-
-        <Link as="button" :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE"> 
-            Unfollow               
-        </Link>
-        <Link as="button" :href="`/${$page.props.auth.user.name}/follow/${user.id}`" method="POST"> 
-            Follow               
-        </Link>
-    </div> -->
-
-    <!-- <div class="flex items-center justify-center p-12">
-        <div class="mx-auto w-full max-w-md">
-            <form @submit.prevent="submit">
-                
-                image
-                <div class="mb-5">
-                    <input type="file" @input="form.image = $event.target.files[0]" />
-                    <div v-if="form.errors.image" v-text="form.errors.image" 
-                        class="text-red-500 text-xs mt-1" />
-                </div>
-                <div>
-                    <button
-                        :disabled="form.processing"
-                        type="submit"
-                        class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none"
-                    >
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div> -->
-
-    <div>
-
-        <button @click="showPopup = true"
+        <button v-if="$page.props.auth.user.is_admin && !user.is_admin" 
+            @click="showPopup = true"
             type="button"
             class="m-4 py-1 px-4 rounded-md border-2 font-medium transition duration-200 ease-linear align-middle text-indigo-600 border-indigo-600 hover:bg-indigo-600 hover:text-gray-100"
         >
             Ban
         </button>
-
-        <!-- <div id="profile-form" class="p-5" @submit.prevent="submit">
-            <profile-avatar class="h-40 w-40 rounded-full"  v-model="form.avatar" :defaulte-src="img"></profile-avatar>
-        </div> -->
 
         
             <div class="max-w-6xl mx-auto px-4">
@@ -67,13 +26,13 @@
                         </h2>
                     </div>
                 
-                    <Link as="button" 
+                    <!-- <Link as="button" 
                         v-if="user.name === $page.props.auth.user.name"
                         :href="`#`"
                         class="btn btn-edit-follow-unfollow"
                     >
                         Edit Profile
-                    </Link>
+                    </Link> -->
                     <Link as="button" 
                         v-if="isFollower && user.name !== $page.props.auth.user.name" 
                         :href="`/${$page.props.auth.user.name}/unfollow/${user.id}`" method="DELETE" 

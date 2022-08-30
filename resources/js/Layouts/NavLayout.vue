@@ -66,7 +66,7 @@
                         Categories
                     </Link>
                 </li>
-                <li v-if="$page.props.auth.user.is_admin">
+                <li v-if="$page.props.auth != null  && $page.props.auth.user.is_admin">
                     <Link href="/users/banned" class="font-semibold tracking-tight block cursor-pointer p-2 
                         text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300"
                         :class="{ 'font-bold underline': $page.component === 'Profile/Index' }"
