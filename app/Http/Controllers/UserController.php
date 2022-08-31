@@ -23,11 +23,7 @@ class UserController extends Controller
         $this->middleware('auth')
             ->only([
                 'index',
-
                 'show', 
-
-                
-                
                 'destroy',
                 'ban',
                 'restore',
@@ -35,6 +31,7 @@ class UserController extends Controller
             ]);
     }
 
+    // * Return all banned users if login user is admin
     public function index()
     {
         $this->authorize('viewAny', Auth()->user());
@@ -45,17 +42,18 @@ class UserController extends Controller
 
     // public function create()
     // {
-    //     //
     // }
 
     // public function store(Request $request)
     // {
-    //     //
     // }
 
+    // * Show profile
+    // Return user with image profile, the photos uploaded by the user, 
+    // the number of photos, followers and followed and 
+    // if the login user has followed him.  
     public function show(User $user, Request $request)
     {
-        // dd($user);
         $isFollower = Relationship::where('follower_id', Auth()->id())
             ->where('followed_id', $user->id)
             ->exists();
@@ -65,8 +63,6 @@ class UserController extends Controller
         $countFollowers = $user->followers()->count();
         $countFollowings = $user->followings()->count();
         $countPosts = $user->imagePosts()->count();
-
-        // dd($countFollowers, $countFollowings, $countPosts);
 
         $posts = $user->imagePosts()
             ->with('image')
@@ -79,7 +75,7 @@ class UserController extends Controller
         if ($request->wantsJson()) {
             return $posts;
         }
-        // dd($user, $isFollower);
+
         return Inertia::render('Profile/Show', [
             'profileImg' => $profileImg,
             'posts' => $posts,
@@ -93,14 +89,13 @@ class UserController extends Controller
     
     // public function edit(User $user)
     // {
-    //     //
     // }
 
     // public function update(Request $request, User $user)
     // {
-    //     //
     // }
 
+    // * Delete with authorization
     public function destroy(User $user)
     {
         $this->authorize('delete', $user);
@@ -110,6 +105,7 @@ class UserController extends Controller
         return redirect()->route('users.banned');
     }
 
+    // * Ban with authorization
     public function ban(User $user)
     {
         $this->authorize('ban', $user);
@@ -119,6 +115,7 @@ class UserController extends Controller
         return redirect()->route('users.banned');
     }
 
+    // * Unban with authorization
     public function restore($id)
     {
         $this->authorize('restore', Auth()->user());
@@ -129,32 +126,31 @@ class UserController extends Controller
         return redirect()->route('users.banned');
     }
 
+    // * Set image profile
+    // * Validation request, check if it had an old photo and delete it
     public function avatar(StoreAvatarPostRequest $request)
     {
-        // dd($image);
-        $data = $request->validated();
+        $request->validated();
 
         $user = Auth()->user();
 
-        // TODO xriazete to if
-        if ($request->hasFile('avatar')) {
-            $oldAvatar = Image::where('imageable_type', '=', 'App\Models\User')
-                ->where('imageable_id', '=', $user->id)
-                ->first();
+        // if ($request->hasFile('avatar'))
+        $oldAvatar = Image::where('imageable_type', '=', 'App\Models\User')
+            ->where('imageable_id', '=', $user->id)
+            ->first();
 
-            $path = $request->file('avatar')->store('public/avatar');
-            $user->image()->save(
-                Image::make([
-                    'path' => Storage::url($path),
-                ])
-            );
+        $path = $request->file('avatar')->store('public/avatar');
+        $user->image()->save(
+            Image::make([
+                'path' => Storage::url($path),
+            ])
+        );
 
-            if ($oldAvatar) 
-            {
-                $oldAvatar->softDeletes();
-            }
+        if ($oldAvatar) {
+            $pathReplace = str_replace('/storage', '', $oldAvatar->path);
+            Storage::disk('public')->delete($pathReplace);
+            $oldAvatar->delete();
         }
-
         return Redirect::route('users.show', ['user'=> $user->name]);
     }
 

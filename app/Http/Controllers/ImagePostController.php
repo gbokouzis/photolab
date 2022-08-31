@@ -23,9 +23,6 @@ use Inertia\Inertia;
 
 class ImagePostController extends Controller
 { 
-    // TODO na mpoun sxolia
-    // TODO middleware auth gia to ImagePost apo to route (->only([])) na to fero edo
-
     public function __construct()
     {
         $this->middleware('auth')
@@ -40,9 +37,9 @@ class ImagePostController extends Controller
             ]);
     }
 
+    // * Return all posts descending created_at and pagination
     public function index(Request $request)
     {
-        // sleep(1);
         $posts = ImagePost::desc()
             ->has('user')
             ->with('user', 'image')
@@ -59,6 +56,7 @@ class ImagePostController extends Controller
         return Inertia::render('Posts/Index', [ 'posts' => $posts ]);
     }
 
+    // * Return image posts for the user follow where we want
     public function posts_following(Request $request)
     {
         $followedIds = Relationship::where('follower_id', Auth()->id())->pluck('followed_id')->toArray();
@@ -85,12 +83,12 @@ class ImagePostController extends Controller
         return Inertia::render('Posts/Create', compact('categories'));
     }
 
+    // * Store new post
     public function store(StoreImagePostRequest $request)
     {
-        // sleep(2);
-    
         $data = $request->validated();
         
+        // get image exif values and append in data
         $imageExif = exif_read_data($data['image']);
         $imageExifComputed = $imageExif['COMPUTED'];
         
@@ -101,20 +99,17 @@ class ImagePostController extends Controller
         }
         $data['height'] = $imageExifComputed['Height'];
         $data['width'] = $imageExifComputed['Width'];
-
-        // dd($data);
-        // $data[]
         
+        // put the location data in variables
         $country = ucwords($data['country']); 
         $city = ucwords($data['city']);
         $locationID = null;
         unset($data['country'], $data['city']);
 
-
         $city_country = $city . ' ' . $country;
         $country_city = $country . ' ' . $city;
-        
 
+        // check if this location exists again, if no create new location
         $dbLocation = Location::where('country', 'LIKE', $country)
             ->where('city', 'LIKE', $city)->first();
         
@@ -128,17 +123,14 @@ class ImagePostController extends Controller
             $locationID = $newLocation->id;          
         } 
 
-
         if ($dbLocation !== null) $locationID = $dbLocation->id;
         
         $data['location_id'] = $locationID;
-        
-        // dd($data);
 
 
         if ( count($data['tags']) !== 0 ) {
             $idFromTags = [];
-            
+            // check if this tag exists again, if no create new
             foreach ($data['tags'] as $tag) {
                 $dbTag = Tag::where('name', 'LIKE', $tag)->first();
 
@@ -150,38 +142,29 @@ class ImagePostController extends Controller
                 }
             }
         }
-        
+        // get the selected category
         $category = Category::where('name', 'LIKE', $data['category'])->first();
         unset($data['category']);
-        $data['user_id'] = $request->user()->id;
         $data['category_id'] = $category->id;
+        $data['user_id'] = $request->user()->id;
 
+        // create post with relationships and attach tags
         $newPost = ImagePost::create($data);
         
         $newPost->tags()->attach($idFromTags);
 
-        // dd($newPost);
-        // TODO xriazete to if
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/images');
-            $newPost->image()->save(
-                Image::make([
-                    'path' => Storage::url($path),
-                ])
-            );
-        }
-        // dd($path);
-        
-        // foreach ($idFromTags as $idFromTag) { 
-        //     ImagePostTag::create([
-        //         'image_post_id' => $newPost->id,
-        //         'tag_id' => $idFromTag
-        //     ]);
-        // }
+        // save image to the storage
+        $path = $request->file('image')->store('public/images');
+        $newPost->image()->save(
+            Image::make([
+                'path' => Storage::url($path),
+            ])
+        );
 
         return Redirect::route('posts.index');
     }
     
+    // Show a photo and caching
     public function show($id)
     {
         $post = Cache::remember("show-post-{$id}", now()->addSeconds(30), function () use($id) {
@@ -245,9 +228,9 @@ class ImagePostController extends Controller
         // $post = ImagePost::findOrFail($id);
         $this->authorize('delete', $post);
         $postWithImage = $post->image()->first();
-        $postWithImageReplace = str_replace('/storage', '', $postWithImage->path);
-        // dd($postWithImageReplace);
-        $isDeleting = Storage::disk('public')->delete($postWithImageReplace);
+        $pathReplace = str_replace('/storage', '', $postWithImage->path);
+        
+        $isDeleting = Storage::disk('public')->delete($pathReplace);
         if ($isDeleting) 
         {
             $postWithImage->delete();

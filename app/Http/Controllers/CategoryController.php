@@ -13,11 +13,27 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only([
+                'index',
+                'create',
+                'show', 
+                'store', 
+                'edit', 
+                'update', 
+                'destroy',
+            ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    // * Returns all categories along with the most liked photo of the last week
     public function index()
     {
         $categories = Cache::remember("categories", now()->addSeconds(60), function () {
@@ -55,6 +71,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // * Create a new category and delete the categories cache
     public function store(StoreCategoryRequest $request)
     {
         $data = $request->validated();
@@ -71,10 +89,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
+
+    // * Return image posts for the category where we want
     public function show(Request $request, Category $category)
-    {
-        // $posts = ImagePost::imagePostCategoryWithUsers($category->id)->get();
-        
+    {        
         $posts = $category->imagePosts()
             ->with('image', 'user')
             ->withCount(['likes as liked' => function ($q) {
@@ -122,7 +140,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->route('categories.index');
+        // $category->delete();
+        // return redirect()->route('categories.index');
     }
 }
