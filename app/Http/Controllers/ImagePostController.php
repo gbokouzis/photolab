@@ -164,21 +164,19 @@ class ImagePostController extends Controller
         return Redirect::route('posts.index');
     }
     
-    // Show a photo and caching
+    // Show a photo
     public function show($id)
     {
-        $post = Cache::remember("show-post-{$id}", now()->addSeconds(30), function () use($id) {
-            return ImagePost::with(['user', 'user.image', 'tags', 'comments', 'image', 'location'])
-                ->withCount('likes as likes')
-                ->withCount(['likes as liked' => function ($q) {
-                    $q->where('user_id', Auth()->id());
-                }])
-                ->withCasts(['liked' => 'boolean'])
-                // ->withCasts(['liked' => 'boolean'])
-                ->findOrFail($id);
-        });
+        $posts = ImagePost::with(['user', 'user.image', 'tags', 'comments', 'image', 'location'])
+            ->withCount('likes as likes')
+            ->withCount(['likes as liked' => function ($q) {
+                $q->where('user_id', Auth()->id());
+            }])
+            ->withCasts(['liked' => 'boolean'])
+            // ->withCasts(['liked' => 'boolean'])
+            ->findOrFail($id);
 
-        return Inertia::render('Posts/Show', ['post' => $post]);
+        return Inertia::render('Posts/Show', ['post' => $posts]);
     }
 
     public function edit(ImagePost $post)
@@ -217,8 +215,6 @@ class ImagePostController extends Controller
         }
 
         $post->update($data);
-
-        Cache::forget("show-post-{$post->id}");
 
         return redirect()->route('posts.index');
     }

@@ -14,6 +14,7 @@ class SearchController extends Controller
 {
     public function users_search(Request $request)
     {
+        // dd('y');
         $data = User::where('username', 'LIKE', $request->q.'%')->orWhere('name', 'LIKE', $request->q.'%')->get();
         
         return response()->json($data); 
@@ -21,6 +22,7 @@ class SearchController extends Controller
 
     public function tags_search(Request $request)
     {
+        // dd($request);
         $data = Tag::where('name', 'LIKE', $request->q.'%')->get();
 
         return response()->json($data); 
@@ -28,6 +30,7 @@ class SearchController extends Controller
 
     public function locations_search(Request $request)
     {
+        // dd('x');
         $data = Location::where('country_city', 'LIKE', $request->q.'%')
             ->orWhere('city_country', 'LIKE', $request->q.'%')
             ->get();

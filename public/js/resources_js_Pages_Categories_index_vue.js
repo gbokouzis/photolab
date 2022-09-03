@@ -44,29 +44,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New Category ");
-
-var _hoisted_2 = {
-  "class": "grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto px-2 py-8"
+var _hoisted_1 = {
+  "class": "py-6 max-w-screen-xl mx-auto"
 };
-var _hoisted_3 = ["src"];
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "text-xl text-gray-900"
+}, " + ", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "text-gray-900"
+}, " New Category ", -1
+/* HOISTED */
+);
+
 var _hoisted_4 = {
+  "class": "mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto px-2 py-8"
+};
+var _hoisted_5 = ["src"];
+var _hoisted_6 = {
   key: 1,
   src: "/storage/images/Image_not_available.png",
   "class": "bg-neutral-300 w-full h-64 object-cover transition duration-200 ease-linear align-middle"
 };
-var _hoisted_5 = {
+var _hoisted_7 = {
   "class": "absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
 };
-var _hoisted_6 = {
+var _hoisted_8 = {
   "class": "flex justify-start items-end h-full"
 };
-var _hoisted_7 = {
+var _hoisted_9 = {
   "class": "text-lg font-bold text-white m-6"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mask absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"
 })], -1
 /* HOISTED */
@@ -79,17 +92,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Index"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_ctx.$page.props.auth.user.is_admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+    key: 0,
     href: "/categories/create",
-    "class": ""
+    "class": "ml-2 py-2 px-4 bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg border-2 border-gray-600"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
+      return [_hoisted_2, _hoisted_3];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto\"\r\n    v-for=\"category in categories\" :key=\"category.id\">\r\n        <div class=\"px-6 py-4 m-4\">\r\n            <div class=\"text-xl mb-2\">\r\n                <Link :href=\"route('categories.show', category.id)\"> \r\n                    <h1>\r\n                        {{ category.name }}\r\n                    </h1>\r\n                </Link>\r\n            </div>\r\n        </div>\r\n        <div>\r\n            <Link :href=\"route('categories.edit', category.id)\" class=\"m-4 px-2 py-1 bg-blue-600 text-white rounded font-bold\">Edit</Link>\r\n            <button v-on:click=\"destroy(category)\" type=\"button\" class=\"m-4 px-2 py-1 bg-red-600 text-white rounded font-bold\">\r\n                Delete {{category.id}}\r\n            </button>\r\n        </div>\r\n    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"max-w-sm rounded overflow-hidden shadow-lg mt-4 mx-auto\"\r\n        v-for=\"category in categories\" :key=\"category.id\">\r\n            <div class=\"px-6 py-4 m-4\">\r\n                <div class=\"text-xl mb-2\">\r\n                    <Link :href=\"route('categories.show', category.id)\"> \r\n                        <h1>\r\n                            {{ category.name }}\r\n                        </h1>\r\n                    </Link>\r\n                </div>\r\n            </div>\r\n            <div>\r\n                <Link :href=\"route('categories.edit', category.id)\" class=\"m-4 px-2 py-1 bg-blue-600 text-white rounded font-bold\">Edit</Link>\r\n                <button v-on:click=\"destroy(category)\" type=\"button\" class=\"m-4 px-2 py-1 bg-red-600 text-white rounded font-bold\">\r\n                    Delete {{category.id}}\r\n                </button>\r\n            </div>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: category.id,
       "class": "zoom shadow-lg rounded-lg relative overflow-hidden bg-no-repeat bg-cover",
@@ -101,13 +115,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "w-full h-64 object-cover transition duration-200 ease-linear align-middle"
     }, null, 8
     /* PROPS */
-    , _hoisted_3)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_4)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    , _hoisted_5)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_6)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
       href: _ctx.route('categories.show', category.id)
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
         /* TEXT */
-        )])]), _hoisted_8];
+        )])]), _hoisted_10];
       }),
       _: 2
       /* DYNAMIC */
@@ -117,7 +131,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["href"])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])], 64
+  ))])])], 64
   /* STABLE_FRAGMENT */
   );
 }

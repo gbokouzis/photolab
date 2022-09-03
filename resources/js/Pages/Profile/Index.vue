@@ -15,8 +15,16 @@
 
         <div class="my-4 px-12 py-6 rounded overflow-hidden shadow-lg flex justify-between hover:bg-gray-100 bg-gray-50 text-neutral-600">
             <div class="flex space-y-0 space-x-6 flex-row">
-                <img src="https://source.unsplash.com/75x75/?portrait" alt="" 
+                <!-- <img src="https://source.unsplash.com/75x75/?portrait" alt="" 
                     class="flex-shrink-0 w-18 h-18 border rounded-full justify-self-start bg-gray-500 border-gray-700"
+                > -->
+                <img v-if="user.image" 
+                        :src="user.image.path" alt=""
+                        class="my-auto flex-shrink-0 w-16 h-16 border rounded-full justify-self-start bg-gray-500 border-gray-700"  
+                    >
+                <img v-else 
+                    src="/storage/images/profile_image.png" alt=""
+                    class="my-auto flex-shrink-0 w-16 h-16 border rounded-full justify-self-start bg-gray-500 border-gray-700" 
                 >
                 <div class="flex flex-col">
                     <h4 class="text-lg font-semibold text-left">{{ user.username }}</h4>

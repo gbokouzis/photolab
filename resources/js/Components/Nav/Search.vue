@@ -69,7 +69,7 @@
                             <p @mousedown="showTag(item.name)" 
                                 class="cursor-pointer w-full py-2"
                             >
-                                {{ item.name }}
+                                #{{ item.name }}
                             </p>
                         </li>
                         <li v-if="selectSearch === 'Locations'" 

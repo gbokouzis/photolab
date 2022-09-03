@@ -114,21 +114,6 @@ export default {
             console.log('change', this.src, this.form, this.file)
 
         },
-        // submit() {
-        //     // console.log('submitting', this.form)
-        //     Inertia.post(`/users/avatar`, {
-        //         _method: 'put',
-        //         avatar: this.file,
-        //     })
-        // submit() {
-        //     // console.log('submitting', this.form)
-        //     this.form.post('/users/avatar', {
-        //         onError: (e) => {
-        //             console.log(e)
-        //         }
-        //     })
-        // }
-        // }
     },
     setup() {
         const form = useForm({

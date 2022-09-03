@@ -64,7 +64,7 @@ class UserController extends Controller
         $countFollowings = $user->followings()->count();
         $countPosts = $user->imagePosts()->count();
 
-        $posts = $user->imagePosts()
+        $posts = $user->imagePosts()->desc()
             ->with('image')
             ->withCount(['likes as liked' => function ($q) {
                 $q->where('user_id', Auth()->id());

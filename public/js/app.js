@@ -339,6 +339,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_3)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_4))])])]), $data.imgMenuShow ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: "/users/".concat(_ctx.$page.props.auth.user.name),
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $data.imgMenuShow = false;
+    }),
     "class": "block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900",
     role: "menuitem",
     tabindex: "-1",
@@ -353,13 +356,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $data.showPopup = true;
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return $data.showPopup = true, $data.imgMenuShow = false;
     }),
     "class": "block px-4 py-2 text-sm text-red-600 hover:text-red-500 cursor-pointer"
   }, " Delete Profile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: "/logout",
     method: "post",
+    onClick: _cache[3] || (_cache[3] = function ($event) {
+      return $data.imgMenuShow = false;
+    }),
     "class": "block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900",
     role: "menuitem",
     tabindex: "-1",
@@ -373,10 +379,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.showPopup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_PopUp, {
     key: 0,
-    onClose: _cache[2] || (_cache[2] = function ($event) {
+    onClose: _cache[4] || (_cache[4] = function ($event) {
       return $data.showPopup = false;
     }),
-    onActionBtn: _cache[3] || (_cache[3] = function ($event) {
+    onActionBtn: _cache[5] || (_cache[5] = function ($event) {
       return $setup.destroy(_ctx.$page.props.auth.user.name);
     }),
     title: $data.title,
@@ -555,7 +561,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $setup.showTag(item.name);
       },
       "class": "cursor-pointer w-full py-2"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 41
+    }, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 41
     /* TEXT, PROPS, HYDRATE_EVENTS */
     , _hoisted_13)]);
   }), 128
@@ -934,7 +940,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["class"])]), _ctx.$page.props.auth != null && _ctx.$page.props.auth.user.is_admin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/users/banned",
+    href: "/banned/users",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["font-semibold tracking-tight block cursor-pointer p-2 text-gray-700 hover:text-neutral-900 hover:underline transition-colors duration-300", {
       'font-bold underline': _ctx.$page.component === 'Profile/Index'
     }])

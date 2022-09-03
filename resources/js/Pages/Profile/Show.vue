@@ -1,4 +1,6 @@
 <template>
+    <Head :title="user.username" />
+
     <div>
         <button v-if="$page.props.auth.user.is_admin && !user.is_admin" 
             @click="showPopup = true"
@@ -67,10 +69,20 @@
     </div>
 
     <main>
-        <div class="mx-auto px-4">
+        <div v-if="posts.data != 0" class="mx-auto px-4">
             <Masonry :posts="posts" />
             <!-- <div class="loader"></div> -->
         </div>
+        <div v-else 
+            class="pt-20 flex flex-col justify-center items-center text-gray-700"
+        >
+        <h1 class="text-3xl font-bold">
+            No photos to display.
+        </h1>
+        <p class="mt-4">
+            Start uploading photos and enter the world of photolab.
+        </p>   
+    </div>
     </main>
 
     <PopUp v-if="showPopup" 

@@ -22,16 +22,18 @@
             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
         >
             <Link :href="`/users/${$page.props.auth.user.name}`"
+                @click="imgMenuShow = false"
                 class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900" 
                 role="menuitem" tabindex="-1" id="user-menu-item-0"
             >
                 Your Profile
             </Link>
-            <p @click="showPopup = true"
+            <p @click="showPopup = true, imgMenuShow = false"
                 class="block px-4 py-2 text-sm text-red-600 hover:text-red-500 cursor-pointer">
                 Delete Profile
             </p>
             <Link href="/logout" method="post"
+                @click="imgMenuShow = false"
                 class="block px-4 py-2 text-sm text-gray-600 hover:text-neutral-900"
                 role="menuitem" tabindex="-1" 
                 id="user-menu-item-2"

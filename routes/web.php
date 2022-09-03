@@ -46,7 +46,7 @@ Route::delete('users/{user:name}', [\App\Http\Controllers\UserController::class,
     
 // * Admin users
     // Show banned users, Ban an account, Unban an account 
-Route::get('users/banned', [\App\Http\Controllers\UserController::class, 'index'])->name('users.banned');
+Route::get('banned/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.banned');
 Route::delete('ban/{user:name}', [\App\Http\Controllers\UserController::class, 'ban'])->name('users.ban');
 Route::put('restore/{id}', [\App\Http\Controllers\UserController::class, 'restore'])->name('users.restore');
 
