@@ -21,15 +21,15 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//
 // * Search
-// Users, Tags, Location 
+// Users, Tags, Location
 Route::get('/search/users', [SearchController::class, 'users_search']);
 Route::get('/search/tags', [SearchController::class, 'tags_search']);
 Route::get('/search/locations', [SearchController::class, 'locations_search']);
 
 // * Posts
-// All posts, Post from users i follow, posts CRUD  
+// All posts, Post from users i follow, posts CRUD
 Route::get('/', [\App\Http\Controllers\ImagePostController::class, 'index'])->name('posts.index');
 Route::resource('posts', \App\Http\Controllers\ImagePostController::class)->only(['create', 'store', 'show', 'edit', 'update', 'destroy']);
 Route::get('/following', [\App\Http\Controllers\ImagePostController::class, 'posts_following'])->middleware('auth')->name('posts.followng');
@@ -43,9 +43,9 @@ Route::resource('categories', \App\Http\Controllers\CategoryController::class)->
 Route::get('users/{user:name}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
 Route::post('/users/avatar', [\App\Http\Controllers\UserController::class, 'avatar']);
 Route::delete('users/{user:name}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
-    
+
 // * Admin users
-    // Show banned users, Ban an account, Unban an account 
+    // Show banned users, Ban an account, Unban an account
 Route::get('banned/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.banned');
 Route::delete('ban/{user:name}', [\App\Http\Controllers\UserController::class, 'ban'])->name('users.ban');
 Route::put('restore/{id}', [\App\Http\Controllers\UserController::class, 'restore'])->name('users.restore');
