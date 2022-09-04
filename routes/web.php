@@ -21,7 +21,7 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
+
 // * Search
 // Users, Tags, Location
 Route::get('/search/users', [SearchController::class, 'users_search']);
