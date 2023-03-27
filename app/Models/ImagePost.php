@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class ImagePost extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'description',
         'location',
@@ -24,33 +24,29 @@ class ImagePost extends Model
     ];
 
     protected $hidden = ['pivot'];
-    
+
     public function user()
     {
         return $this->belongsTo('\App\Models\User');
     }
-    
-    public function comments()
-    {
-        return $this->hasMany('\App\Models\Comment')->descCommentsWithFullRelations();
-    }
-    
+
+
     public function category()
     {
         return $this->belongsTo('\App\Models\Category');
     }
-    
+
     public function tags()
     {
         return $this->belongsToMany('\App\Models\Tag', 'image_post_tags')->withTimestamps();
     }
-    
+
     public function image()
     {
         return $this->morphOne('\App\Models\Image', 'imageable');
     }
 
-    public function likes() 
+    public function likes()
     {
         return $this->hasMany('\App\Models\Like');
     }
@@ -59,7 +55,7 @@ class ImagePost extends Model
     {
         return $this->belongsTo('\App\Models\Location');
     }
-    
+
     // scope
     public function scopeDesc(Builder $query)
     {
@@ -70,11 +66,5 @@ class ImagePost extends Model
     {
         return $this->belongsToMany('\App\Models\Tag', 'image_post_tags')->select(array('name'));
     }
-    
-    public function scopeImagePostCategoryWithUsers(Builder $query, $id) 
-    {
-        return $query->desc()
-            ->where('category_id', '=', $id)
-            ->with('user');
-    }
+
 }

@@ -1,12 +1,12 @@
 <template>
     <Head title="Create" />
-    
+
     <h1>Create</h1>
 
     <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-md">
             <form @submit.prevent="submit">
-                
+
                 <!-- description -->
                 <div class="mb-5">
                     <label
@@ -23,7 +23,7 @@
                         placeholder="Description"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"
                     />
-                    <div v-if="form.errors.description" v-text="form.errors.description" 
+                    <div v-if="form.errors.description" v-text="form.errors.description"
                         class="text-red-500 text-base mt-1" />
                 </div>
                 <!-- location country -->
@@ -43,7 +43,7 @@
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"
                     />
                 </div>
-                    <div v-if="form.errors.country" v-text="form.errors.country" 
+                    <div v-if="form.errors.country" v-text="form.errors.country"
                         class="text-red-500 text-base mt-1" />
                 <!-- location city -->
                 <div class="mb-5">
@@ -61,17 +61,17 @@
                         placeholder="City"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"
                     />
-                    <div v-if="form.errors.city" v-text="form.errors.city" 
+                    <div v-if="form.errors.city" v-text="form.errors.city"
                         class="text-red-500 text-base mt-1" />
                 </div>
                 <!-- categories -->
                 <div class="mb-5">
                     <label for="categories" class="block mb-2 text-base font-medium text-neutral-700">Select an option</label>
-                    <select id="categories" 
-                        class="bg-gray-50 border 
-                            border-gray-300 
-                            text-gray-900 text-sm rounded-lg 
-                            focus:ring-indigo-600 
+                    <select id="categories"
+                        class="bg-gray-50 border
+                            border-gray-300
+                            text-gray-900 text-sm rounded-lg
+                            focus:ring-indigo-600
                             focus:border-indigo-600 block w-full p-2.5
                             outline-none"
                         v-model="form.category"
@@ -79,35 +79,30 @@
                         <option selected>Choose a category</option>
                         <option v-for="category in categories" :value="category.name">{{category.name}}</option>
                     </select>
-                    <div v-if="form.errors.category" v-text="form.errors.category" 
+                    <div v-if="form.errors.category" v-text="form.errors.category"
                         class="text-red-500 text-base mt-1" />
                 </div>
                 <!-- tags -->
                 <div class="mb-5">
                     <label class="text-base font-medium text-neutral-700">Tags (hit enter to add a tag):</label>
-                    <input 
-                        v-model="tag" 
+                    <input
+                        v-model="tag"
                         type="text"
-                        class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"                        
+                        class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base text-neutral-700 outline-none focus:border-[#6A64F1] focus:shadow-md"
                         @keydown.enter.prevent="handleEnter"
                     >
-                    <div v-for="tag in form.tags" :key="tag" @click="deleteTag(tag)" 
+                    <div v-for="tag in form.tags" :key="tag" @click="deleteTag(tag)"
                         class="inline-block mx-0 my-2 mr-1 p-2 bg-gray-200 text-neutral-700 rounded-2xl cursor-pointer"
                     >
                         #{{ tag }}
                     </div>
-                    <div v-if="form.errors.tags" v-text="form.errors.tags" 
+                    <div v-if="form.errors.tags" v-text="form.errors.tags"
                         class="text-red-500 text-xs mt-1" />
                 </div>
-                <!-- image -->
-                <!-- <div class="mb-5">
-                    <input type="file" @input="form.image = $event.target.files[0]" />
-                    <div v-if="form.errors.image" v-text="form.errors.image" 
-                        class="text-red-500 text-xs mt-1" />
-                </div> -->
+
                 <div class="mb-5">
                     <div class="flex items-center justify-center bg-gray-100">
-                        <label for="input-image" 
+                        <label for="input-image"
                             class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center rounded-xl border-2 border-dashed bg-white p-6 text-center"
                             :class="{
                                 'border-neutral-700': form.image === null,
@@ -125,19 +120,15 @@
                             <p class="mt-2 text-gray-600">Upload image JPG or JPEG. (min: 512mb) </p>
 
                             <input @input="form.image = $event.target.files[0]"
-                                id="input-image" 
-                                type="file" 
-                                class="hidden" 
+                                id="input-image"
+                                type="file"
+                                class="hidden"
                             />
                         </label>
                     </div>
-                    <div v-if="form.errors.image" v-text="form.errors.image" 
-                        class="text-red-500 text-xs mt-1" 
+                    <div v-if="form.errors.image" v-text="form.errors.image"
+                        class="text-red-500 text-xs mt-1"
                     />
-                </div>
-
-                <div class="mb-5">
-                    
                 </div>
 
                 <div>
@@ -178,7 +169,7 @@ export default {
                 return tag !== item
             })
         }
-        
+
         let form = useForm({
             description: '',
             country: '',
@@ -190,11 +181,10 @@ export default {
 
 
         let submit = () => {
-            // console.log(form)
             form.post('/posts', form)
         }
 
-        
+
 
         return { form, submit, tag, handleEnter, deleteTag }
     }
@@ -202,14 +192,5 @@ export default {
 </script>
 
 <style>
-/* .tag {
-    display: inline-block;
-    margin: 10px 10px 0 0;
-    color: #444;
-    background: #ddd;
-    padding: 8px;
-    border-radius: 20px;
-    font-size: 14px;
-} */
 
 </style>

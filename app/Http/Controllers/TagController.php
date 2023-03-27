@@ -10,8 +10,6 @@ class TagController extends Controller
 {
     public function show(Request $request, Tag $tag)
     {
-        // $posts = ImagePost::imagePostCategoryWithUsers($category->id)->get();
-        
         $posts = $tag->imagePosts()
             ->with('image', 'user')
             ->withCount(['likes as liked' => function ($q) {

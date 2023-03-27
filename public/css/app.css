@@ -564,9 +564,6 @@ video {
 .col-start-1 {
   grid-column-start: 1;
 }
-.row-start-3 {
-  grid-row-start: 3;
-}
 .m-auto {
   margin: auto;
 }
@@ -891,9 +888,6 @@ video {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
   border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
-}
-.self-center {
-  align-self: center;
 }
 .justify-self-start {
   justify-self: start;

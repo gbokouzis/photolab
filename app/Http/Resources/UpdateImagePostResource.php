@@ -15,8 +15,6 @@ class UpdateImagePostResource extends JsonResource
      */
     public function toArray($request)
     {
-
-        // dd($request);
         return [
             'id' => $this->id,
             'description' => $this->description,

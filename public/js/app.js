@@ -1434,12 +1434,10 @@ var map = {
 	],
 	"./Posts/Create": [
 		"./resources/js/Pages/Posts/Create.vue",
-		"/js/vendor",
 		"resources_js_Pages_Posts_Create_vue"
 	],
 	"./Posts/Create.vue": [
 		"./resources/js/Pages/Posts/Create.vue",
-		"/js/vendor",
 		"resources_js_Pages_Posts_Create_vue"
 	],
 	"./Posts/Edit": [

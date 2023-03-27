@@ -10,8 +10,7 @@ class LocationController extends Controller
 {
     public function show(Request $request, Location $location)
     {
-        // $posts = ImagePost::imagePostCategoryWithUsers($category->id)->get();
-        
+
         $posts = $location->imagePosts()
             ->with('image', 'user')
             ->withCount(['likes as liked' => function ($q) {

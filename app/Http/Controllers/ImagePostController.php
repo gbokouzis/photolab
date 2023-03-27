@@ -22,16 +22,16 @@ use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ImagePostController extends Controller
-{ 
+{
     public function __construct()
     {
         $this->middleware('auth')
             ->only([
                 'create',
-                'show', 
-                'store', 
-                'edit', 
-                'update', 
+                'show',
+                'store',
+                'edit',
+                'update',
                 'destroy',
                 'posts_following'
             ]);
@@ -52,7 +52,7 @@ class ImagePostController extends Controller
         if ($request->wantsJson()) {
             return $posts;
         }
-        
+
         return Inertia::render('Posts/Index', [ 'posts' => $posts ]);
     }
 
@@ -87,11 +87,11 @@ class ImagePostController extends Controller
     public function store(StoreImagePostRequest $request)
     {
         $data = $request->validated();
-        
+
         // get image exif values and append in data
         $imageExif = exif_read_data($data['image']);
         $imageExifComputed = $imageExif['COMPUTED'];
-        
+
         if ( array_key_exists('Model', $imageExif) && $imageExif['Model'] != '--' ) {
             $data['camera'] = $imageExif['Model'];
             $data['iso'] = $imageExif['ISOSpeedRatings'];
@@ -99,9 +99,9 @@ class ImagePostController extends Controller
         }
         $data['height'] = $imageExifComputed['Height'];
         $data['width'] = $imageExifComputed['Width'];
-        
+
         // put the location data in variables
-        $country = ucwords($data['country']); 
+        $country = ucwords($data['country']);
         $city = ucwords($data['city']);
         $locationID = null;
         unset($data['country'], $data['city']);
@@ -112,7 +112,7 @@ class ImagePostController extends Controller
         // check if this location exists again, if no create new location
         $dbLocation = Location::where('country', 'LIKE', $country)
             ->where('city', 'LIKE', $city)->first();
-        
+
         if ($dbLocation === null) {
             $newLocation = Location::create([
                 'country' => $country,
@@ -120,11 +120,11 @@ class ImagePostController extends Controller
                 'city_country' => $city_country,
                 'country_city' => $country_city,
             ]);
-            $locationID = $newLocation->id;          
-        } 
+            $locationID = $newLocation->id;
+        }
 
         if ($dbLocation !== null) $locationID = $dbLocation->id;
-        
+
         $data['location_id'] = $locationID;
 
 
@@ -135,7 +135,7 @@ class ImagePostController extends Controller
                 $dbTag = Tag::where('name', 'LIKE', $tag)->first();
 
                 if ( $dbTag !== null ) array_push($idFromTags, $dbTag->id);
-                
+
                 if ( $dbTag === null ) {
                     $newTag = Tag::create(['name' => $tag]);
                     array_push($idFromTags, $newTag->id);
@@ -150,7 +150,7 @@ class ImagePostController extends Controller
 
         // create post with relationships and attach tags
         $newPost = ImagePost::create($data);
-        
+
         $newPost->tags()->attach($idFromTags);
 
         // save image to the storage
@@ -163,11 +163,11 @@ class ImagePostController extends Controller
 
         return Redirect::route('posts.index');
     }
-    
+
     // Show a photo
     public function show($id)
     {
-        $posts = ImagePost::with(['user', 'user.image', 'tags', 'comments', 'image', 'location'])
+        $posts = ImagePost::with(['user', 'user.image', 'tags', 'image', 'location'])
             ->withCount('likes as likes')
             ->withCount(['likes as liked' => function ($q) {
                 $q->where('user_id', Auth()->id());
@@ -195,15 +195,15 @@ class ImagePostController extends Controller
     {
         $this->authorize('update', $post);
         $data = $request->validated();
-        
+
         if ( count($data['tags']) !== 0 ) {
             $idFromTags = [];
-            
+
             foreach ($data['tags'] as $tag) {
                 $dbTag = Tag::where('name', 'LIKE', $tag)->first();
 
                 if ( $dbTag !== null ) array_push($idFromTags, $dbTag->id);
-                
+
                 if ( $dbTag === null ) {
                     $newTag = Tag::create(['name' => $tag]);
                     array_push($idFromTags, $newTag->id);
@@ -218,16 +218,16 @@ class ImagePostController extends Controller
 
         return redirect()->route('posts.index');
     }
-    
+
     public function destroy(ImagePost $post)
-    {         
+    {
         // $post = ImagePost::findOrFail($id);
         $this->authorize('delete', $post);
         $postWithImage = $post->image()->first();
         $pathReplace = str_replace('/storage', '', $postWithImage->path);
-        
+
         $isDeleting = Storage::disk('public')->delete($pathReplace);
-        if ($isDeleting) 
+        if ($isDeleting)
         {
             $postWithImage->delete();
             $post->delete();

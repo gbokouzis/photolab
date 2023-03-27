@@ -1,38 +1,17 @@
 <template>
-    <!-- <div>
-        <h1 v-if="post.description">Description: {{ post.description }}</h1>
-        <h1 v-if="post.camera">Camera: {{ post.camera }}</h1>
-        <p v-if="post.user.name">By: {{ post.user.name }}</p>
-        <div v-if="post.comments">
-            <h1>Comments</h1>
-            <div class="m-4" v-for="comment in post.comments" :key="comment.id">
-                <h3>
-                    From: {{ comment.user.name }}
-                </h3>
-                <p>
-                    {{ comment.content }}
-                </p> 
-            </div>
-        </div>
-    </div> -->
-
-
-
-
-
 <main class="py-6">
 	<div class="max-w-4xl mx-auto p-4 shadow-lg rounded-lg">
         <div class="flex py-2">
             <div @click="showUser(post.user.name)"
                 class="w-auto flex-shrink-0 h-auto border-2 border-indigo-600 rounded-full"
             >
-                <img v-if="post.user.image" 
+                <img v-if="post.user.image"
                     :src="post.user.image.path" alt=""
-                    class="object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500" 
+                    class="object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500"
                 >
-                <img v-else 
+                <img v-else
                     src="/storage/images/profile_image.png" alt=""
-                    class="object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500" 
+                    class="object-cover w-12 h-12 border-2 rounded-full shadow cursor-pointer border-white-500"
                 >
             </div>
             <div class="w-full flex flex-col mt-1 mb-2 ml-4">
@@ -54,7 +33,7 @@
                     <div @click="imgMenuShow = !imgMenuShow">
                         <div>
                             <button type="button" class="p-1 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-1 focus:ring-offset-0.8 focus:ring-offset-neutral-900 focus:ring-neutral-900" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c-.825 0-1.5.675-1.5 1.5S11.175 6 12 6s1.5-.675 1.5-1.5S12.825 3 12 3zm0 15c-.825 0-1.5.675-1.5 1.5S11.175 21 12 21s1.5-.675 1.5-1.5S12.825 18 12 18zm0-7.5c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5 1.5-.675 1.5-1.5-.675-1.5-1.5-1.5z"/></svg>                            
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 3c-.825 0-1.5.675-1.5 1.5S11.175 6 12 6s1.5-.675 1.5-1.5S12.825 3 12 3zm0 15c-.825 0-1.5.675-1.5 1.5S11.175 21 12 21s1.5-.675 1.5-1.5S12.825 18 12 18zm0-7.5c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5 1.5-.675 1.5-1.5-.675-1.5-1.5-1.5z"/></svg>
                             </button>
                         </div>
                     </div>
@@ -69,10 +48,6 @@
                     </div>
                 </div>
 
-
-
-
-
             </div>
         </div>
 		<div class="">
@@ -84,16 +59,14 @@
             <span v-else class="px-2 text-sm">Ηas no likes</span>
         </div>
         <div v-if="post.tags" class="font-medium flex flex-wrap">
-            <Link v-for="tag in post.tags" :key="tag.id" 
-                :href="route('tags.show', tag.name)"    
+            <Link v-for="tag in post.tags" :key="tag.id"
+                :href="route('tags.show', tag.name)"
                 class="tag"
             >
                 #{{ tag.name }}
             </Link>
         </div>
-        <!-- <div class="mt-4 col-start-1 row-start-3 self-center ">
-            <button type="button" class="bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg">Check availability</button>
-        </div> -->
+
         <p class="mt-2 leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 text-neutral-700">
             {{ post.description }}
         </p>
@@ -136,7 +109,7 @@
             </div>
         </div>
     </div>
-    
+
 </main>
 </template>
 
@@ -153,7 +126,7 @@ export default {
         post: Object
     },
     data() {
-        return { 
+        return {
             imgMenuShow: false,
         }
     },
